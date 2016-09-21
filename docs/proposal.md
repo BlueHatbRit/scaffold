@@ -45,10 +45,11 @@ There is a huge range of tools and technology choices out there for this sort of
 * Ruby and Ruby on Rails - Main application server for the web console and api
 * MySQL - Persistent data storage
 * Redis - Session store
-* Amazon Web Services - Hosting and scalibility, this will cover hardware requirements other than development machines
-* Travis CI - Continious integration and deployment
+* Amazon Web Services - Hosting infrastructure and scalability tools, this will cover hardware requirements other than development machines
+* Travis CI - Continuous integration and deployment
 * GitHub - Git hosting and project management
 * Git - Version control system
+* DataDog - Infrastructure monitoring
 
 There will be no additional funding required nor additional support from external companies.
 
