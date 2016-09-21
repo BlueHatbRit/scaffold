@@ -38,7 +38,7 @@ Many further tools and features will help to take the pain away from developing 
 2. Exception/error tracking - Send up exception/error stack traces and have alerts
 3. Data export system - If a product does well, they may wish to move to their own infrastructure. A basic way to export data is a good gesture of will to customers and makes it less of a commitment to begin an application with Shrapnel.
 
-## Tools and technologies
+## Likely tools and technologies of choice
 
 There is a huge range of tools and technology choices out there for this sort of product. I've listed some of the core technologies below that may be used.
 
