@@ -1,6 +1,4 @@
-# Project Proposal
-
-## Product overview
+# Product overview
 
 Shrapnel is a tool for developers to aid building prototypes and small applications. Using a SaaS (Software as a Service) model, Shrapnel takes the pain out of the basic server side systems and infrastructure. The product is designed to handle user account systems for the developer and use that as a platform to build some of the more complex tools that help when building either a prototype or long running application.
 
@@ -12,7 +10,7 @@ This project hopes to create a viable first iteration MVP (Minimal Viable Produc
 
 The application would consist of two core elements from the users perspective. First being a web console which would allow the addition of new "apps" to their account, configuration of the individual tools, and a basic view of data associated with their "apps". The second element is the RESTful (Representational State Transfer) API accessible via HTTP calls. This is what will allow the user to link their product up with their Shrapnel app.
 
-## Workflow and methodologies
+# Workflow and methodologies
 
 The project will use a combination of GitHub Flow and Kanban. It will use take advantage of the branch-based workflow in GitHub Flow and using a Kanban board for priority visibility.
 
@@ -20,7 +18,7 @@ Due to this choice in methodologies, the project will use Git and GitHub for VCS
 
 As this will be a solo project, code reviews will not be possible so the project will use TDD/BDD in appropriate places to ensure the quality of the system on a functional level.
 
-## Deliverables and priorities
+# Deliverables and priorities
 
 The features that this project includes are quite few in number to stick close to an MVP. They are intended to be wrapped into a full shippable product. There is also plenty of room for future expansion and additional features if time permits or the project continues. The core deliverables at the end of this project are below with further features in the next section.
 
@@ -30,7 +28,7 @@ The features that this project includes are quite few in number to stick close t
   - Customisable account levels and gating, ie: pro users, trial users, staff users.
   - Scalable shipping such as rolling out to a small percentage of the user base to test to ensure system stability.
 
-## Potential extension or future features
+# Potential extension or future features
 
 Many further tools and features will help to take the pain away from developing software. Below is another priority list which can be stacked under the above list of core features.
 
@@ -38,7 +36,7 @@ Many further tools and features will help to take the pain away from developing 
 2. Exception/error tracking - Send up exception/error stack traces and have alerts
 3. Data export system - If a product does well, they may wish to move to their own infrastructure. A basic way to export data is a good gesture of will to customers and makes it less of a commitment to begin an application with Shrapnel.
 
-## Likely tools and technologies of choice
+# Likely tools and technologies of choice
 
 There is a huge range of tools and technology choices out there for this sort of product. I've listed some of the core technologies below that may be used.
 
@@ -53,6 +51,6 @@ There is a huge range of tools and technology choices out there for this sort of
 
 There will be no additional funding required nor additional support from external companies.
 
-## Special risk consideration
+# Special risk consideration
 
 The application will be storing user data and hashed passwords. As a result, ethical approval may be required by the universities ethical approval committee.
