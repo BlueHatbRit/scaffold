@@ -2,15 +2,15 @@
 
 ## Product overview
 
-Shrapnel is a tool for developers to aid building prototypes and small applications. Using a SaaS model, Shrapnel takes the pain out of the basic server side systems and infrastructure. The product is designed to handle user account systems for the developer and use that as a platform to build some of the more complex tools that help when building either a prototype or long running application.
+Shrapnel is a tool for developers to aid building prototypes and small applications. Using a SaaS (Software as a Service) model, Shrapnel takes the pain out of the basic server side systems and infrastructure. The product is designed to handle user account systems for the developer and use that as a platform to build some of the more complex tools that help when building either a prototype or long running application.
 
 When building a new mass market application, you often want to employ tools such as feature flags, user analytics, and very basic data storage. However this can often add weeks or more to the development process, ultimately costing money and hindering the developer, team, or organisation from "failing fast". What's more, it can often take web expertise that a solo developer or small team may not have. This can result in poor quality, and poorly secured systems.
 
 Shrapnel aims to fill that gap, providing a number of developer tools built around a user account management system. As a SaaS designed for developers, it attempts to speed up the development flow of an application and either support them until they transition onto a bigger in-house system or through the entire life time of an application.
 
-This project hopes to create a viable first iteration MVP. If the project provides viable then I've added scope for further features to add more value to the product.
+This project hopes to create a viable first iteration MVP (Minimal Viable Product). If the project provides viable then I've added scope for further features to add more value to the product.
 
-The application would consist of two core elements from the users perspective. First being a web console which would allow the addition of new "apps" to their account, configuration of the individual tools, and a basic view of data associated with their "apps". The second element is the RESTful API accessible via HTTP calls. This is what will allow the user to link their product up with their Shrapnel app.
+The application would consist of two core elements from the users perspective. First being a web console which would allow the addition of new "apps" to their account, configuration of the individual tools, and a basic view of data associated with their "apps". The second element is the RESTful (Representational State Transfer) API accessible via HTTP calls. This is what will allow the user to link their product up with their Shrapnel app.
 
 ## Workflow and methodologies
 
@@ -55,4 +55,4 @@ There will be no additional funding required nor additional support from externa
 
 ## Special risk consideration
 
-Aside from normal software project risks, there are no special risks that have been identified at this point.
+The application will be storing user data and hashed passwords. As a result, ethical approval may be required by the universities ethical approval committee.
