@@ -14,6 +14,12 @@
     # We don't need passenger as we're using Puma
     #- geerlingguy.passenger
 
+  environment:
+    DB_USER: "{{ mysql_app_username }}"
+    DB_PASS: "{{ mysql_app_password }}"
+    DB_HOST: localhost
+    DB_PORT: 3306
+
   tasks:
     # Install Rails.
     - name: Install rails dependencies
@@ -21,6 +27,7 @@
       with_items:
         - zlib1g-dev
         - libsqlite3-dev
+        - python-mysqldb # Only so we can set the passwords from Ansible
 
     - command: which rails
       register: rails_result
@@ -30,6 +37,49 @@
     - name: Install rails 5.0.0.1
       shell: gem install rails -v 5.0.0.1 --no-ri --no-rdoc
       when: rails_result.rc != 0
+
+    - name: Install MySQL
+      apt: name={{ item }}
+      sudo: yes
+      with_items:
+        - mysql-server
+        - libmysqlclient-dev
+
+    - name: Start MySQL Service
+      sudo: yes
+      service:
+        name: mysql
+        state: started
+        enabled: true
+
+    - name: Update MySQL root password for all accounts
+      sudo: yes
+      mysql_user:
+        name: root
+        host: "{{ item }}"
+        password: "{{ mysql_root_password }}"
+        login_user: root
+        login_password: "{{ mysql_root_password }}"
+        check_implicit_admin: yes
+        priv: "*.*:ALL,GRANT"
+      with_items:
+        - "{{ ansible_hostname }}"
+        - 127.0.0.1
+        - ::1
+        - localhost
+        - 10.0.2.2
+        - "%"
+
+    - name: Add MySQL application user
+      sudo: yes
+      mysql_user:
+        name: "{{ mysql_app_username }}"
+        host: localhost
+        password: "{{ mysql_app_password }}"
+        login_user: root
+        login_password: "{{ mysql_root_password }}"
+        check_implicit_admin: yes
+        priv: "*.*:ALL,GRANT"
 
     # Build demo app.
     #- name: Check if Rails app exists.
