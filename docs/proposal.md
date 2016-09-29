@@ -1,14 +1,31 @@
-# Product overview
+# Shrapnel Proposal
 
-Shrapnel is a tool for developers to aid building prototypes and small applications. Using a SaaS (Software as a Service) model, Shrapnel takes the pain out of the basic server side systems and infrastructure. The product is designed to handle user account systems for the developer and use that as a platform to build some of the more complex tools that help when building either a prototype or long running application.
+User account management, feature toggles, exception tracking, and miscellaneous user data storage are all important tools when creating a prototype application. The issue is that when creating a new prototype you're often on a tight time scale. Developing these tools can take a huge amount of time yet provide incredible benefits to prototyping.
 
-When building a new mass market application, you often want to employ tools such as feature flags, user analytics, and very basic data storage. However this can often add weeks or more to the development process, ultimately costing money and hindering the developer, team, or organisation from "failing fast". What's more, it can often take web expertise that a solo developer or small team may not have. This can result in poor quality, and poorly secured systems.
+There are current players in the market such as Raygun (exception tracking), Google Analytics (analytics logging and breakdowns), and LaunchDarkly (feature flags as a service). One problem with these solutions is they're modelled for more established products and their data is often only useful in relation to user data which you are expected to already have and maintain. Another issue is they are often very "unopinionated" which is a great benefit for an established system but can be time consuming to mold into the form required. While opinionated platforms often offer much faster setup and results, this is discussed a lot in terms of application frameworks.
 
-Shrapnel aims to fill that gap, providing a number of developer tools built around a user account management system. As a SaaS designed for developers, it attempts to speed up the development flow of an application and either support them until they transition onto a bigger in-house system or through the entire life time of an application.
+By creating an opinionated "back-end as a service", this project aims to help developers in the early stages of a new product. The product will include a suite of tools that are often assumed to be created "in-house" by developers.
 
-This project hopes to create a viable first iteration MVP (Minimal Viable Product). If the project provides viable then I've added scope for further features to add more value to the product.
+## Project goals
 
-The application would consist of two core elements from the users perspective. First being a web console which would allow the addition of new "apps" to their account, configuration of the individual tools, and a basic view of data associated with their "apps". The second element is the RESTful (Representational State Transfer) API accessible via HTTP calls. This is what will allow the user to link their product up with their Shrapnel app.
+The goal of the project is to create a minimal viable product (MVP) of the solution. The core features and potential expansion features are listed below. The product will be in the form of a Software as a Service (SaaS) model as a public facing
+
+### Core MVP features
+
+* User account and session service - Handing registration and modification of user accounts, as well as user sessions for activities that require authentication.
+* Feature flagging - The ability to flag features in different ways such as:
+  * Simple on/off - A simple on/off for all users
+  * Account type - Such as staff shipping a feature or only enabling a feature for pro users rather than trial users.
+  * Population based - Slowly roll out a feature across the population of users by percentages to help ensure feature stability.
+* Web interface - For the developer to manage the customers API keys, configuring feature flags, and viewing any other features.
+* HTTP RESTful API - The main interface that the developer will use to interact with the system.
+
+### Future / expansion features
+
+* Basic user data storage - Give the developer the ability to store miscellaneous data against a user in a document style format.
+* Refactor experimentation - Track data on critical code path refactoring experiments.
+* Exception / error tracking - Allow the developer to send up stack traces from production exceptions and errors for analysis.
+* Analytic platform - An analytics platform tailored to prototype / early products. With the aim of collecting and displaying information on areas users are using the most, how long they spend in said areas of the application and such.
 
 # Workflow and methodologies
 
@@ -18,39 +35,21 @@ Due to this choice in methodologies, the project will use Git and GitHub for VCS
 
 As this will be a solo project, code reviews will not be possible so the project will use TDD/BDD in appropriate places to ensure the quality of the system on a functional level.
 
-# Deliverables and priorities
+# Potential tools and technologies
 
-The features that this project includes are quite few in number to stick close to an MVP. They are intended to be wrapped into a full shippable product. There is also plenty of room for future expansion and additional features if time permits or the project continues. The core deliverables at the end of this project are below with further features in the next section.
-
-1. User account management for applications - Account registration, authenticated sessions, and session verification.
-2. Feature flag service - Feature flagging based on user accounts to include features such as:
-  - Simple on/off toggle.
-  - Customisable account levels and gating, ie: pro users, trial users, staff users.
-  - Scalable shipping such as rolling out to a small percentage of the user base to test to ensure system stability.
-
-# Potential extension or future features
-
-Many further tools and features will help to take the pain away from developing software. Below is another priority list which can be stacked under the above list of core features.
-
-1. JSON Data Storage - Store a small amount of data against each user in JSON format with the ability to retrieve and update it at will.
-2. Exception/error tracking - Send up exception/error stack traces and have alerts
-3. Data export system - If a product does well, they may wish to move to their own infrastructure. A basic way to export data is a good gesture of will to customers and makes it less of a commitment to begin an application with Shrapnel.
-
-# Likely tools and technologies of choice
-
-There is a huge range of tools and technology choices out there for this sort of product. I've listed some of the core technologies below that may be used.
+There are a huge range of tools and technology choices out there for this sort of product. Below is a potential stack
 
 * Ruby and Ruby on Rails - Main application server for the web console and api
 * MySQL - Persistent data storage
-* Redis - Session store
+* Redis - As a session store
 * Amazon Web Services - Hosting infrastructure and scalability tools, this will cover hardware requirements other than development machines
 * Travis CI - Continuous integration and deployment
 * GitHub - Git hosting and project management
 * Git - Version control system
 * DataDog - Infrastructure monitoring
 
-There will be no additional funding required nor additional support from external companies.
+The majority of the spending on this project will be for server infrastructure but no funding will be required as prices should be relatively minimal.
 
 # Special risk consideration
 
-The application will be storing user data and hashed passwords. As a result, ethical approval may be required by the universities ethical approval committee.
+The application will be storing user data and hashed passwords. As a result, ethical approval may be required by the universities ethical approval committee. Decisions will need to be made as to the best approach for storing passwords, possibilities include BCrypt hashing.
