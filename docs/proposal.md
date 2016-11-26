@@ -1,55 +1,85 @@
-# Shrapnel Proposal
+# Project Proposal
 
-User account management, feature toggles, exception tracking, and miscellaneous user data storage are all important tools when creating a prototype application. The issue is that when creating a new prototype you're often on a tight time scale. Developing these tools can take a huge amount of time yet provide incredible benefits to prototyping.
+## Keywords
 
-There are current players in the market such as Raygun (exception tracking), Google Analytics (analytics logging and breakdowns), and LaunchDarkly (feature flags as a service). One problem with these solutions is they're modelled for more established products and their data is often only useful in relation to user data which you are expected to already have and maintain. Another issue is they are often very "unopinionated" which is a great benefit for an established system but can be time consuming to mold into the form required. While opinionated platforms often offer much faster setup and results, this is discussed a lot in terms of application frameworks.
+Web application, HTTP API, mobile SDK
 
-By creating an opinionated "back-end as a service", this project aims to help developers in the early stages of a new product. The product will include a suite of tools that are often assumed to be created "in-house" by developers.
+## Problem area
 
-## Project goals
+Web development has come forward leaps and bounds with deployment and prototyping tools over the last decade. Web engineers now have access to feature flagging, easy user systems, exception tracking, analytics, build servers, deployment services, and so many more tools. Mobile and game development on the other hand hasn't advanced nearly as far with it's tooling. Most of these tools are dependant on solid user account systems, something which many mobile developers struggle with. There are very few of brands of these tools which are designed for mobile or game infrastructure.
 
-The goal of the project is to create a minimal viable product (MVP) of the solution. The core features and potential expansion features are listed below. The product will be in the form of a Software as a Service (SaaS) model as a public facing
+## Product
 
-### Core MVP features
+This product will be a chain of development tools centred around a user account service aimed at mobile and game developers. The tool will be open source so developers can easily deploy and manage it themselves, but without needing the up-to-date knowledge to build secure web systems.
 
-* User account and session service - Handing registration and modification of user accounts, as well as user sessions for activities that require authentication.
-* Feature flagging - The ability to flag features in different ways such as:
-  * Simple on/off - A simple on/off for all users
-  * Account type - Such as staff shipping a feature or only enabling a feature for pro users rather than trial users.
-  * Population based - Slowly roll out a feature across the population of users by percentages to help ensure feature stability.
-* Web interface - For the developer to manage the customers API keys, configuring feature flags, and viewing any other features.
-* HTTP RESTful API - The main interface that the developer will use to interact with the system.
+The product will have a web interface and an API with room for expansion into SDKs for platforms like Xamarin, Unity3D, and React-Native.
 
-### Future / expansion features
+## Final deliverables
 
-* Basic user data storage - Give the developer the ability to store miscellaneous data against a user in a document style format.
-* Refactor experimentation - Track data on critical code path refactoring experiments.
-* Exception / error tracking - Allow the developer to send up stack traces from production exceptions and errors for analysis.
-* Analytic platform - An analytics platform tailored to prototype / early products. With the aim of collecting and displaying information on areas users are using the most, how long they spend in said areas of the application and such.
+The toolchain can be compiled in a very iterative fashion which means that the core deliverables can be few in number. This leaves plenty of room to then build upon the product as a platform. The initial deliverables will be:
 
-# Workflow and methodologies
+* A user account service where the applications users can register, and staff can view basic account details. This service will securely store user data.
+* User account types for creating "staff" or "pro" user definitions.
+* An API for user session creation and management.
+* Simple "on/off" feature flag creation and deletion through web interface.
+* Account type based feature flags (to "staff ship" features, or enable for pro-users only, etc).
+* API call to request the status of a particular feature for the authenticated user.
+* API call to request the status of all features for the authenticated user.
 
-The project will use a combination of GitHub Flow and Kanban. It will use take advantage of the branch-based workflow in GitHub Flow and using a Kanban board for priority visibility.
+## Expansion deliverables
 
-Due to this choice in methodologies, the project will use Git and GitHub for VCS along with GitHub Issues, Pull Requests, and Projects. This will further help to keep everything in one place and easily accessible, as well as backed up via Git.
+If the core deliverables above are all met and time permits, then the following is a priority ordered list of features that may also be added to the product.
 
-As this will be a solo project, code reviews will not be possible so the project will use TDD/BDD in appropriate places to ensure the quality of the system on a functional level.
+* Population based feature flags. This will enable a developer to ship a feature to 10% of a user base for example.
+* API call to log exceptions with al ink to the user that triggered them.
+* Web interface to view logged exceptions and their details.
+* "Feature usage" analytics API to allow a developer to log when a user makes use of a praticular feature.
+* Web interface to view analytic results and breakdowns.
+* Beta user signup page to allow current users to be either invited or openly join the beta programme.
+* API calls to support beta programme (request the status of the user).
+* Platform SDKs - To help developers make use of the product with a smaller learning curve. IE: Xamarin, Unity3D, React-Native, etc.
 
-# Potential tools and technologies
+## Approach and workflows
 
-There are a huge range of tools and technology choices out there for this sort of product. Below is a potential stack
+As the project will have one developer, a full blown agile framework like SCRUM would not be appropriate. Instead, I'll be employing a methodology which still steers towards the agile principles but with a lot less friction. I'll be making use of GitHub Flow and using a branch/pull request based workflow, this will fit in well with my usage of Git and GitHub for version control and documentation. I'll be making use of issues and milestones or organise my work and ensure my workflow is visible.
 
-* Ruby and Ruby on Rails - Main application server for the web console and api
-* MySQL - Persistent data storage
-* Redis - As a session store
-* Amazon Web Services - Hosting infrastructure and scalability tools, this will cover hardware requirements other than development machines
-* Travis CI - Continuous integration and deployment
-* GitHub - Git hosting and project management
-* Git - Version control system
-* DataDog - Infrastructure monitoring
+This will also perfectly set the project up to be open sourced at the end of the project should I be able to secure university permission to do so.
 
-The majority of the spending on this project will be for server infrastructure but no funding will be required as prices should be relatively minimal.
+## Suggested technologies
 
-# Special risk consideration
+There are a number of technologies I am very familiar with which could be used to create this application and API. Below I've listed all the technologies and their role in the project. For some roles I've suggested multiple potential technologies to give myself options.
 
-The application will be storing user data and hashed passwords. As a result, ethical approval may be required by the universities ethical approval committee. Decisions will need to be made as to the best approach for storing passwords, possibilities include BCrypt hashing.
+### Server frameworks and technologies
+
+* Node.js + Express.js - Core web server logic for serving up the web application and serving API requests.
+* Ruby + Ruby On Rails - Core web server logic for serving up the web application and serving API requests.
+
+### Data storage
+
+* MySQL - Persistent data storage for things like user accounts, and feature flags.
+* PostgreSQL - Persistent data storage for things like user accounts, and feature flags.
+* Redis - To act as a session store for persistent sessions. This will enable me to offer other session options than just web cookies.
+* MongoDB - Data storage for large data sets like analytics or exception logs.
+* DynamoDB - Data storage for large data sets like analytics or exception logs.
+
+### DevOps tooling
+
+* Travis-CI - A CI server which favours non-container based apps.
+* Wercker - A CI server which favours container based apps.
+* Amazon AWS - Server infrastructure for testing the application.
+* Heroku - A server infrastructure for testing the application.
+* Git - Project version control.
+* GitHub - Centralised version control node and project management.
+* BitBucket - Centralised version control node and project management.
+
+## Requirements
+
+For the majority of the development I won't need any additional hardware. However I may need to seek financial support for server infrastructure through services like Amazon AWS or DigitalOcean to test the services properly.
+
+I will also need ethical approval to collect user data during the testing of this application. I will no doubt need to develop a small mobile application to demonstrate the deliverable. This will include the collection and secure storage of user data.
+
+## Risks
+
+The core risks to the project are mostly the project not completing due to poor time estimates on my part. As this is all work I've done for two years in the industry, I feel my estimates will be fairly reasonable and I'm not very worried about this being a prevalent issue. To ensure this is the case I'll be using milestones with my tasks to ensure I'm on track with work early on.
+
+The other risk is data protection, but this can be properly solved through correct use of data hashing and encryption. For example, passwords would need to be hashed using something such as BCrypt before being stored in the database.
