@@ -158,7 +158,7 @@ All project management systems will also be made available to the project superv
 
 ## 7. Project risk
 
-There are a number of risks to consider on a large project such as this. Below are a few of the initial risks and the plans to combat them, this will most likely grow during the life time of the project.
+There are a number of risks to consider on a large project such as this. Below are a number of the initial risks and the plans to combat them, this will grow during the life time of the project. Many of these risks are solved by other elements of this document, but some will require further thought. This does not include ethical considerations, those are covered in section 9.
 
 <center>
   <table>
