@@ -7,21 +7,21 @@ Feature flags, usage analytics, and exception logging are just some of the many 
 
 This projects aim is to create a solution to this problem for mobile and game developers in the form of a minimal viable product (MVP). The product will give developers a platform which handles user accounts, user sessions, and application feature flags. There is also potential for expansion into a fourth feature such as usage analytics or crash reporting.
 
-## 2. Market for the Solution
+## 2. Market for the solution
 
 <!-- Discuss what the market is, why it's there, and what key players are around it -->
 This project is not bespoke and thus has no single client, instead it is aimed at a mass market of individuals with the potential for enterprise users as well.
 
 <!-- Point out that the project will be aimed towards building an open source platform rather than closed source -->
 
-## 3. Project Objectives
+## 3. Project objectives
 
 1. Analyse existing products in the developer tooling market which offer features such as: feature flagging, account management, session management, usage analytics, and crash reporting. Note the pros and cons of open source solutions.
 2. Scope out project milestones which will work towards a minimal viable product.
 3. Analyse development tools and environments and decided on a technology stack that would best accommodate the solution.
 4. Build a software solution which makes it gives easy access to modern software engineering tools for mobile and game developers who do not have expert web engineering expertise.
 
-## 4. Initial Scope
+## 4. Initial scope
 
 The initial scope of this project is small with a view to creating a minimal viable product in an attempt to achieve product/market.
 
@@ -40,11 +40,11 @@ The term "developer" and "administrator" refer to types of people on a mobile or
   9. An API call to be made to check the status of an individual feature flag, or all feature flags, for the current authenticated user.
 5. Make changes to the system design and interfaces based upon feedback from teams / individual developers that may find this system useful.
 
-## 5. Method of Approach
+## 5. Method of approach
 
 To create this application, I will need to adopt a development workflow which will allow me to ensure that milestones are completed correctly and on time. This will also help to ensure that a high quality system is output, this is further discussed in section 8.
 
-### 5.1 Methodology and Workflow
+### 5.1 Methodology and workflow
 
 I will be combining my experience in both open source and commercial software for my projects methodology and my general workflow. As my main task management methodology I will be using Kanban. It's a very light weight methodology which allows for great speed and very last minute change which is important on a small project with a small team.
 
@@ -72,9 +72,11 @@ The following are potential technologies and tools that may be used to complete 
 
 A full and proper evaluation will take place during the span of the project and any of those listed above may change.
 
-## 6. Project Plan
+## 6. Project plan
 
-<table id="projectPlan">
+### 6.1 Outline of initial project schedule
+
+<table>
   <tr>
     <th>Stage</th>
     <th>Expected Start Date</th>
@@ -108,31 +110,89 @@ A full and proper evaluation will take place during the span of the project and 
   <tr>
     <td>Development increment 1</td>
     <td>20<sup>th</sup> Feb 2017</td>
-    <td>6<sup>th</sup> March 2017</td>
-    <td>User account management </td>
+    <td>10<sup>th</sup> March 2017</td>
+    <td>Account creation via web interface and session management via web interface and Rest API</td>
+  </tr>
+  <tr>
+    <td>Development increment 2</td>
+    <td>13<sup>th</sup> March 2017</td>
+    <td>31<sup>st</sup> March 2017</td>
+    <td>Feature flag management via web interface and querying via Rest API</td>
+  </tr>
+  <tr>
+    <td>User testing and debugging</td>
+    <td>3<sup>rd</sup> April 2017</td>
+    <td>7<sup>th</sup> April 2017</td>
+    <td>Gather (potential) user feedback. Based on that feedback, create a plan of potential changes to the product.</td>
+  </tr>
+  <tr>
+    <td>Development increment 3 (optional)</td>
+    <td>10<sup>th</sup> April 2017</td>
+    <td>21<sup>st</sup> April 2017</td>
+    <td>Implement product changes derived from user feedback.</td>
+  </tr>
+  <tr>
+    <td>Reflective report</td>
+    <td>24<sup>th</sup> April 2017</td>
+    <td>5<sup>th</sup> April 2017</td>
+    <td>Finalise reflective report.</td>
   </tr>
 </table>
 
-### 6.1 Outline of project schedule
+### 6.2 Control plan
 
-### 6.2 Control Plan
+To ensure the project stays on track, a number of PRINCE2 control techniques will be applied.
 
-### 6.3 Communication Plan
+1. Weekly highlight reports (as dictated by the PRCO304 module) will be submitted to the project supervisor. These will also act as end-of-stage reports and will ensure that progress is being made correctly.
+2. Regular review meetings with the project supervisor will also occur to ensure that the highlight reports are understood and to also solicit any advice required.
+3. Risk management is dictated in section 7.
+4. A communication plan is dictated in section 6.3.
+5. A quality plan is dictated in section 8.
+6. Exception reports can be generated if a major roadblock is met or something in the project goes significantly wrong. This will also generate an exception plan to resolve the issue(s).
 
-## 7. Project Risk
+### 6.3 Communication plan
 
-## 8. Solution Quality Outline
+Regular review meetings will be held with the project supervisor to ensure communication flows correctly during the process. Additional meetings may be held ad-hoc as required.
 
-### 8.1 Overall Solution Quality
+All project management systems will also be made available to the project supervisor should the need arise for quick remote inspection of the projects progress.
 
-### 8.2 Usability Testing
+## 7. Project risk
 
-### 8.3 Functional Testing
+There are a number of risks to consider on a large project such as this. Below are a few of the initial risks and the plans to combat them, this will most likely grow during the life time of the project.
 
-## 9 Legal, Ethical, and Professional Issues
+<center>
+  <table>
+    <tr>
+      <th>Risk</th>
+      <th>Management Strategy</th>
+    </tr>
+    <tr>
+      <td>Underestimating schedule stages</td>
+      <td>Contingency time has been added into each stage in an attempt to combat this risk. Highlight reports will also be generated to track progress. In the event of an overrun of 1 week or more on a particular stage, an exception report will be generated and an exception plan will be created to rectify the issue.</td>
+    </tr>
+    <tr>
+      <td>Over scoped project</td>
+      <td>A minimalist project plan has been created to reduce the scope as much as possible. Weekly reports will also ensure that scope is being met. In the event that the project seems to be too large, more features may be cut to create a smaller MVP.</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+    </tr>
+  </table>
+</center>
 
-### 9.1 University Ethics Policy
+## 8. Solution quality outline
 
-### 9.2 Module Ethics Approval
+### 8.1 Overall solution quality
 
-### 9.3 Further Considerations
+### 8.2 Usability testing
+
+### 8.3 Functional testing
+
+## 9 Legal, ethical, and professional Issues
+
+### 9.1 University ethics policy
+
+### 9.2 Module ethics approval
+
+### 9.3 Further considerations
