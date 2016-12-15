@@ -1,5 +1,5 @@
-<!--<div id="pageHeader">** PRCO304 - Elliot Blackburn**</div>-->
 # Project Initiation Document
+** PRCO304 - Elliot Blackburn**
 
 ## 1. Introduction
 
@@ -175,24 +175,50 @@ There are a number of risks to consider on a large project such as this. Below a
       <td>A minimalist project plan has been created to reduce the scope as much as possible. Weekly reports will also ensure that scope is being met. In the event that the project seems to be too large, more features may be cut to create a smaller MVP.</td>
     </tr>
     <tr>
-      <td></td>
-      <td></td>
+      <td>Difficulty learning technologies</td>
+      <td>I will be selecting a technology stack which I have extensive experience with to work with.</td>
+    </tr>
+    <tr>
+      <td>Loss of data (technology failure)</td>
+      <td>This will be managed in three ways.
+        <ol> <!-- Markdown ordered lists in tables don't function that well, falling back to html. -->
+          <li>The codebase will use a distributed reversion control system. One where an entire history of the codebase is shared across all nodes. There will also be a central node which will host the repository thus ensuring multiple machines maintain a (relatively) up to date version of the code base. IE: my working laptop, the cloud hosted service (github), and any other machines used to work on the project such as my desktop machine.</li>
+          <li>Database migration will be controlled alongside the application codebase through the use of migration scripts to ensure the structure is not lost.</li>
+          <li>Any production or production-like systems will have appropriate backup schedules run automatically which can be used to restore from. IE: the main production database may have a daily backup that is run.</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td>Bug fixing / additional feature development breaks pre-existing systems</td>
+      <td>Functional, unit, and integration tests will be written to automatically ensure that changes to the codebase do not break pre-existing features. These tests will be run as part of the CI.</td>
     </tr>
   </table>
 </center>
 
 ## 8. Solution quality outline
 
-### 8.1 Overall solution quality
+A quality product is absolutely vital to an MVP. As such it's important to ensure that systems and practices are put in place to ensure stable quality of a high level.
 
-### 8.2 Usability testing
+The over all quality of the solution is relatively subjective due to this not being a bespoke solution. As a result it is important to implement systems to ensure that the product functions and that it is easy to use.
 
-### 8.3 Functional testing
+### 8.2 Usability quality and testing
 
-## 9 Legal, ethical, and professional Issues
+Many techniques will be applied to ensure that the application is found easy to use by the target audience. Below is an initial list of some which may be applied.
 
-### 9.1 University ethics policy
+* Standard Conventions - Many conventions have been pre-established and are well understood by most people. These include things like underlining hyperlinks.
+* A Pre-existing Style Framework - Instead of creating my own style guide and framework, I will select one such as Twitter Bootstrap for the web interface. This will give the application a familiar feel and ensure that accessibility requirements are met.
 
-### 9.2 Module ethics approval
+With a mass-market solution, it is important to test it with real / potential users as soon as possible and on a regular basis. The following is a list of some testing techniques I will make use of.
 
-### 9.3 Further considerations
+* Hallway Usability Testing - During development I will attempt to situate myself around course mates who are my target audience (game / mobile developers). This will enable me to ask them to test out small bits of functionality and collect informal feedback on the design and user journey.
+* Usage Observations - For longer testing sessions I will approach potential users and ask them to attempt a number of tasks to make use of the system. I will observe their actions and make note of where they struggle to accomplish tasks.
+
+### 8.3 Functional, unit, and integration testing
+
+Automated functional, unit, and integration testing will be applied to the project and will be run as part of the CI process. This will ensure that changes to the codebase do not break pre-existing systems. This has be benefit of providing confidence that the code does what it should, and also that changes will not damage the system.
+
+As an added extra, automated tests often encourage good separation of concerns in a codebase.
+
+## 9 Ethical issues
+
+During user testing I may need to collect user data such as email addresses and passwords. The university requires an ethical approval process for this which will ensure my process is both ethical and reasonable.
