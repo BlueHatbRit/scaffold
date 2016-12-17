@@ -156,7 +156,7 @@ Regular review meetings will be held with the project supervisor to ensure commu
 
 All project management systems will also be made available to the project supervisor should the need arise for quick remote inspection of the projects progress.
 
-<br/>
+<br/> <!-- pdf formatting -->
 
 ## 7. Project risk
 
@@ -197,7 +197,7 @@ There are a number of risks to consider on a large project such as this. Below a
   </table>
 </center>
 
-<br/>
+<br/> <!-- pdf formatting -->
 
 ## 8. Solution quality outline
 
