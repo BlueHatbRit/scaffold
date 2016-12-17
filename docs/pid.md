@@ -1,4 +1,4 @@
-# Project Initiation Document
+# Scaffold - Project Initiation Document
 ** PRCO304 - Elliot Blackburn**
 
 ## 1. Introduction
@@ -156,6 +156,8 @@ Regular review meetings will be held with the project supervisor to ensure commu
 
 All project management systems will also be made available to the project supervisor should the need arise for quick remote inspection of the projects progress.
 
+<br/>
+
 ## 7. Project risk
 
 There are a number of risks to consider on a large project such as this. Below are a number of the initial risks and the plans to combat them, this will grow during the life time of the project. Many of these risks are solved by other elements of this document, but some will require further thought. This does not include ethical considerations, those are covered in section 9.
@@ -195,6 +197,8 @@ There are a number of risks to consider on a large project such as this. Below a
   </table>
 </center>
 
+<br/>
+
 ## 8. Solution quality outline
 
 A quality product is absolutely vital to an MVP. As such it's important to ensure that systems and practices are put in place to ensure stable quality of a high level.
@@ -216,8 +220,6 @@ With a mass-market solution, it is important to test it with real / potential us
 ### 8.3 Functional, unit, and integration testing
 
 Automated functional, unit, and integration testing will be applied to the project and will be run as part of the CI process. This will ensure that changes to the codebase do not break pre-existing systems. This has be benefit of providing confidence that the code does what it should, and also that changes will not damage the system.
-
-As an added extra, automated tests often encourage good separation of concerns in a codebase.
 
 ## 9 Ethical issues
 
