@@ -1,0 +1,11 @@
+{
+  "name": "prco304-docs",
+  "version": "1.0.0",
+  "description": "Documentation for PRCO304",
+  "scripts": {
+    "pdf-proposal": "./node_modules/.bin/mdpdf --source proposal.md",
+    "pdf-pid": "./node_modules/.bin/mdpdf --source pid.md",
+    "pdf-investigation": "./node_modules/.bin/mdpdf --source investigation.md"
+  },
+  "author": "Elliot Blackburn <elliot.blackburn@gmail.com>"
+}

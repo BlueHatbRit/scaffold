@@ -1,5 +1,5 @@
 # Scaffold - Project Initiation Document
-** PRCO304 - Elliot Blackburn**
+**PRCO304 - Elliot Blackburn**
 
 ## 1. Introduction
 
