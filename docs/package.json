@@ -3,9 +3,14 @@
   "version": "1.0.0",
   "description": "Documentation for PRCO304",
   "scripts": {
-    "pdf-proposal": "./node_modules/.bin/mdpdf --source proposal.md",
-    "pdf-pid": "./node_modules/.bin/mdpdf --source pid.md",
-    "pdf-investigation": "./node_modules/.bin/mdpdf --source investigation.md"
+    "pdf-proposal": "mdpdf --source proposal.md",
+    "pdf-pid": "mdpdf --source pid.md",
+    "pdf-report": "mdpdf --source report.md --style md-styles.css --disableGhStyle",
+    "pdf-investigation": "mdpdf --source investigation/README.md --style md-styles.css --disableGhStyle",
+    "pdf-sr-1": "mdpdf --source status-reports/2017-01-01.md --style md-styles.css --disableGhStyle"
   },
-  "author": "Elliot Blackburn <elliot.blackburn@gmail.com>"
+  "author": "Elliot Blackburn <elliot.blackburn@gmail.com>",
+  "dependencies": {
+    "mdpdf": "^1.0.1"
+  }
 }
