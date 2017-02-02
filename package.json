@@ -1,0 +1,32 @@
+{
+  "name": "scaffold",
+  "version": "0.1.0",
+  "description": "scaffolding for your prototypes",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/BlueHatbRit/scaffold.git"
+  },
+  "keywords": [
+    "scaffold",
+    "prototype",
+    "mobile",
+    "web",
+    "users",
+    "feature",
+    "flags"
+  ],
+  "author": "Elliot Blackburn <elliot.blackburn@gmail.com>",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/BlueHatbRit/scaffold/issues"
+  },
+  "homepage": "https://github.com/BlueHatbRit/scaffold#readme"
+}
