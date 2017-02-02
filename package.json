@@ -28,5 +28,8 @@
   "bugs": {
     "url": "https://github.com/BlueHatbRit/scaffold/issues"
   },
-  "homepage": "https://github.com/BlueHatbRit/scaffold#readme"
+  "homepage": "https://github.com/BlueHatbRit/scaffold#readme",
+  "dependencies": {
+    "express": "^4.14.1"
+  }
 }
