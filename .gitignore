@@ -1,8 +1,16 @@
 # Docs
 *.pdf
 
-# OSX Files
+# OS files
 .DS_Store
 
 # Node modules
 node_modules
+
+# VSCode
+.vscode
+
+# Config files
+config.development.json
+config.production.json
+config.testing.json
