@@ -2,10 +2,10 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 const KnexMigrator = require('knex-migrator');
 const migrator = new KnexMigrator();
-let server = require('./server');
+const server = require('./server');
 
 migrator.isDatabaseOK().then(() => {
-    server.start();
+    return server.start();
 }).catch((err) => {
     //console.error(err.code);
     if (err.code == 'MIGRATION_TABLE_IS_MISSING') {

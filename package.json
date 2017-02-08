@@ -10,7 +10,8 @@
     "debug": "node --debug-brk index.js",
     "start": "node index.js",
     "db-init": "knex-migrator init",
-    "db-up": "knex-migrator migrate"
+    "db-up": "knex-migrator migrate",
+    "db-reset": "knex-migrator reset"
   },
   "repository": {
     "type": "git",
@@ -32,13 +33,22 @@
   },
   "homepage": "https://github.com/BlueHatbRit/scaffold#readme",
   "dependencies": {
+    "bcrypt": "^1.0.2",
     "bluebird": "^3.4.7",
-    "bookshelf": "^0.10.3",
+    "body-parser": "^1.16.0",
+    "bookshelf": "^0.10.2",
     "bookshelf-modelbase": "^2.10.3",
     "express": "^4.14.1",
+    "grunt": "^1.0.1",
+    "grunt-mocha-cli": "^3.0.0",
     "knex": "^0.12.6",
     "knex-migrator": "^2.0.5",
     "lodash": "^4.17.4",
-    "nconf": "^0.8.4"
+    "lodash.difference": "^4.5.0",
+    "mocha": "^3.2.0",
+    "mysql": "^2.13.0",
+    "nconf": "^0.8.4",
+    "should": "^11.2.0",
+    "xtend": "^4.0.1"
   }
 }

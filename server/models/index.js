@@ -13,4 +13,4 @@ exports.init = function() {
     models.forEach((name) => {
         _.extend(exports, require('./' + name));
     });
-}
+};

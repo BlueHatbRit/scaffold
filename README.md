@@ -12,3 +12,6 @@ The docs file contains all of the relevant documentation for this project.
 * [Project Initiation Document](./docs/pid.md)
 * [Weekly Status Reports](./docs/status-reports/README.md)
 * [Market Investigation](./docs/investigation.md)
+
+## API Documentation
+

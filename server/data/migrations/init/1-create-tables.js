@@ -8,7 +8,6 @@ module.exports = function createTables(options) {
 
     // Create all tables within the schema
     return Promise.mapSeries(tables, (table) => {
-        console.log(table);
         return commands.createTable(table, transacting);
     });
 }
