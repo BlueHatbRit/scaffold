@@ -39,16 +39,19 @@
     "bookshelf": "^0.10.2",
     "bookshelf-modelbase": "^2.10.3",
     "express": "^4.14.1",
-    "grunt": "^1.0.1",
-    "grunt-mocha-cli": "^3.0.0",
     "knex": "^0.12.6",
     "knex-migrator": "^2.0.5",
     "lodash": "^4.17.4",
     "lodash.difference": "^4.5.0",
-    "mocha": "^3.2.0",
     "mysql": "^2.13.0",
     "nconf": "^0.8.4",
-    "should": "^11.2.0",
     "xtend": "^4.0.1"
+  },
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-mocha-cli": "^3.0.0",
+    "matchdep": "^1.0.1",
+    "mocha": "^3.2.0",
+    "should": "^11.2.0"
   }
 }
