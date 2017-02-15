@@ -16,6 +16,10 @@ function start() {
     app.use('/api/v1.0', require('./api/app')());
     console.log('api initialised');
 
+    // Mount the web console
+    app.use('/', require('./web-console')());
+    console.log('web-console initialised');
+
     const port = config.get('port');
     app.listen(port, () => {
         console.log('listening on port:', port);

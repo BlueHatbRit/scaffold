@@ -9,5 +9,9 @@
       "database": "scaffold-dev",
       "charset": "utf8"
     }
+  },
+  
+  "auth": {
+    "secret": "secret"
   }
 }

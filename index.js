@@ -11,5 +11,10 @@ migrator.isDatabaseOK().then(() => {
     if (err.code == 'MIGRATION_TABLE_IS_MISSING') {
         console.error('Database is not initialised run:');
         console.error('npm run db-init');
+    } else {
+        console.error('Error starting Scaffold');
+        console.error(err);
     }
+    
+    process.exitCode = 1;
 });

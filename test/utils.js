@@ -1,5 +1,12 @@
 const KnexMigrator = new require('knex-migrator');
+const models = require('../server/models');
 let migrator = new KnexMigrator();
+
+let initModels = function initModels(done) {
+    models.init();
+
+    done();
+};
 
 let initDb = function setup(done) {
     if (done) {
@@ -22,6 +29,7 @@ let teardownDb = function teardown(done) {
 };
 
 module.exports = {
+    initModels: initModels,
     initDb: initDb,
     teardownDb: teardownDb
 };

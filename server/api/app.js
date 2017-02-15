@@ -1,21 +1,24 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const middleware = require('../middleware');
 const api = require('../api');
 
 function initRoutes() {
     const router = express.Router();
 
-    router.get('/status', (req, res) => {
+    router.get('/status', /*middleware.auth,*/ (req, res) => {
         res.send({ status: 'operational' }).end();
     });
 
-    router.get('/user/:id', api.http(api.user.show));
+    //router.get('/user/:id', api.http(api.user.show));
     router.post('/user', api.http(api.user.create));
+    
+    router.post('/session', api.http(api.session.create));
 
     return router;
 }
 
-module.exports = function() {
+module.exports = () => {
     const app = express();
 
     app.use(bodyParser.json());

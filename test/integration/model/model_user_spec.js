@@ -8,9 +8,9 @@ describe('User Model', () => {
     beforeEach(utils.initDb);
     afterEach(utils.teardownDb);
 
-    describe('Registration', () => {
-        it('password hashed on creation', (done) => {
-            let newUser = {
+    describe('Creation', () => {
+        it('hashes password', (done) => {
+            const newUser = {
                 email: 'test@vintus.com',
                 password: 'supersecretpassword'
             };
@@ -23,7 +23,7 @@ describe('User Model', () => {
         });
 
         it('saves user', (done) => {
-            let newUser = {
+            const newUser = {
                 email: 'test@vintus.com',
                 password: 'supersecretpassword'
             };
@@ -40,6 +40,80 @@ describe('User Model', () => {
 
                 done();
             }).catch(done);
-        })
-    })
+        });
+    });
+
+    describe('to JSON', () => {
+        it("doesn't include password", done => {
+            const newUser = {
+                email: 'test@vintus.com',
+                password: 'supersecretpassword'
+            };
+
+            models.User.create(newUser).then(user => {
+                const userAsJson = user.toJSON();
+                should.not.exist(userAsJson.password, 'password was removed');
+
+                done();
+            });
+        });
+    });
+
+    describe('Verify', () => {
+        it('succeeds when given correct password', done => {
+            const newUser = {
+                email: 'test@vintus.com',
+                password: 'supersecretpassword'
+            };
+
+            models.User.create(newUser).then(user => {
+
+                return models.User.verify(newUser);
+            }).then(user => {
+                user.attributes.email.should.equal(newUser.email);
+
+                done();
+            }).catch(done);
+        });
+
+        it('fails when given incorrect password', done => {
+            const newUser = {
+                email: 'test@vintus.com',
+                password: 'supersecretpassword'
+            };
+
+            const incorrectUser = {
+                email: newUser.email,
+                password: 'anincorrectpassword'
+            };
+
+            models.User.create(newUser).then(user => {
+                
+                models.User.verify(incorrectUser).should.be.rejected().then(err => {
+                    // TODO: Add some assertions to the err
+                    done();
+                });
+            }).catch(done);
+        });
+
+        it('fails when given incorrect email', done => {
+            const newUser = {
+                email: 'test@vintus.com',
+                password: 'supersecretpassword'
+            };
+
+            const incorrectUser = {
+                email: 'incorrect@vintus.com',
+                password: newUser.password
+            };
+
+            models.User.create(newUser).then(user => {
+                
+                models.User.verify(incorrectUser).should.be.rejected().then(err => {
+                    // TODO: Add some assertions to the err
+                    done();
+                });
+            }).catch(done);
+        });
+    });
 });
