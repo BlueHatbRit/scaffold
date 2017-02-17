@@ -2,7 +2,8 @@ const _ = require('lodash');
 var exports = module.exports;
 
 const models = [
-    'user'
+    'user',
+    'group'
 ];
 
 exports.init = function() {

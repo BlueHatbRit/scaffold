@@ -1,31 +1,12 @@
-const express = require('express');
 const models = require('./models');
-const config = require('./config');
 
 function start() {
-    const app = express();
-
     models.init();
     console.log('models loaded');
 
-    app.get('/', (req, res, next) => {
-        res.sendStatus(200).end();
+    return models.Group.createDefault().then(group => {
+        return app = require('./app')();
     });
-
-    // Mount the API
-    app.use('/api/v1.0', require('./api/app')());
-    console.log('api initialised');
-
-    // Mount the web console
-    app.use('/', require('./web-console')());
-    console.log('web-console initialised');
-
-    const port = config.get('port');
-    app.listen(port, () => {
-        console.log('listening on port:', port);
-    });
-
-    return app;
 }
 
 module.exports.start = start;
