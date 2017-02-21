@@ -9,6 +9,7 @@
   "scripts": {
     "debug": "node --debug-brk index.js",
     "start": "node index.js",
+    "test": "grunt test",
     "db-init": "knex-migrator init",
     "db-up": "knex-migrator migrate",
     "db-reset": "knex-migrator reset"
@@ -53,6 +54,7 @@
   },
   "devDependencies": {
     "grunt": "^1.0.1",
+    "grunt-cli": "^1.2.0",
     "grunt-mocha-cli": "^3.0.0",
     "matchdep": "^1.0.1",
     "mocha": "^3.2.0",
