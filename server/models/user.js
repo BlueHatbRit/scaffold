@@ -149,6 +149,14 @@ let User = base.extend({
         }).catch(err => {
             return Promise.reject(err);
         });
+    },
+
+    findOne: function findOne(data, options) {
+        options = options || {};
+        // Always get the user groups
+        options.withRelated = ['groups'];
+
+        return base.findOne.call(this, data, options);
     }
 });
 
