@@ -1,0 +1,11 @@
+{
+  "port": 2369,
+  "database": {
+    "client": "mysql",
+    "connection": {
+      "host": "localhost",
+      "database": "app_travis",
+      "user": "travis"
+    }
+  }
+}

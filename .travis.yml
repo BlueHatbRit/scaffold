@@ -1,0 +1,19 @@
+language: node_js
+node_js:
+  - "6"
+sudo: false
+services:
+  - mysql
+addons:
+  apt:
+    sources:
+    - ubuntu-toolchain-r-test
+    packages:
+    - g++-4.8
+cache:
+  directories:
+    - node_modules
+env:
+  - NODE_ENV=testing-travis CXX=g++-4.8
+before_install:
+  - mysql -e 'create database app_travis'
