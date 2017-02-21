@@ -11,7 +11,7 @@ function initRoutes() {
     });
 
     //router.get('/user/:id', api.http(api.user.show));
-    router.post('/user', api.http(api.user.create));
+    router.post('/user', api.http(api.users.create));
     
     router.post('/session', api.http(api.session.create));
 

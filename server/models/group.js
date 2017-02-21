@@ -17,8 +17,6 @@ let Group = base.extend({
 
             // No groups, lets create the staff group
             let defaultGroup = require('../data/schema/default-group');
-            console.log('default');
-            console.log(defaultGroup);
             
             return Group.forge(defaultGroup).save();
         });

@@ -4,10 +4,6 @@ const config = require('./config');
 module.exports = function constructScraffold() {
     const app = express();
 
-    app.get('/', (req, res, next) => {
-        res.sendStatus(200).end();
-    });
-
     // Mount the API
     app.use('/api/v1.0', require('./api/app')());
     console.log('api initialised');
