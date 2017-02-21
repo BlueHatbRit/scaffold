@@ -9,7 +9,7 @@
   "scripts": {
     "debug": "node --debug-brk index.js",
     "start": "node index.js",
-    "test": "mocha --recursive",
+    "test": "grunt test",
     "db-init": "knex-migrator init",
     "db-up": "knex-migrator migrate",
     "db-reset": "knex-migrator reset"
