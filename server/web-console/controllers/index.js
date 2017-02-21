@@ -1,3 +1,5 @@
 module.exports = {
-    user: require('./user')
+    infoPages: require('./info-pages'),
+    users: require('./users'),
+    sessions: require('./sessions')
 };
