@@ -4,8 +4,9 @@
     "client": "mysql",
     "connection": {
       "host": "localhost",
+      "user": "travis",
       "database": "app_travis",
-      "user": "travis"
+      "charset": "utf8"
     }
   }
 }
