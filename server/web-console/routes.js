@@ -12,18 +12,18 @@ function redirect(newLocation) {
 const frontendRoutes = function frontendRoutes() {
     let router = express.Router();
 
-    //Broken regex = /^\signup\/$/
+    //Use regex here?
     router.get('/signup', controllers.users.new);
     router.post('/signup', controllers.users.create);
 
     //router.get('/users', controllers.users.index); // Staff only
-    //router.get('/users/new', controllers.users.new);
     router.get('/users/new', redirect('/signup'));
-    router.post('/users', controllers.users.create);
-    //router.get('/users/:id', controllers.users.show); // Staff only
+    //router.get('/users/:id', controllers.users.show);
 
     router.get('/login', controllers.sessions.new);
-    router.get('/login', controllers.sessions.create);
+    router.post('/login', controllers.sessions.create);
+
+    router.get('/session/new', redirect('/login'));
 
     // All groups routes are staff only
     //router.get('/groups', controllers.groups.index);

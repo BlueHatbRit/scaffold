@@ -2,7 +2,7 @@ const api = require('../../api');
 
 const usersController = {
     new: (req, res) => {
-        res.render('register');
+        res.render('signup');
     },
 
     create: (req, res) => {
