@@ -13,8 +13,5 @@ addons:
     packages:
     - gcc-4.8
     - g++-4.8
-cache:
-  directories:
-    - node_modules
 before_install:
   - mysql -e 'create database app_travis'
