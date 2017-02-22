@@ -1,0 +1,12 @@
+{
+  "port": 2369,
+  "database": {
+    "client": "mysql",
+    "connection": {
+      "host": "localhost",
+      "user": "travis",
+      "database": "app_travis",
+      "charset": "utf8"
+    }
+  }
+}

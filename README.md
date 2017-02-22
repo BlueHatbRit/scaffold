@@ -1,4 +1,5 @@
 # Scaffold
+[![Build Status](https://travis-ci.com/BlueHatbRit/scaffold.svg?token=uKQNYaxm8ezJxFzXFwrT&branch=master)](https://travis-ci.com/BlueHatbRit/scaffold)
 
 **Elliot Blackburn - PRCO304 - BSc Hons Computing & Game Development @ University of Plymouth**
 
