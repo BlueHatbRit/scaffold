@@ -1,0 +1,20 @@
+{{#if messages}}
+    <div class="row">
+        <div class="column">
+            <center>
+                <div class="flash-container">
+                    {{#each messages.success}}
+                        <div class="flash success">
+                            <p>{{this}}</p>
+                        </div>
+                    {{/each}}
+                    {{#each messages.error}}
+                        <div class="flash error">
+                            <p>{{this}}</p>
+                        </div>
+                    {{/each}}
+                </div>
+            </center>
+        </div>
+    </div>
+{{/if}}

@@ -6,13 +6,23 @@ const sessionsController = {
     },
 
     create: (req, res) => {
-        api.session.create(req.body).then(token => {
-            console.log(token);
+        api.webSession.create(req.body).then(userData => {
+            req.session.userId = userData.userId;
+            req.session.isStaff = userData.isStaff;
+            req.flash('success', "You're now logged in!");
+
             res.redirect('/');
         }).catch(e => {
-            console.log('login failed');
+            req.flash('error', 'Login failed');
+
             res.redirect('/login');
-        })
+        });
+    },
+
+    destroy: (req, res) => {
+        req.session.destroy(err => {
+            res.redirect('/');
+        });
     }
 };
 

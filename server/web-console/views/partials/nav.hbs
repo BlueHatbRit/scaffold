@@ -3,12 +3,18 @@
         <section class="container">
             <a class="navigation-title" href="/">Scaffold</a>
             <ul class="navigation-list float-right">
-                <li class="navigation-item">
-                    <a class="navigation-link" href="/login">Log in</a>
-                </li>
-                <li class="navigation-item">
-                    <a class="navigation-link" href="/signup">Sign up</a>
-                </li>
+                {{#if isLoggedIn}}
+                    <li class="navigation-item">
+                        <a class="navigation-link" href="/logout">Log out</a>
+                    </li>
+                {{else}}
+                    <li class="navigation-item">
+                        <a class="navigation-link" href="/login">Log in</a>
+                    </li>
+                    <li class="navigation-item">
+                        <a class="navigation-link" href="/signup">Sign up</a>
+                    </li>
+                {{/if}}
             </ul>
         </section>
     </nav>
