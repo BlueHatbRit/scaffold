@@ -8,5 +8,9 @@
       "database": "app_travis",
       "charset": "utf8"
     }
+  },
+
+  "auth": {
+    "secret": "secret"
   }
 }
