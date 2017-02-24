@@ -1,0 +1,23 @@
+{{!< ../default}}
+{{> nav}}
+<main id="content" class="container">
+    {{> flash}}
+    <center>
+        <div class="row">
+            <div class="column">
+                <center>
+                    <h1>Create flags</h1>
+                    <form method="POST" action="/flags" id="create-flag">
+                        <label for="name">Flag name</label>
+                        <input id="flag-name" name="name" type="text" placeholder="The name you'll use in your code">
+
+                        <label for="description">Description</label>
+                        <input id="flag-description" name="description" type="text" placeholder="Something to help identify the feature">
+
+                        <input type="submit" value="submit">
+                    </form>
+                </center>
+            </div>
+        </div>
+    </center>
+</main>

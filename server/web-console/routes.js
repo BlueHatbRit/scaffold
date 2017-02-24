@@ -25,8 +25,10 @@ const frontendRoutes = function frontendRoutes() {
 
     router.get('/logout', controllers.sessions.destroy); // Not restful but easier for a browser
 
-    router.get('/session/new', redirect('/login'));
-    router.get('/session/destroy', redirect('/logout')); // Not restful but easier for a browser
+    router.get('/sessions/new', redirect('/login'));
+    router.get('/sessions/destroy', redirect('/logout')); // Not restful but easier for a browser
+
+    router.get('/flags/new', controllers.flags.new);
 
     // All groups routes are staff only
     //router.get('/groups', controllers.groups.index);

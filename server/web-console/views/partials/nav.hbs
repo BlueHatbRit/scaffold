@@ -4,6 +4,11 @@
             <a class="navigation-title" href="/">Scaffold</a>
             <ul class="navigation-list float-right">
                 {{#if isLoggedIn}}
+                    {{#if isStaff}}
+                        <li class="navigation-item">
+                            <a class="navigation-link" href="/flags/new">Create Flag</a>
+                        </li>
+                    {{/if}}
                     <li class="navigation-item">
                         <a class="navigation-link" href="/logout">Log out</a>
                     </li>
