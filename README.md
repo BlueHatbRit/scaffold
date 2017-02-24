@@ -16,3 +16,12 @@ The docs file contains all of the relevant documentation for this project.
 
 ## API Documentation
 
+## Testing
+
+To run automated mocha tests, use:
+
+```npm run test```
+
+Or install grunt cli and run:
+
+```grunt test```
