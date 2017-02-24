@@ -4,14 +4,22 @@
     "client": "mysql",
     "connection": {
       "host": "localhost",
-      "user": "scaffold-usr",
-      "password": "secret",
-      "database": "scaffold-dev",
-      "charset": "utf8"
+      "user": "scaffolduser",
+      "password": "mydbpassword",
+      "database": "scaffold",
+      "charset": "utf8" // The database must be utf8 charset for MySQL
     }
   },
-  
+
   "auth": {
-    "secret": "secret"
+    "secret": "secret" // For Json Web Tokens
+  },
+  
+  "session": {
+    "secret": "web session secret", // For session cookies
+    "store": {
+      "host": "localhost", // Redis host
+      "port": 6379 // Redis port
+    }
   }
 }

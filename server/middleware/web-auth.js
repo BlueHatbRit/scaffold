@@ -4,6 +4,7 @@ const config = require('../config');
 
 module.exports = function() {
     let sessionOptions = {
+        store: new RedisStore(config.get('session').store),
         secret: config.get('session').secret,
         resave: !!config.get('session').store,
         saveUninitialized: true,
@@ -12,12 +13,6 @@ module.exports = function() {
             secure: false // Not using https right now
         }
     };
-
-    // If the session store details have been defined, use them.
-    // We don't define them for travis.
-    if (config.get('session').store) {
-        sessionOptions.store = new RedisStore(config.get('session').store);
-    }
 
     const sessionMiddleware = session(sessionOptions);
 
