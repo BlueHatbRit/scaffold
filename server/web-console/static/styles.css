@@ -43,3 +43,26 @@
 #content {
     margin-top: 15%;
 }
+
+#login {
+    max-width: 35rem;
+}
+
+.flash-container {
+    max-width: 50rem;
+    margin-bottom: 3rem;
+}
+
+.flash-container .flash {
+    border: 0.1rem solid #9b4dca;
+    border-radius: 0.4rem;
+}
+
+.flash-container .flash p {
+    margin: 0.3rem 0rem 0.3rem 0;
+    color: #9b4dca;
+}
+
+.flash-container .success {
+    /*background-color: #9b4dca;*/
+}

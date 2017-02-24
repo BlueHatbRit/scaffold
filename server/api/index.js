@@ -1,6 +1,7 @@
 const _ = require('lodash');
 const users = require('./users');
 const session = require('./session');
+const webSession = require('./web-session');
 
 /*
 Public: A wrapper for API functions that handles the HTTP api. This
@@ -49,5 +50,6 @@ function http(apiFunction) {
 module.exports = {
   http: http,
   users: users,
-  session: session
+  session: session,
+  webSession: webSession
 };

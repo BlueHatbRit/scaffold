@@ -2,7 +2,7 @@ const api = require('../../api');
 
 const usersController = {
     new: (req, res) => {
-        res.render('register');
+        res.render('signup');
     },
 
     create: (req, res) => {
@@ -10,17 +10,19 @@ const usersController = {
 
         if (newUser.password !== newUser.confirmPassword) {
             // Reject as the passwords are different
-            return res.sendStatus(401);
+            req.flash('error', "Passwords don't match");
+
+            return res.redirect('/signup');
         }
 
         delete newUser.confirmPassword;
         return api.users.create(newUser).then(user => {
+            req.flash('success', 'Account created, you can now log in');
             res.redirect('/');
         }).catch(e => {
+            req.flash('error', 'Registration failed');
             res.redirect('/signup');
         });
-
-        res.sendStatus(201);
     }
 };
 
