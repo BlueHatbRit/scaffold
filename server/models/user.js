@@ -119,13 +119,14 @@ let User = base.extend({
     },
 
     findByEmail: function findByEmail(email) {
-        return new Promise((resolve, reject) => {
-            User.findOne({ email: email }).then(user => {
-                resolve(user);
+            return User.findOne({ email: email }).then(user => {
+                if (user === null) {
+                    return Promise.reject(new Error('User not found'));
+                }
+                return user;
             }).catch(User.NotFoundError, () => {
-                reject(new Error('User not found'));
+                Promise.reject(new Error('User not found'));
             });
-        });
     },
 
     verify: function verify(object) {

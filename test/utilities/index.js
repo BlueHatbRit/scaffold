@@ -1,5 +1,5 @@
 const KnexMigrator = new require('knex-migrator');
-const models = require('../server/models');
+const models = require('../../server/models');
 let migrator = new KnexMigrator();
 
 let initModels = function initModels(done) {
@@ -42,5 +42,6 @@ module.exports = {
     initModels: initModels,
     initDb: initDb,
     teardownDb: teardownDb,
-    runApiInit: runApiInit
+    runApiInit: runApiInit,
+    fixtures: require('./fixtures')
 };

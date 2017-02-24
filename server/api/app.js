@@ -10,10 +10,9 @@ function initRoutes() {
         res.send({ status: 'operational' }).end();
     });
 
-    //router.get('/user/:id', api.http(api.user.show));
-    router.post('/user', api.http(api.users.create));
+    router.post('/users', api.http(api.users.create));
     
-    router.post('/session', api.http(api.session.create));
+    router.post('/sessions', api.http(api.sessions.create));
 
     return router;
 }

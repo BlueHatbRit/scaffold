@@ -1,6 +1,6 @@
 const _ = require('lodash');
 const users = require('./users');
-const session = require('./session');
+const sessions = require('./sessions');
 const webSession = require('./web-session');
 
 /*
@@ -50,6 +50,6 @@ function http(apiFunction) {
 module.exports = {
   http: http,
   users: users,
-  session: session,
+  sessions: sessions,
   webSession: webSession
 };

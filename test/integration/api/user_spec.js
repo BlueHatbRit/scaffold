@@ -1,13 +1,15 @@
 const should = require('should');
-const utils = require('../../utils');
+const utilities = require('../../utilities');
 const api = require('../../../server/api');
 
 describe('User API', () => {
-    before(utils.initModels);
+    before(utilities.initModels);
 
-    beforeEach(utils.initDb);
-    beforeEach(utils.runApiInit);
-    afterEach(utils.teardownDb);
+    beforeEach(utilities.teardownDb);
+    beforeEach(utilities.initDb);
+    beforeEach(utilities.runApiInit);
+
+    afterEach(utilities.teardownDb);
 
     describe('Registration', () => {
         it('email must be unique', done => {

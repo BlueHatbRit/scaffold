@@ -3,7 +3,7 @@ const models = require('../models');
 const jwt = require('jsonwebtoken');
 const config = require('../config');
 
-const session = {
+const sessions = {
     create: (object, options) => {
         // Verify the user
         return models.User.verify(object).then(user => {
@@ -14,4 +14,4 @@ const session = {
     }
 };
 
-module.exports = session;
+module.exports = sessions;
