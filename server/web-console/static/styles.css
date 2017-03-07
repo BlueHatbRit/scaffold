@@ -66,3 +66,7 @@
 .flash-container .success {
     /*background-color: #9b4dca;*/
 }
+
+.inline {
+    display: inline-block;
+}

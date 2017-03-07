@@ -1,18 +1,21 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const middleware = require('../middleware');
+const auth = require('../middleware').auth;
 const api = require('../api');
 
 function initRoutes() {
     const router = express.Router();
 
-    router.get('/status', /*middleware.auth,*/ (req, res) => {
+    router.get('/status', (req, res, next) => {
         res.send({ status: 'operational' }).end();
     });
 
     router.post('/users', api.http(api.users.create));
     
     router.post('/sessions', api.http(api.sessions.create));
+
+    router.get('/flags/:id', auth, api.http(api.flags.showAccess));
 
     return router;
 }

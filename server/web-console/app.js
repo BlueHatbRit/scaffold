@@ -3,7 +3,8 @@ const hbs = require('express-hbs');
 const bodyPareser = require('body-parser');
 const flash = require('express-flash');
 const path = require('path');
-const middleware = require('../middleware');
+const webAuth = require('../middleware').webAuth;
+const locals = require('../middleware').locals;
 
 module.exports = () => {
     const app = express();
@@ -11,9 +12,9 @@ module.exports = () => {
     app.use(bodyPareser.json());
     app.use(bodyPareser.urlencoded({extended: true}));
 
-    app.use(middleware.webAuth());
+    app.use(webAuth.sessionCookies());
     app.use(flash());
-    app.use(middleware.locals());
+    app.use(locals());
 
     app.engine('hbs', hbs.express4({
         partialsDir: __dirname + '/views/partials'

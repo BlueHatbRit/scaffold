@@ -17,6 +17,10 @@ BaseModel = BaseModel.extend({
         return _.keys(schema[this.tableName]);
     },
 
+    defaults: function defaults() {
+        return {};
+    },
+
     initialize: function initialize() {
         let self = this;
 
