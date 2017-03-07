@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const middleware = require('../middleware');
+const errorHandlers = require('../middleware').errorHandlers;
 const auth = require('../middleware').auth;
 const api = require('../api');
 
@@ -27,5 +27,10 @@ module.exports = () => {
     app.use(bodyParser.urlencoded({extended: true}));
 
     app.use(initRoutes());
+
+    // Error handling
+    app.use(errorHandlers.pageNotFound);
+    app.use(errorHandlers.handleJSONResponse);
+
     return app;
 };

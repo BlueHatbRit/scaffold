@@ -5,6 +5,7 @@ const flash = require('express-flash');
 const path = require('path');
 const webAuth = require('../middleware').webAuth;
 const locals = require('../middleware').locals;
+const errorHandlers = require('../middleware').errorHandlers;
 
 module.exports = () => {
     const app = express();
@@ -27,6 +28,10 @@ module.exports = () => {
 
     // Add the routes
     app.use(require('./routes')());
+
+    // Error handling
+    app.use(errorHandlers.pageNotFound);
+    app.use(errorHandlers.handleHTMLResponse);
     
     return app;
 };
