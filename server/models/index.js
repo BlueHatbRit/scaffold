@@ -3,7 +3,8 @@ var exports = module.exports;
 
 const models = [
     'user',
-    'group'
+    'group',
+    'flag'
 ];
 
 exports.init = function() {

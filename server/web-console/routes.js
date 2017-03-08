@@ -1,5 +1,6 @@
 const express = require('express');
 const controllers = require('./controllers');
+const middleware = require('../middleware');
 
 function redirect(newLocation) {
     let handleRedirect = function handleRedirect(req, res) {
@@ -25,8 +26,14 @@ const frontendRoutes = function frontendRoutes() {
 
     router.get('/logout', controllers.sessions.destroy); // Not restful but easier for a browser
 
-    router.get('/session/new', redirect('/login'));
-    router.get('/session/destroy', redirect('/logout')); // Not restful but easier for a browser
+    router.get('/sessions/new', redirect('/login'));
+    router.get('/sessions/destroy', redirect('/logout')); // Not restful but easier for a browser
+
+    router.get('/flags', middleware.webAuth.staffOnly, controllers.flags.index);
+    router.post('/flags', middleware.webAuth.staffOnly, controllers.flags.create);
+    router.get('/flags/new', middleware.webAuth.staffOnly, controllers.flags.new);
+    router.get('/flags/:id/edit', middleware.webAuth.staffOnly, controllers.flags.edit);
+    router.post('/flags/:id', middleware.webAuth.staffOnly, controllers.flags.update);
 
     // All groups routes are staff only
     //router.get('/groups', controllers.groups.index);
@@ -35,14 +42,6 @@ const frontendRoutes = function frontendRoutes() {
     //router.get('/groups/:id, controllers.groups.show);
     //router.put('/groups/:id, controllers.groups.edit); // For adding users only to start with?
     //router.del('/groups/:id, controllers.groups.destroy); // Won't use to ensure only Staff group to start with
-
-    // All flag routes are staff only
-    //router.get('/flags', controllers.flags.index);
-    //router.get('/flags/new, controllers.flags.new);
-    //router.put('/flags', controllers.flags.create);
-    //router.get('/flags/:id, controllers.flags.show);
-    //router.put('/flags/:id, controllers.flags.edit);
-    //router.del('/flags/:id, controllers.flags.destroy);
 
     router.get('/', controllers.infoPages.index);
 

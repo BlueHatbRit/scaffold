@@ -1,8 +1,9 @@
 const session = require('express-session');
 const RedisStore = require('connect-redis')(session);
 const config = require('../config');
+const errors = require('../errors');
 
-module.exports = function() {
+const sessionCookies = function() {
     let sessionOptions = {
         store: new RedisStore(config.get('session').store),
         secret: config.get('session').secret,
@@ -17,4 +18,17 @@ module.exports = function() {
     const sessionMiddleware = session(sessionOptions);
 
     return sessionMiddleware;
-}
+};
+
+const staffOnly = (req, res, next) => {
+    if (!req.session.userId || !req.session.isStaff) {
+        return next(new errors.NotFoundError());
+    }
+
+    next();
+};
+
+module.exports = {
+    sessionCookies: sessionCookies,
+    staffOnly
+};
