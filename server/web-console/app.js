@@ -6,6 +6,7 @@ const path = require('path');
 const webAuth = require('../middleware').webAuth;
 const locals = require('../middleware').locals;
 const errorHandlers = require('../middleware').errorHandlers;
+const helpers = require('./helpers');
 
 module.exports = () => {
     const app = express();
@@ -22,6 +23,9 @@ module.exports = () => {
     }));
     app.set('view engine', 'hbs');
     app.set('views', __dirname + '/views');
+
+    // Load helpers
+    helpers.load();
 
     // Used for front-end css, js, etc
     app.use('/static', express.static(path.join(__dirname, 'static')));

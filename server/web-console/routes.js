@@ -32,6 +32,8 @@ const frontendRoutes = function frontendRoutes() {
     router.get('/flags', middleware.webAuth.staffOnly, controllers.flags.index);
     router.post('/flags', middleware.webAuth.staffOnly, controllers.flags.create);
     router.get('/flags/new', middleware.webAuth.staffOnly, controllers.flags.new);
+    router.get('/flags/:id/edit', middleware.webAuth.staffOnly, controllers.flags.edit);
+    router.post('/flags/:id', middleware.webAuth.staffOnly, controllers.flags.update);
 
     // All groups routes are staff only
     //router.get('/groups', controllers.groups.index);

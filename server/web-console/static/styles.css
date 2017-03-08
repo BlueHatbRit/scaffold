@@ -70,3 +70,7 @@
 .inline {
     display: inline-block;
 }
+
+.label-inline {
+    font-weight: 700;
+}

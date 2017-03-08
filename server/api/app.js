@@ -15,7 +15,7 @@ function initRoutes() {
     
     router.post('/sessions', api.http(api.sessions.create));
 
-    router.get('/flags/:id', auth, api.http(api.flags.showAccess));
+    router.get('/flags/:name', auth, api.http(api.flags.showAccess));
 
     return router;
 }

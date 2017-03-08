@@ -14,13 +14,13 @@ const flags = {
     },
 
     show: (options) => {
-        return models.Flag.findOne({id: options.id}).then(flag => {
+        return models.Flag.findOne(options).then(flag => {
             return flag.toJSON();
         });
     },
 
     showAccess: (options) => {
-        return models.Flag.findOne({id: options.id}).then(flag => {
+        return models.Flag.findOne(options).then(flag => {
             flag = flag.toJSON();
 
             return {
@@ -32,6 +32,16 @@ const flags = {
     create: (object, options) => {
         return models.Flag.create(object).then(flag => {
             return flag.toJSON();
+        });
+    },
+
+    update: (object, options) => {
+        return models.Flag.edit(object, options).then(flag => {
+            if (flag) {
+                return flag.toJSON();
+            } else {
+                throw new errors.NotFoundError({message: 'flag not found'});
+            }
         });
     },
 
