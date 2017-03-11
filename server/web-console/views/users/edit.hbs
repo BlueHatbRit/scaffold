@@ -1,0 +1,36 @@
+{{!< ../default}}
+{{> nav}}
+<main id="content" class="container">
+    {{> flash}}
+    <div class="row">
+        <div class="column">
+            <h1>Edit user groups</h1>
+            <form method="POST" action="/users/{{id}}" id="edit-user">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="text" value="{{email}}" disabled>
+
+                <div>
+                    <h2>Groups</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each groups}}
+                                <tr>
+                                    <td>{{name}}</td>
+                                    <td>{{description}}</td>
+                                </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+
+                <input type="submit" value="submit">
+            </form>
+        </div>
+    </div>
+</main>

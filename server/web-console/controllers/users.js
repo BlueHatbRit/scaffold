@@ -1,6 +1,14 @@
 const api = require('../../api');
 
 const usersController = {
+    index: (req, res, next) => {
+        api.users.index().then(users => {
+            res.render('users/index', {
+                users: users
+            });
+        }).catch(next);
+    },
+
     new: (req, res) => {
         res.render('signup');
     },
@@ -23,6 +31,15 @@ const usersController = {
             req.flash('error', 'Registration failed');
             res.redirect('/signup');
         });
+    },
+
+    edit: (req, res, next) => {
+        const options = {id: req.params.id};
+
+        api.users.show(options).then(user => {
+
+            res.render('users/edit', user);
+        }).catch(next);
     }
 };
 
