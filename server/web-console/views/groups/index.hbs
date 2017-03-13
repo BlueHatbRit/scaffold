@@ -4,18 +4,18 @@
     {{> flash}}
     <div class="row">
         <div class="column">
-            <h1 class="inline">Users</h1>
+            <h1 class="inline">Groups</h1>
 
             <table>
                 <thead>
                     <tr>
-                        <th>Email</th>
+                        <th>Name</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {{#each users}}
+                    {{#each groups}}
                         <tr>
-                            <td><a href="/users/{{id}}">{{email}}</a></td>
+                            <td><a href="/groups/{{id}}">{{name}}</a></td>
                         </tr>
                     {{/each}}
                 </tbody>

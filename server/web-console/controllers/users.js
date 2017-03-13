@@ -9,6 +9,15 @@ const usersController = {
         }).catch(next);
     },
 
+    show: (req, res, next) => {
+        const options = {id: req.params.id};
+
+        api.users.show(options).then(user => {
+
+            res.render('users/show', user);
+        }).catch(next);
+    },
+
     new: (req, res) => {
         res.render('signup');
     },
@@ -31,15 +40,6 @@ const usersController = {
             req.flash('error', 'Registration failed');
             res.redirect('/signup');
         });
-    },
-
-    edit: (req, res, next) => {
-        const options = {id: req.params.id};
-
-        api.users.show(options).then(user => {
-
-            res.render('users/edit', user);
-        }).catch(next);
     }
 };
 

@@ -4,8 +4,8 @@
     {{> flash}}
     <div class="row">
         <div class="column">
-            <h1>Edit user groups</h1>
-            <form method="POST" action="/users/{{id}}" id="edit-user">
+            <h1>User</h1>
+            <div id="show-user">
                 <label for="email">Email</label>
                 <input id="email" name="email" type="text" value="{{email}}" disabled>
 
@@ -28,9 +28,7 @@
                         </tbody>
                     </table>
                 </div>
-
-                <input type="submit" value="submit">
-            </form>
+            </div>
         </div>
     </div>
 </main>

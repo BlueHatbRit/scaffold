@@ -2,14 +2,6 @@ const express = require('express');
 const controllers = require('./controllers');
 const middleware = require('../middleware');
 
-function redirect(newLocation) {
-    let handleRedirect = function handleRedirect(req, res) {
-        res.redirect(newLocation);
-    };
-
-    return handleRedirect;
-}
-
 const frontendRoutes = function frontendRoutes() {
     let router = express.Router();
 
@@ -18,13 +10,17 @@ const frontendRoutes = function frontendRoutes() {
     router.post('/signup', controllers.users.create);
 
     router.get('/users', middleware.webAuth.staffOnly, controllers.users.index); // Staff only
-    router.get('/users/new', redirect('/signup'));
-    router.get('/users/:id/edit', middleware.webAuth.staffOnly, controllers.users.edit);
+    router.get('/users/:id', middleware.webAuth.staffOnly, controllers.users.show);
 
     router.get('/login', controllers.sessions.new);
     router.post('/login', controllers.sessions.create);
 
     router.get('/logout', controllers.sessions.destroy); // Not restful but easier for a browser
+
+    router.get('/groups', middleware.webAuth.staffOnly, controllers.groups.index);
+    router.get('/groups/:id', middleware.webAuth.staffOnly, controllers.groups.show);
+    router.get('/groups/:id/users/new', middleware.webAuth.staffOnly, controllers.groups.users.new);
+    router.post('/groups/:id/users', middleware.webAuth.staffOnly, controllers.groups.users.create);
 
     router.get('/flags', middleware.webAuth.staffOnly, controllers.flags.index);
     router.post('/flags', middleware.webAuth.staffOnly, controllers.flags.create);

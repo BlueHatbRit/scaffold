@@ -20,6 +20,17 @@ let Group = base.extend({
             
             return Group.forge(defaultGroup).save();
         });
+    },
+
+    findOne: function findOne(data, options) {
+        options = options || {};
+
+        if (options.withUsers) {
+            // Get the users within the group
+            options.withRelated = ['users'];
+        }
+        
+        return base.findOne.call(this, data, options);
     }
 });
 

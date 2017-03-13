@@ -3,6 +3,7 @@ const users = require('./users');
 const sessions = require('./sessions');
 const webSession = require('./web-session');
 const flags = require('./flags');
+const groups = require('./groups');
 
 /*
 Public: A wrapper for API functions that handles the HTTP api. This
@@ -53,5 +54,6 @@ module.exports = {
   users: users,
   sessions: sessions,
   webSession: webSession,
-  flags: flags
+  flags: flags,
+  groups: groups
 };
