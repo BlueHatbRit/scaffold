@@ -1,4 +1,3 @@
-const Promise = require('bluebird');
 const models = require('../models');
 const errors = require('../errors');
 

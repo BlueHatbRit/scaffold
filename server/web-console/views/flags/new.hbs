@@ -2,27 +2,23 @@
 {{> nav}}
 <main id="content" class="container">
     {{> flash}}
-    <center>
-        <div class="row">
-            <div class="column">
-                <center>
-                    <h1>Create flag</h1>
-                    <form method="POST" action="/flags" id="create-flag">
-                        <label for="name">Flag name</label>
-                        <input id="flag-name" name="name" type="text" placeholder="The name you'll use in your code">
+    <div class="row">
+        <div class="column">
+            <h1>Create flag</h1>
+            <form method="POST" action="/flags" id="create-flag">
+                <label for="name">Flag name</label>
+                <input id="flag-name" name="name" type="text" placeholder="The name you'll use in your code">
 
-                        <label for="description">Description</label>
-                        <input id="flag-description" name="description" type="text" placeholder="Something to help identify the feature">
+                <label for="description">Description</label>
+                <input id="flag-description" name="description" type="text" placeholder="Something to help identify the feature">
 
-                        <div>
-                            <label for="active" class="label-inline">Flag active</label>
-                            <input type="checkbox" id="active" name="active" value="true">
-                        </div>
+                <div>
+                    <label for="active" class="label-inline">Flag active</label>
+                    <input type="checkbox" id="active" name="active" value="true">
+                </div>
 
-                        <input type="submit" value="submit">
-                    </form>
-                </center>
-            </div>
+                <input type="submit" value="submit">
+            </form>
         </div>
-    </center>
+    </div>
 </main>

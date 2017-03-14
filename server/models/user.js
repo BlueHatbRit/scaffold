@@ -89,7 +89,7 @@ let User = base.extend({
 
         options = options || {};
         options.withRelated = _.union(options.withRelated, options.include);
-
+        
         return base.edit.call(this, data, options).then(function then(user) {
             if (!listedGroups) {
                 return user;
@@ -100,7 +100,6 @@ let User = base.extend({
 
             return user.groups().fetch().then(function then(currentGroups) {
                 let groupsToAdd = _.difference(listedGroups, currentGroups);
-                console.log(groupsToAdd);
 
                 return modelUtils.attach(User, user.id, 'groups', groupsToAdd, options);
             }).then(function then() {
@@ -163,6 +162,18 @@ let User = base.extend({
 
 let Users = registry.Collection.extend({
     model: User
+}, {
+    findAllByGroupId: function findAllByGroupId(options) {
+        options = options || {};
+
+        return base.query.call(this, qb => {
+            qb.innerJoin('groups_users', 'groups_users.user_id', 'users.id')
+            .innerJoin('groups', 'groups_users.group_id', 'groups.id')
+            .where('groups.id', options.id)
+        }).fetch().then(users => {
+            return users;
+        });
+    }
 });
 
 module.exports = {

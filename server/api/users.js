@@ -3,6 +3,18 @@ const models = require('../models');
 const modelUtils = require('../models/utils');
 
 const users = {
+    index: (options) => {
+        return models.User.fetchAll().then(users => {
+            return users.toJSON();
+        });
+    },
+
+    show: (options) => {
+        return models.User.findOne(options).then(user => {
+            return user.toJSON();
+        });
+    },
+
     create: (object, options) => {
         // If the user is the first one created, then we add them to the
         // group created on system start up called "staff". This group

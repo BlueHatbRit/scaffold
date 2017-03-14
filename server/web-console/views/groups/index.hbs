@@ -1,0 +1,25 @@
+{{!< ../default}}
+{{> nav}}
+<main id="content" class="container">
+    {{> flash}}
+    <div class="row">
+        <div class="column">
+            <h1 class="inline">Groups</h1>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each groups}}
+                        <tr>
+                            <td><a href="/groups/{{id}}">{{name}}</a></td>
+                        </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>

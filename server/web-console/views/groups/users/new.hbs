@@ -1,0 +1,21 @@
+{{!< ../../default}}
+{{> nav}}
+<main id="content" class="container">
+    {{> flash}}
+    <div class="row">
+        <div class="column">
+            <h1>Add user to {{name}}</h1>
+            <div id="show-user">
+                <label for="description">Description</label>
+                <input id="description" name="description" type="text" value="{{description}}" disabled>
+
+                <form method="POST" action="/groups/{{id}}/users">
+                    <label for="email">User email address</label>
+                    <input id="email" name="email" type="text" placeholder="user@scaffold.com">
+
+                    <input type="submit" value="Add user to group">
+                </form>
+            </div>
+        </div>
+    </div>
+</main>

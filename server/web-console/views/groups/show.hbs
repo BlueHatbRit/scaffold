@@ -1,0 +1,36 @@
+{{!< ../default}}
+{{> nav}}
+<main id="content" class="container">
+    {{> flash}}
+    <div class="row">
+        <div class="column">
+            <h1>Group</h1>
+            <div id="show-user">
+                <label for="name">Name</label>
+                <input id="name" name="name" type="text" value="{{group.name}}" disabled>
+
+                <label for="description">Description</label>
+                <input id="description" name="description" type="text" value="{{group.description}}" disabled>
+                
+                <div>
+                    <h2 class="inline">Users</h2>
+                    <a class="button float-right" href="/groups/{{group.id}}/users/new">Add user to group</a>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Email</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each users}}
+                                <tr>
+                                    <td><a href="/users/{{id}}">{{email}}</a></td>
+                                </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
