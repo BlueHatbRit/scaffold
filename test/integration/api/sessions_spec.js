@@ -7,7 +7,7 @@ const config = require('../../../server/config');
 const jwt = require('jsonwebtoken');
 const jwtVerifyAsync = Promise.promisify(jwt.verify);
 
-describe('Session API', () => {
+describe('Sessions API', () => {
     before(utilities.initModels);
 
     beforeEach(utilities.teardownDb);
@@ -45,7 +45,7 @@ describe('Session API', () => {
 
                     done();
                 });
-            }).done();
+            }).catch(done);
         });
 
         it('Throws error if email is incorrect', done => {
@@ -60,7 +60,7 @@ describe('Session API', () => {
 
                     done();
                 });
-            }).done();
+            }).catch(done);
         });
     });
 });

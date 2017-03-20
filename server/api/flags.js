@@ -14,7 +14,11 @@ const flags = {
 
     show: (options) => {
         return models.Flag.findOne(options).then(flag => {
-            return flag.toJSON();
+            if (flag) {
+                return flag.toJSON();
+            } else {
+                throw new errors.NotFoundError({message: 'flag not found'});
+            }
         });
     },
 

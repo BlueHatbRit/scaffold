@@ -3,7 +3,7 @@ const utilities = require('../../utilities');
 const fixtures = utilities.fixtures;
 const api = require('../../../server/api');
 
-describe('Web Session API', () => {
+describe('Web Sessions API', () => {
     before(utilities.initModels);
 
     beforeEach(utilities.teardownDb);

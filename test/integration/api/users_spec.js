@@ -2,7 +2,7 @@ const should = require('should');
 const utilities = require('../../utilities');
 const api = require('../../../server/api');
 
-describe('User API', () => {
+describe('Users API', () => {
     before(utilities.initModels);
 
     beforeEach(utilities.teardownDb);
