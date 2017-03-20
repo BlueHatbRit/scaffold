@@ -5,6 +5,8 @@ const config = require('../config');
 
 const sessions = {
     create: (object, options) => {
+        // Todo: Validate the presence of a username and password
+
         // Verify the user
         return models.User.verify(object).then(user => {
 

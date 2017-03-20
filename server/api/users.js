@@ -16,6 +16,8 @@ const users = {
     },
 
     create: (object, options) => {
+        // Todo: Validate the user before attempting the creation process
+
         // If the user is the first one created, then we add them to the
         // group created on system start up called "staff". This group
         // is created if no groups exist to ensure the first user can

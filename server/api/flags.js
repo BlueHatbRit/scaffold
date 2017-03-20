@@ -1,3 +1,4 @@
+const _ = require('lodash');
 const models = require('../models');
 const errors = require('../errors');
 
@@ -33,6 +34,8 @@ const flags = {
     },
 
     create: (object, options) => {
+        // Todo: Add actual validation, shhh
+
         return models.Flag.create(object).then(flag => {
             return flag.toJSON();
         });

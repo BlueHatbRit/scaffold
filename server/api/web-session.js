@@ -4,6 +4,8 @@ const models = require('../models');
 
 const webSession = {
     create: (object, options) => {
+        // Todo: Validate Object
+
         // Verify the user
         return models.User.verify(object).then(user => {
 
