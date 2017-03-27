@@ -1,25 +1,25 @@
 {
-  "port": 2368,
-  "database": {
+  "port": 2368, // Application port
+  "database": { // MySQL DB
     "client": "mysql",
     "connection": {
       "host": "localhost",
-      "user": "scaffolduser",
-      "password": "mydbpassword",
-      "database": "scaffold",
-      "charset": "utf8" // The database must be utf8 charset for MySQL
+      "user": "app",
+      "password": "secret",
+      "database": "app_dev",
+      "charset": "utf8"
     }
   },
 
   "auth": {
-    "secret": "secret" // For Json Web Tokens
+    "secret": "secret" // JWT secret
   },
-  
+
   "session": {
-    "secret": "web session secret", // For session cookies
-    "store": {
-      "host": "localhost", // Redis host
-      "port": 6379 // Redis port
+    "secret": "another secret", // Web cookie secret
+    "store": { // Redis db details
+      "host": "localhost",
+      "port": 6379
     }
   }
 }
