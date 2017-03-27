@@ -108,5 +108,5 @@ describe('Flags API', () => {
 
     describe('Create', () => {
         
-    })
+    });
 });
