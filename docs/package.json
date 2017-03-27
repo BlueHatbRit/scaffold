@@ -13,7 +13,8 @@
     "pdf-sr-3": "mdpdf --source status-reports/2017-02-22.md --style md-styles.css --disableGhStyle",
     "pdf-sr-4": "mdpdf --source status-reports/2017-03-01.md --style md-styles.css --disableGhStyle",
     "pdf-sr-5": "mdpdf --source status-reports/2017-03-08.md --style md-styles.css --disableGhStyle",
-    "pdf-sr-6": "mdpdf --source status-reports/2017-03-15.md --style md-styles.css --disableGhStyle"
+    "pdf-sr-6": "mdpdf --source status-reports/2017-03-15.md --style md-styles.css --disableGhStyle",
+    "pdf-sr-7": "mdpdf --source status-reports/2017-03-22.md --style md-styles.css --disableGhStyle"
   },
   "author": "Elliot Blackburn <elliot.blackburn@gmail.com>",
   "dependencies": {
