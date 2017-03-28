@@ -30,10 +30,9 @@ const groups = {
                     console.log('pushing group');
                     user.groups.push(object.group_id);
                 } else {
-                    console.log('Already in the group, do something');
+                    // TODO: Reject the call here
+                    //console.log('Already in the group, do something');
                 }
-
-                console.log(user);
 
                 const options = {
                     withRelated: ['groups'],
