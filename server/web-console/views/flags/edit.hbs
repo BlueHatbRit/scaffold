@@ -28,12 +28,18 @@
                     <thead>
                         <tr>
                             <th>Name</th>
+                            <th class="table-right">Remove</th>
                         </tr>
                     </thead>
                     <tbody>
                         {{#each groups}}
                             <tr>
                                 <td><a href="/groups/{{id}}">{{name}}</a></td>
+                                <td class="table-right">
+                                    <a href="#">
+                                        <i class="fa fa-times" aria-hidden="true"></i>
+                                    </a>
+                                </td>
                             </tr>
                         {{/each}}
                     </tbody>
