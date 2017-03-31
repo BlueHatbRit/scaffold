@@ -52,6 +52,27 @@ const flags = {
 
             res.redirect('/flags');
         }).catch(next);
+    },
+
+    groups: {
+        new: (req, res, next) => {
+            api.flags.show({id: req.params.id}).then(flag => {
+                res.render('flags/groups/new', flag);
+            }).catch(next);
+        },
+
+        create: (req, res, next) => {
+            const obj = {
+                id: req.params.id,
+                group_name: req.body.group_name
+            };
+
+            api.flags.groups.create(obj).then(flag => {
+                req.flash('success', 'Group given access to flag');
+
+                res.redirect('/flags/' + flag.id);
+            }).catch(next);
+        }
     }
 }
 

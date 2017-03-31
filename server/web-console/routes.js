@@ -27,6 +27,8 @@ const frontendRoutes = function frontendRoutes() {
     router.get('/flags/new', middleware.webAuth.staffOnly, controllers.flags.new);
     router.get('/flags/:id/edit', middleware.webAuth.staffOnly, controllers.flags.edit);
     router.post('/flags/:id', middleware.webAuth.staffOnly, controllers.flags.update);
+    router.get('/flags/:id/groups/new', middleware.webAuth.staffOnly, controllers.flags.groups.new);
+    router.post('/flags/:id/groups', middleware.webAuth.staffOnly, controllers.flags.groups.create);
 
     router.get('/', controllers.infoPages.index);
 

@@ -1,0 +1,17 @@
+{{!< ../../default}}
+{{> nav}}
+<main id="content" class="container">
+    {{> flash}}
+    <div class="row">
+        <div class="column">
+            <h1>Grant a group access to {{name}}</h1>
+
+            <form method="POST" action="/flags/{{id}}/groups">
+                <label for="group_name">Group name</label>
+                <input id="group-name" name="group_name" type="text" placeholder="group-name">
+
+                <input type="submit" value="Add group to flag access">
+            </form>
+        </div>
+    </div>
+</main>

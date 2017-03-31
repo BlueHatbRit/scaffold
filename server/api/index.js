@@ -18,7 +18,7 @@ Returns a HTTP function with the "req, res, and next" parameters.
 function http(apiFunction) {
   return function httpHandler(req, res, next) {
     let object = req.body;
-    let options = _.extend({}, req.query, req.params);
+    let options = _.extend({}, req.query, req.params, req.user);
     
     // GET and DELETE don't have a body, instead their objects
     // are passed as query / params.
