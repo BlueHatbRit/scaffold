@@ -4,17 +4,15 @@
     {{> flash}}
     <div class="row">
         <div class="column">
-            <h1>Update flag</h1>
+            <h1>{{name}}</h1>
             <form method="POST" action="/flags/{{id}}" id="create-flag">
-                <label for="name">Flag name</label>
-                <input id="flag-name" name="name" type="text" value="{{name}}" disabled>
-
                 <label for="description">Description</label>
-                <input id="flag-description" name="description" type="text" value="{{description}}" disabled>
+                <input id="flag-description" name="description" type="text" value="{{description}}">
 
                 <div>
                     <label for="active" class="label-inline">Flag active</label>
                     <input type="checkbox" id="active" name="active" value="true" {{activeChecked}}>
+                    {{> tooltip copy="A global kill switch, if this is unchecked then no one will have access."}}
                 </div>
 
                 <input type="submit" value="submit">
