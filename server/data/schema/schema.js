@@ -25,6 +25,11 @@ const tables = {
         active: {type: 'bool', nullable: false},
         created_at: {type: 'dateTime', nullable: false},
         updated_at: {type: 'dateTime', nullable: false}
+    },
+    flags_groups: {
+        id: {type: 'string', nullable: false, primary: true},
+        flag_id: {type: 'string', nullable: false, references: 'flags.id'},
+        group_id: {type: 'string', nullable: false, references: 'groups.id'}
     }
 };
 

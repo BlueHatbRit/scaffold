@@ -1,6 +1,7 @@
 const _ = require('lodash');
 const base = require('./base').base;
 const registry = require('./base').registry;
+const modelUtils = require('./utils');
 
 let Flag = base.extend({
     tableName: 'flags',
@@ -13,16 +14,64 @@ let Flag = base.extend({
         }, baseDefaults);
     },
 
+    groups: function groups() {
+        return this.belongsToMany('Group');
+    },
+
     toJSON: function toJSON(options) {
         options = options || {};
         let attribs = base.prototype.toJSON.call(this, options);
 
         attribs.active = !!attribs.active;
 
+        attribs.groups = this.related('groups').toJSON();
+        attribs.groups.forEach((g) => {
+            delete g.created_at;
+            delete g.updated_at;
+            delete g._pivot_flag_id;
+            delete g._pivot_group_id;
+        });
+
         return attribs;
     }
 }, {
-    
+    findOne: function findOne(data, options) {
+        options = options || {};
+        options.withRelated = ['groups'];
+
+        return base.findOne.call(this, data, options);
+    },
+
+    edit: function edit(data, options) {
+        let self = this;
+        let flagId;
+        let listedGroups;
+
+        if (data.groups) {
+            listedGroups = data.groups;
+            delete data.groups;
+        }
+
+        options = options || {};
+        options.withRelated = _.union(options.withRelated, options.include);
+        
+        return base.edit.call(this, data, options).then(function then(flag) {
+            if (!listedGroups) {
+                return flag;
+            }
+
+            // For returning the model after
+            flagId = flag.id;
+
+            return flag.groups().fetch().then(function then(currentGroups) {
+                let groupsToAdd = _.difference(listedGroups, currentGroups);
+
+                return modelUtils.attach(Flag, flag.id, 'groups', groupsToAdd, options);
+            }).then(function then() {
+                return self.findOne({id: flagId});
+            });
+        });
+    }
 });
 
 let Flags = registry.Collection.extend({

@@ -105,7 +105,7 @@ let User = base.extend({
             }).then(function then() {
                 return self.findOne({id: userId});
             });
-        })
+        });
     },
 
     passwordIsCorrect: function passwordIsCorrect(plainPassword, hashedPassword) {

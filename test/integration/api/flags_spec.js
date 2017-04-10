@@ -88,22 +88,6 @@ describe('Flags API', () => {
                 }).catch(done);
             }).catch(done);
         });
-
-        it('should return true when flag is active', done => {
-            let newFlag = fixtures.flag;
-            newFlag.active = true;
-
-            // Create a flag
-            api.flags.create(newFlag).then(flag => {
-                
-                // Check flag access is denied
-                api.flags.showAccess({id: flag.id}).then(flagAccess => {
-                    flagAccess.accessible.should.be.true();
-
-                    done();
-                }).catch(done);
-            }).catch(done);
-        });
     });
 
     describe('Create', () => {

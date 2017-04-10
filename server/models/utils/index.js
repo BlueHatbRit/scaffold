@@ -42,4 +42,40 @@ const attach = function attach(Model, effectedModelId, relation, modelsToAttach,
     });
 };
 
-module.exports.attach = attach;
+const detach = function detach(Model, effectedModelId, relation, modelsToDetach, options) {
+    options = options || {};
+
+    let fetchedModel;
+    let localOptions = {transacting: options.transacting};
+
+    return Model.forge({id: effectedModelId}).fetch(localOptions).then(function successfulFetch(_fetchedModel) {
+        fetchedModel = _fetchedModel;
+
+        if (!fetchedModel) {
+            throw new Error('Model not found'); // TODO: Replace with better error system later
+        }
+
+        return Promise.resolve(modelsToDetach).then(function then(models) {
+            models = _.map(models, function mapper(model) {
+                if (model.id) {
+                    return model.id;
+                } else if (!_.isObject(model)) {
+                    return model.toString();
+                } else {
+                    return model;
+                }
+            });
+
+            return fetchedModel.related(relation).detach(models, localOptions);
+        });
+    }).finally(() => {
+        if (!fetchedModel) {
+            return;
+        }
+    });
+};
+
+module.exports = {
+    attach: attach,
+    detach: detach
+};
