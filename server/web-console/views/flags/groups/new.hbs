@@ -4,14 +4,23 @@
     {{> flash}}
     <div class="row">
         <div class="column">
-            <h1>Grant a group access to {{name}}</h1>
+            <h1>Grant a group access to <b>{{name}}</b></h1>
 
             <form method="POST" action="/flags/{{id}}/groups">
-                <label for="group_name">Group name</label>
-                <input id="group-name" name="group_name" type="text" placeholder="group-name">
+                <dl class="form-group">
+                    <dt class="input-label">
+                        <label for="group_name">Group Name</label>
+                    </dt>
+                    <dd>
+                        <input id="group-name" class="form-control" name="group_name" type="text">
+                        <p class="note">The name of the group you wish to grant access to the flag, the group must already exist.</p>
+                    </dd>
+                </dl>
 
-                <input type="submit" value="Add group to flag access">
+                <button id="add-group-btn" type="submit" disabled="true">Grant Group Access</button>
             </form>
         </div>
     </div>
 </main>
+
+<script src="/static/flags/groups/new.js"></script>

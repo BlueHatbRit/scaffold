@@ -70,7 +70,7 @@ const flags = {
             api.flags.groups.create(obj).then(flag => {
                 req.flash('success', 'Group given access to flag');
 
-                res.redirect('/flags/' + flag.id);
+                res.redirect('/flags/' + flag.id + '/edit');
             }).catch(next);
         }
     }
