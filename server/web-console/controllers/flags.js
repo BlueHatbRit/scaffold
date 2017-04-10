@@ -26,6 +26,10 @@ const flags = {
             req.flash('success', 'Flag created');
 
             return res.redirect('/flags');
+        }).catch(errors.ConflictError, (err) => {
+            req.flash('error', 'A flag with that name already exists!');
+
+            return res.redirect('/flags');
         }).catch(next);
     },
 

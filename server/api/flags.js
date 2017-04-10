@@ -58,8 +58,14 @@ const flags = {
     create: (object, options) => {
         // Todo: Add actual validation, shhh
 
-        return models.Flag.create(object).then(flag => {
-            return flag.toJSON();
+        return models.Flag.findOne({name: object.name}).then(flag => {
+            if (flag) {
+                throw new errors.ConflictError({message: 'flag name already exists'});
+            } else {
+                return models.Flag.create(object).then(flag => {
+                    return flag.toJSON();
+                });
+            }
         });
     },
 
