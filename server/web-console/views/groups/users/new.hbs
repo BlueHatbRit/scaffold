@@ -10,12 +10,24 @@
                 <input id="description" name="description" type="text" value="{{description}}" disabled>
 
                 <form method="POST" action="/groups/{{id}}/users">
-                    <label for="email">User email address</label>
-                    <input id="email" name="email" type="text" placeholder="user@scaffold.com">
+                
+                    <dl class="form-group">
+                        <dt class="input-label">
+                            <label for="email">Users Email Address</label>
+                        </dt>
+                        <dd>
+                            <input id="email" class="form-control" name="email" type="text">
+                        </dd>
+                        <dd class="error" hidden>
+                            Invalid email address.
+                        </dd>
+                    </dl>
 
-                    <input type="submit" value="Add user to group">
+                    <button id="add-user-btn" type="submit" disabled="true">Add User to Group</button>
                 </form>
             </div>
         </div>
     </div>
 </main>
+
+<script src="/static/groups/users/new.js"></script>
