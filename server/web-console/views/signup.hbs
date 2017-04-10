@@ -8,15 +8,48 @@
             <p>We like to store minimal information on you, but you will need your own account. Sign up here to begin using the app!</p>
         </div>
         <section class="column column-50">
-            <center>
-                <form method="POST" action="/signup">
-                    <input name="email" type="email" placeholder="example@scaffold.com">
-                    <input name="password" type="password" placeholder="password">
-                    <input name="confirmPassword" type="password" placeholder="password">
+                <form id="create-account-form" method="POST" action="/signup">
+                    <dl class="form-group">
+                        <dt class="input-label">
+                            <label for="email">Email Address</label>
+                        </dt>
+                        <dd>
+                            <input class="form-control" name="email" type="email">
+                            <p class="note">You'll use this to sign in your account, it must be valid in case you wish to reset your password later.</p>
+                        </dd>
+                        <dd class="error" hidden>
+                            Email address is invalid.
+                        </dd>
+                    </dl>
+                    <dl class="form-group">
+                        <dt class="input-label">
+                            <label for="password">Password</label>
+                        </dt>
+                        <dd>
+                            <input class="form-control" name="password" type="password">
+                            <p class="note">Use at seven characters, with one numeral.</p>
+                        </dd>
+                        <dd class="error" hidden>
+                            Passwords need a minimum of seven characters, and one number.
+                        </dd>
+                    </dl>
+                    
+                    <dl class="form-group">
+                        <dt class="input-label">
+                            <label for="confirmPassword">Re-enter Your Password</label>
+                        </dt>
+                        <dd>
+                            <input class="form-control" name="confirmPassword" type="password">
+                        </dd>
+                        <dd class="error" hidden>
+                            Both passwords must be the same.
+                        </dd>
+                    </dl>
 
-                    <input type="submit" value="submit">
+                    <button id="create-account-btn" type="submit" disabled="true">Create an account</button>
                 </form>
-            </center>
         </section>
     </div>
 </main>
+
+<script src="/static/signup.js"></script>
