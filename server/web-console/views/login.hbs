@@ -8,13 +8,36 @@
                 <center>
                     <h1>Log in</h1>
                     <form method="POST" action="/login" id="login">
-                        <input name="email" type="email" placeholder="example@scaffold.com">
-                        <input name="password" type="password" placeholder="password">
+                        <dl class="form-group">
+                            <dt class="input-label">
+                                <label for="email">Email Address</label>
+                            </dt>
+                            <dd>
+                                <input name="email" type="email">
+                            </dd>
+                            <dd class="error" hidden>
+                                Invalid email address.
+                            </dd>
+                        </dl>
 
-                        <input type="submit" value="submit">
+                        <dl class="form-group">
+                            <dt class="input-label">
+                                <label for="password">Password</label>
+                            </dt>
+                            <dd>
+                                <input name="password" type="password">
+                            </dd>
+                            <dd class="error" hidden>
+                                Invalid password.
+                            </dd>
+                        </dl>
+
+                        <button id="login-button" type="submit" disabled="true">Sign in</button>
                     </form>
                 </center>
             </section>
         </div>
     </center>
 </main>
+
+<script src="/static/login.js"></script>
