@@ -53,6 +53,12 @@ let errors = {
       statusCode: 401,
       errorType: 'UnauthorizedError'
     }, options));
+  },
+  ConflictError: function ConflictError(options) {
+    ScaffoldError.call(this, _.merge({
+      statusCode: 409,
+      errorType: 'ConflictError'
+    }, options));
   }
 };
 
