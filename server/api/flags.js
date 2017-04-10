@@ -46,7 +46,6 @@ const flags = {
             
             // Check if the global kill switch is turned off
             if (!flag.active) {
-                console.log('flag inactive');
                 accessible = false;
             }
 

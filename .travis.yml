@@ -1,9 +1,15 @@
 language: node_js
 node_js:
   - "6"
+  - "7"
 sudo: false
 env:
   - NODE_ENV=testing-travis CXX=g++-4.8
+
+branches:
+  only:
+    - master
+
 services:
   - mysql
   - redis-server
@@ -14,5 +20,6 @@ addons:
     packages:
     - gcc-4.8
     - g++-4.8
+
 before_install:
   - mysql -e 'create database app_travis'
