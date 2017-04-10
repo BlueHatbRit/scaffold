@@ -1,3 +1,7 @@
 dd {
     margin-left: 0;
 }
+
+input[type='checkbox'] {
+    margin: 0;
+}
