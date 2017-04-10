@@ -4,22 +4,46 @@
     {{> flash}}
     <div class="row">
         <div class="column">
-            <h1>Create flag</h1>
+            <h1>Create a new flag</h1>
             <form method="POST" action="/flags" id="create-flag">
-                <label for="name">Flag name</label>
-                <input id="flag-name" name="name" type="text" placeholder="The name you'll use in your code">
+                <dl class="form-group">
+                    <dt class="input-label">
+                        <label for="name">Flag Name</label>
+                    </dt>
+                    <dd>
+                        <input id="flag-name" class="form-control" name="name" type="text">
+                        <p class="note">A hyphenated name which you'll use in your code to refer to this flag.</p>
+                    </dd>
+                    <dd class="error" hidden>
+                    </dd>
+                </dl>
 
-                <label for="description">Description</label>
-                <input id="flag-description" name="description" type="text" placeholder="Something to help identify the feature">
+                <dl class="form-group">
+                    <dt class="input-label">
+                        <label for="description">Description (optional)</label>
+                    </dt>
+                    <dd>
+                        <input id="flag-description" class="form-control" name="description" type="text">
+                        <p class="note">A short description to help others understand what this feature is.</p>
+                    </dd>
+                    <dd class="error" hidden>
+                    </dd>
+                </dl>
 
-                <div>
-                    <label for="active" class="label-inline">Flag active</label>
-                    <input type="checkbox" id="active" name="active" value="true">
-                    {{> tooltip copy="A global kill switch, if this is unchecked then no one will have access."}}
-                </div>
+                <dl class="form-group">
+                    <dd>
+                        <input type="checkbox" id="active" name="active" value="true">
+                        <label for="active" class="input-label label-inline">Flag active</label>
+                        <p class="note">A global kill switch, if this is unchecked then no one will have access.</p>
+                    </dd>
+                    <dd class="error" hidden>
+                    </dd>
+                </dl>
 
-                <input type="submit" value="submit">
+                <button id="create-flag-btn" type="submit" disabled="true">Create flag</button>
             </form>
         </div>
     </div>
 </main>
+
+<script src="/static/flags/new.js"></script>
