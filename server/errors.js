@@ -16,10 +16,12 @@ function ScaffoldError(options) {
   // Defaults
   this.statusCode = 500;
   this.errorType = 'InternalServerError';
+  this.target = null;
 
   // Overrides
   this.statusCode = options.statusCode || this.statusCode;
   this.errorType = this.name = options.errorType || this.errorType;
+  this.target = options.target;
 
   this.message = options.message;
   this.hideStack = options.hideStack;

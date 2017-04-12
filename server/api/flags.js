@@ -2,6 +2,21 @@ const _ = require('lodash');
 const models = require('../models');
 const errors = require('../errors');
 
+function groupIsAlreadyAttachedToFlag(flag, groupId) {
+    let isInGroup = false;
+    if (flag.groups && flag.groups.length > 0) {
+
+        flag.groups.forEach(group => {
+            if (group.id === groupId) {
+                isInGroup = true;
+            }
+        });
+
+    }
+
+    return isInGroup;
+}
+
 const flags = {
     index: (options) => {
         return models.Flag.fetchAll().then(flags => {
@@ -95,21 +110,19 @@ const flags = {
                 if (foundFlag) {
                     flag = foundFlag.toJSON();
                 } else {
-                    throw new errors.NotFoundError({message: 'flag not found'});
+                    throw new errors.NotFoundError({message: 'flag not found', target: 'flag'});
                 }
 
                 return models.Group.findOne({name: object.group_name});
             }).then(group => {
                 if (!group) {
-                    throw new errors.NotFoundError({message: 'group not found'});
+                    throw new errors.NotFoundError({message: 'group not found', target: 'group'});
                 }
 
-                if (!_.includes(flag.groups, group.id)) {
-                    console.log('pushing group');
+                if (!groupIsAlreadyAttachedToFlag(flag, group.id)) {
                     flag.groups.push(group.id);
                 } else {
-                    // Return some sort of error?
-                    console.log('Flag already has group');
+                    throw new errors.ConflictError({message: 'group already has access to flag'});
                 }
 
                 const options = {

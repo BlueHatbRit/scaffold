@@ -75,7 +75,22 @@ const flags = {
                 req.flash('success', 'Group given access to flag');
 
                 res.redirect('/flags/' + flag.id + '/edit');
-            }).catch(next);
+            }).catch(errors.NotFoundError, notFoundErr => {
+                // Flag could have been removed by another user while this is happening
+                // so we need to account for that.
+                req.flash('error', `That ${notFoundErr.target} doesn't exist`);
+
+                if (notFoundErr.target === 'flag') {
+                    // Can't redirect to the flag if it doesn't exist
+                    res.redirect('/flags');
+                } else {
+                    res.redirect(`/flags/${obj.id}/edit`);
+                }
+            }).catch(errors.ConflictError, conflictError => {
+                req.flash('error', "That group already has access to this flag");
+
+                res.redirect(`/flags/${obj.id}/edit`);
+            })
         }
     }
 }
