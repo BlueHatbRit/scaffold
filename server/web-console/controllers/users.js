@@ -1,4 +1,5 @@
 const api = require('../../api');
+const errors = require('../../errors');
 
 const usersController = {
     index: (req, res, next) => {
@@ -22,7 +23,7 @@ const usersController = {
         res.render('signup');
     },
 
-    create: (req, res) => {
+    create: (req, res, next) => {
         const newUser = req.body;
 
         if (newUser.password !== newUser.confirmPassword) {
@@ -35,11 +36,13 @@ const usersController = {
         delete newUser.confirmPassword;
         return api.users.create(newUser).then(user => {
             req.flash('success', 'Account created, you can now log in');
+
             res.redirect('/');
-        }).catch(e => {
-            req.flash('error', 'Registration failed');
+        }).catch(errors.ConflictError, err => {
+            req.flash('error', 'It seems that email is already in use');
+
             res.redirect('/signup');
-        });
+        }).catch(next);
     }
 };
 
