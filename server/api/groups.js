@@ -58,7 +58,7 @@ const groups = {
                 if (!userIsInGroup(user, object.group_id)) {
                     user.groups.push(object.group_id);
                 } else {
-                    throw new errors.ValidationError({message: 'user is already a member of this group'});
+                    throw new errors.ConflictError({message: 'user is already a member of this group'});
                 }
 
                 const options = {

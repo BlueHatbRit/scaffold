@@ -54,7 +54,7 @@ const groups = {
                 req.flash('error', "That user doesn't exist");
 
                 res.redirect(`/groups/${object.group_id}/users/new`);
-            }).catch(errors.ValidationError, validationErr => {
+            }).catch(errors.ConflictError, validationErr => {
                 req.flash('error', "That user is already in this group");
 
                 res.redirect(`/groups/${object.group_id}/users/new`);
