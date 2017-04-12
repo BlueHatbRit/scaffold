@@ -54,6 +54,12 @@ let errors = {
       errorType: 'UnauthorizedError'
     }, options));
   },
+  ForbiddenError: function ForbiddenError(options) {
+    ScaffoldError.call(this, _.merge({
+      statusCode: 403,
+      errorType: 'ForbiddenError'
+    }, options));
+  },
   ConflictError: function ConflictError(options) {
     ScaffoldError.call(this, _.merge({
       statusCode: 409,
