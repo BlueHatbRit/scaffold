@@ -4,6 +4,7 @@ const utilities = require('../../utilities');
 const fixtures = utilities.fixtures;
 const api = require('../../../server/api');
 const config = require('../../../server/config');
+const errors = require('../../../server/errors');
 const jwt = require('jsonwebtoken');
 const jwtVerifyAsync = Promise.promisify(jwt.verify);
 
@@ -41,7 +42,8 @@ describe('Sessions API', () => {
                 };
 
                 api.sessions.create(incorrectPasswordUser).should.be.rejected().then(err => {
-                    err.message.should.equal('password incorrect');
+                    err.should.be.instanceOf(errors.ForbiddenError);
+                    err.message.should.equal('incorrect password');
 
                     done();
                 });
@@ -56,7 +58,8 @@ describe('Sessions API', () => {
                 };
 
                 api.sessions.create(incorrectPasswordUser).should.be.rejected().then(err => {
-                    err.message.should.equal('User not found');
+                    err.should.be.instanceOf(errors.NotFoundError);
+                    err.message.should.equal('user not found');
 
                     done();
                 });

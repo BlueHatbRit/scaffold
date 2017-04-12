@@ -2,6 +2,7 @@ const should = require('should');
 const utilities = require('../../utilities');
 const fixtures = utilities.fixtures;
 const api = require('../../../server/api');
+const errors = require('../../../server/errors');
 
 describe('Web Sessions API', () => {
     before(utilities.initModels);
@@ -38,7 +39,8 @@ describe('Web Sessions API', () => {
                 };
 
                 api.webSession.create(incorrectPasswordUser).should.be.rejected().then(err => {
-                    err.message.should.equal('password incorrect');
+                    err.should.be.instanceOf(errors.ForbiddenError);
+                    err.message.should.equal('incorrect password');
 
                     done();
                 });
@@ -53,7 +55,7 @@ describe('Web Sessions API', () => {
                 };
 
                 api.webSession.create(incorrectPasswordUser).should.be.rejected().then(err => {
-                    err.message.should.equal('User not found');
+                    err.message.should.equal('user not found');
 
                     done();
                 });
