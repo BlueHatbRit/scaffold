@@ -48,7 +48,16 @@ const groups = {
 
             api.groups.users.create(object).then(user => {
                 req.flash('success', 'User successfully added to group');
-                res.redirect('/groups/' + req.params.id);
+
+                res.redirect('/groups/' + object.group_id);
+            }).catch(errors.NotFoundError, notFoundErr => {
+                req.flash('error', "That user doesn't exist");
+
+                res.redirect(`/groups/${object.group_id}/users/new`);
+            }).catch(errors.ValidationError, validationErr => {
+                req.flash('error', "That user is already in this group");
+
+                res.redirect(`/groups/${object.group_id}/users/new`);
             }).catch(next);
         }
     }

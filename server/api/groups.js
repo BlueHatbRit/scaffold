@@ -2,6 +2,21 @@ const _ = require('lodash');
 const models = require('../models');
 const errors = require('../errors');
 
+function userIsInGroup(user, groupId) {
+    let isInGroup = false;
+    if (user.groups && user.groups.length > 0) {
+
+        user.groups.forEach(group => {
+            if (group.id === groupId) {
+                isInGroup = true;
+            }
+        });
+
+    }
+
+    return isInGroup;
+}
+
 const groups = {
     index: (options) => {
         return models.Group.fetchAll().then(groups => {
@@ -24,14 +39,26 @@ const groups = {
 
         create: (object) => {
             return models.User.findOne({email: object.email}).then(user => {
+                if (!user) {
+                    throw new errors.NotFoundError({message: 'user not found'});
+                }
+
                 user = user.toJSON();
 
-                if (!_.includes(user.groups, object.group_id)) {
-                    console.log('pushing group');
+                let userIsAlreadyInGroup = false;
+                // Check to see if the user is already a member of the group
+                if (user.groups && user.groups.length > 0) {
+                    user.groups.forEach(group => {
+                        if (group.id === object.group_id) {
+                            userIsAlreadyInGroup = true;
+                        }
+                    });
+                }
+
+                if (!userIsInGroup(user, object.group_id)) {
                     user.groups.push(object.group_id);
                 } else {
-                    // TODO: Reject the call here
-                    //console.log('Already in the group, do something');
+                    throw new errors.ValidationError({message: 'user is already a member of this group'});
                 }
 
                 const options = {
