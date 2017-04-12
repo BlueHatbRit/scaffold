@@ -7,6 +7,7 @@ const bcrypt = require('bcrypt');
 const bcryptGenerateSalt = Promise.promisify(bcrypt.genSalt);
 const bcryptHash = Promise.promisify(bcrypt.hash);
 const bcryptCompare = Promise.promisify(bcrypt.compare);
+const errors = require('../errors');
 
 let User = base.extend({
     tableName: 'users',
@@ -120,11 +121,11 @@ let User = base.extend({
     findByEmail: function findByEmail(email) {
             return User.findOne({ email: email }).then(user => {
                 if (user === null) {
-                    return Promise.reject(new Error('User not found'));
+                    throw new errors.NotFoundError({message: 'user not found'});
                 }
                 return user;
             }).catch(User.NotFoundError, () => {
-                Promise.reject(new Error('User not found'));
+                throw new errors.NotFoundError({message: 'user not found'});
             });
     },
 
@@ -140,14 +141,8 @@ let User = base.extend({
                     return user;
                 }
 
-                // Passwords don't match so return a 401 thing
-                let err = new Error('password incorrect');
-                return Promise.reject(err);
-            }).catch(err => {
-                return Promise.reject(err);
+                throw new errors.ForbiddenError({message: 'incorrect password'});
             });
-        }).catch(err => {
-            return Promise.reject(err);
         });
     },
 
