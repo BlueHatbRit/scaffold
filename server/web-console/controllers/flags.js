@@ -23,7 +23,7 @@ const flags = {
         req.body.active = convertActiveToBool(req.body.active);
 
         api.flags.create(req.body).then(flag => {
-            req.flash('success', 'Flag created');
+            req.flash('success', 'Flag created!');
 
             return res.redirect('/flags');
         }).catch(errors.ConflictError, (err) => {
