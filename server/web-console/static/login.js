@@ -14,26 +14,14 @@ $(function() {
         );
     });
 
-    // Validate password
-    $(passwordElement).change(function(e) {
-        let password = e.target.value;
-
-        autoValidateField(
-            isValidPassword,
-            password,
-            passwordElement
-        );
-    });
-
     // Enable the login button when the fields are complete
     $('input').on('input', function(e) {
         let email = $(emailElement).val();
         let emailIsValid = isValidEmail(email);
 
-        let password = $(passwordElement).val();
-        let passwordIsValid = isValidPassword(password);
-
-        if (emailIsValid && passwordIsValid) {
+        // We're not doing a password check on login as that
+        // would only see to help account hacking.
+        if (emailIsValid) {
             $(loginButton).prop('disabled', false);
         } else {
             $(loginButton).prop('disabled', true);
