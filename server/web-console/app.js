@@ -7,6 +7,7 @@ const webAuth = require('../middleware').webAuth;
 const locals = require('../middleware').locals;
 const errorHandlers = require('../middleware').errorHandlers;
 const helpers = require('./helpers');
+const favicon = require('serve-favicon');
 
 module.exports = () => {
     const app = express();
@@ -26,6 +27,9 @@ module.exports = () => {
 
     // Load helpers
     helpers.load();
+
+    // Favicon
+    app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
     // Used for front-end css, js, etc
     app.use('/static', express.static(path.join(__dirname, 'static')));
