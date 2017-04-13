@@ -138,6 +138,11 @@
     margin-bottom: 0;
 }
 
+.form-control-small {
+    margin-bottom: 0;
+    max-width: 10rem;
+}
+
 .note {
     font-size: 1.2rem;
     margin: 0;

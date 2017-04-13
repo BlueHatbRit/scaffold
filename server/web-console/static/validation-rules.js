@@ -35,3 +35,39 @@ function bothPasswordsAreTheSame(passwords) {
 
     return false;
 }
+
+function isValidPercentage(value) {
+    return (value <= 100 && value >= 0 && value !== '');
+}
+
+function isValidFlagName(name) {
+    const maxLength = 50;
+    const minLength = 4;
+    let isValid = true;
+
+    // Cannot contain spaces
+    if (name.indexOf(' ') >= 0) {
+        isValid = false;
+    }
+
+    // Cannot contain digits
+    if (name.match(/\d/g)) {
+        isValid = false;
+    }
+
+    // Cannot contain punctuation
+    if (name.match(/[.,\/#!$%\^&\*;:{}=\_`'~()@£+\[\]"|\\<>?±§]/g)) {
+        isValid = false;
+    }
+
+    // Can't contain double hyphen
+    if (name.indexOf('--') >= 0) {
+        isValid = false;
+    }
+    
+    if (name.length < minLength || name.length > maxLength) {
+        isValid = false;
+    }
+
+    return isValid;
+}

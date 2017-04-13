@@ -1,35 +1,10 @@
 $(function() {
-    let nameComplete = false;
-
-    function checkCreateEnabled() {
-        let button = $('#create-flag-btn');
-
-        // Description is optional
-        if (nameComplete) {
-            button.prop('disabled', false);
-        } else {
-            button.prop('disabled', true)
-        }
-    }
-
-    // Warp the input of the flag name on the fly.
-    // Note: This function isn't very solid, for example
-    // it totally ignores languages with other character sets
-    // but it'll do for now.
+    // Warp flag name
     $("#flag-name").on('input', function(e) {
         e.target.value = warpFlagName(e.target.value);
-
-        // If the length is correct then name is complete
-        // as we've warped everything else.
-        if (e.target.value.length > 4) {
-            nameComplete = true;
-        } else {
-            nameComplete = false;
-        }
-
-        checkCreateEnabled();
     });
 
+    // Warp description
     $("#flag-description").on('input', function(e) {
         const maxLength = 120;
         let value = e.target.value;
@@ -41,4 +16,36 @@ $(function() {
 
         e.target.value = value;
     });
+
+    // Display population errors on input because
+    // it's such a simple field.
+    $('#population').on('input', function(e) {
+        let value = e.target.value;
+        let element = '#population';
+
+        autoValidateField(isValidPercentage, value, element);
+    });
+
+    // Ensure population defaults back to 0, then
+    // check the form status.
+    $('#population').on('blur', function(e) {
+        if (e.target.value === '') {
+            e.target.value = 0;
+            checkFormSubmittability();
+        }
+    });
+
+    // Check whether the form submit button should be enabled
+    function checkFormSubmittability() {
+        let flagName = $('#flag-name').val();
+        let popPercentage = $('#population').val();
+        let submitButton = $('#create-flag-btn');
+        
+        if(isValidFlagName(flagName) && isValidPercentage(popPercentage)) {
+            submitButton.prop('disabled', false);
+        } else {
+            submitButton.prop('disabled', true);
+        }
+    }
+    $('input').on('input', checkFormSubmittability);
 });

@@ -2,7 +2,7 @@ const api = require('../../api');
 const errors = require('../../errors');
 
 function convertActiveToBool(active) {
-    return (active !== 'undefined' && active === 'true');
+    return (active !== 'undefined' && active === 'on');
 }
 
 const flags = {
@@ -34,13 +34,7 @@ const flags = {
     },
 
     edit: (req, res, next) => {
-        
         api.flags.show({id: req.params.id}).then(flag => {
-            // Should the check box be checked?
-            if (flag.active) {
-                flag.activeChecked = 'checked';
-            }
-
             res.render('flags/edit', flag);
         }).catch(next);
     },
@@ -48,7 +42,7 @@ const flags = {
     update: (req, res, next) => {
         // Ensure the ID updated is the one from the URL only.
         const options = {id: req.params.id};
-        
+
         req.body.active = convertActiveToBool(req.body.active);
 
         api.flags.update(req.body, options).then(flag => {

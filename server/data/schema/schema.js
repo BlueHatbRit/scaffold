@@ -23,6 +23,7 @@ const tables = {
         name: {type: 'string', maxlength: 60, nullable: false, unique: true},
         description: {type: 'string', maxlength: 255},
         active: {type: 'bool', nullable: false},
+        population_percentage: {type: 'integer', nullable: false, unsigned: true, defaultTo: 0},
         created_at: {type: 'dateTime', nullable: false},
         updated_at: {type: 'dateTime', nullable: false}
     },

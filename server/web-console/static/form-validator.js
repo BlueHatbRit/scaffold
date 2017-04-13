@@ -1,7 +1,7 @@
 function autoValidateField(isValid, value, elementTag) {
     let element = $(elementTag);
     let group = element.parent().parent();
-
+    
     if (element.val() !== '' && !isValid(value)) {
         // Add error style classes
         group.addClass('errored');
