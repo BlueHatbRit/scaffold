@@ -3,6 +3,7 @@ const schema = require('../data/schema').schema;
 const bookshelf = require('bookshelf')(db.knex);
 const ObjectId = require('bson-objectid');
 const _ = require('lodash');
+const errors = require('../errors');
 
 let BaseModel = require('bookshelf-modelbase')(bookshelf);
 
@@ -90,6 +91,8 @@ BaseModel = BaseModel.extend({
         return model.fetch(options).then(function then(object) {
             if (object) {
                 return object.save(data, options);
+            } else {
+                throw new errors.NotFoundError({message: 'model not found'});
             }
         });
     },
