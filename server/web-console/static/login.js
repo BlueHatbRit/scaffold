@@ -1,30 +1,42 @@
 $(function() {
-    let emailComplete = false;
-    let passwordComplete = false;
+    let emailElement = '#email';
+    let passwordElement = '#password';
+    let loginButton = '#login-button';
 
-    function checkLoginEnabled() {
-        let button = $('#login-button');
-
-        if (emailComplete && passwordComplete) {
-            button.prop('disabled', false);
-        } else {
-            button.prop('disabled', true)
-        }
-    }
-
-    $("input[name='email']").change(function(e) {
+    // Validate email
+    $(emailElement).change(function(e) {
         let email = e.target.value;
-        let element = "input[name='email']";
 
-        emailComplete = autoValidateField(isValidEmail, email, element);
-        checkLoginEnabled();
+        autoValidateField(
+            isValidEmail,
+            email,
+            emailElement
+        );
     });
 
-    $("input[name='password']").change(function(e) {
+    // Validate password
+    $(passwordElement).change(function(e) {
         let password = e.target.value;
-        let element = "input[name='password']";
 
-        passwordComplete = autoValidateField(isValidPassword, password, element);
-        checkLoginEnabled();
+        autoValidateField(
+            isValidPassword,
+            password,
+            passwordElement
+        );
+    });
+
+    // Enable the login button when the fields are complete
+    $('input').on('input', function(e) {
+        let email = $(emailElement).val();
+        let emailIsValid = isValidEmail(email);
+
+        let password = $(passwordElement).val();
+        let passwordIsValid = isValidPassword(password);
+
+        if (emailIsValid && passwordIsValid) {
+            $(loginButton).prop('disabled', false);
+        } else {
+            $(loginButton).prop('disabled', true);
+        }
     });
 });
