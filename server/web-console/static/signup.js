@@ -1,41 +1,51 @@
 $(function() {
-    let emailComplete = false;
-    let passwordComplete = false;
-    let confirmPassComplete = false;
+    let emailElement = '#email';
+    let passwordElement = '#password';
+    let confirmPasswordElement = '#confirm-password';
+    let submitButton = '#create-account-btn';
 
-    $("input[name='email']").change(function(e) {
+    // Email auto field validation
+    $(emailElement).change(function(e) {
         let email = e.target.value;
-        let element = "input[name='email']";
+        let element = emailElement;
 
-        emailComplete = autoValidateField(isValidEmail, email, element);
-        checkSubmitEnabled();
+        autoValidateField(isValidEmail, email, element);
     });
 
-    $("input[name='password']").change(function(e) {
+    // First password auto field validation
+    $(passwordElement).change(function(e) {
         let password = e.target.value;
-        let element = "input[name='password']";
+        let element = passwordElement;
 
-        passwordComplete = autoValidateField(isValidPassword, password, element);
-        checkSubmitEnabled();
+        autoValidateField(isValidPassword, password, element);
     });
 
-    $("input[name='confirmPassword']").change(function(e) {
+    // Confirm password auto field validation
+    $(confirmPasswordElement).change(function(e) {
         let passwords = [
-            $("input[name='password']").val(),
+            $(passwordElement).val(),
             e.target.value
         ];
-        let element = "input[name='confirmPassword']";
+        let element = confirmPasswordElement;
         
-        confirmPassComplete = autoValidateField(bothPasswordsAreTheSame, passwords, element);
-        checkSubmitEnabled();
+        autoValidateField(bothPasswordsAreTheSame, passwords, element);
     });
 
-    function checkSubmitEnabled() {
-        let button = $('#create-account-btn');
-        if (emailComplete && passwordComplete && confirmPassComplete) {
-            button.prop('disabled', false);
+    // Enable button when all fields are valid
+    $('input').on('input', function(e) {
+        let email = $(emailElement).val();
+        let emailIsValid = isValidEmail(email);
+
+        let password = $(passwordElement).val();
+        let passwordIsValid = isValidPassword(password);
+
+        let secondPassword = $(confirmPasswordElement).val();
+        let confPassIsValid = bothPasswordsAreTheSame([password, secondPassword]);
+
+        if (emailIsValid && passwordIsValid && confPassIsValid) {
+            $(submitButton).prop('disabled', false);
         } else {
-            button.prop('disabled', true)
+            $(submitButton).prop('disabled', true);
         }
-    }
+    });
 });
