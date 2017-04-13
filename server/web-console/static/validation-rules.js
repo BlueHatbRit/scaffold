@@ -21,7 +21,6 @@ function isValidPassword(password) {
     }
 
     if (!hasNumber(password)) {
-        console.log('no numbers');
         isValid = false;
     }
 
