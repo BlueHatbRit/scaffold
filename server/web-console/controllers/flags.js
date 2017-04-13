@@ -55,6 +55,10 @@ const flags = {
             req.flash('success', 'Successfully updated');
 
             res.redirect('/flags');
+        }).catch(errors.NotFoundError, notFoundError => {
+            req.flash('error', "That flag doesn't exist");
+
+            res.redirect('/flags');
         }).catch(next);
     },
 

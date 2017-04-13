@@ -88,8 +88,6 @@ const flags = {
         return models.Flag.edit(object, options).then(flag => {
             if (flag) {
                 return flag.toJSON();
-            } else {
-                throw new errors.NotFoundError({message: 'flag not found'});
             }
         });
     },

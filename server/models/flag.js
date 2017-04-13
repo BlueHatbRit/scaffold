@@ -2,6 +2,7 @@ const _ = require('lodash');
 const base = require('./base').base;
 const registry = require('./base').registry;
 const modelUtils = require('./utils');
+const errors = require('../errors');
 
 let Flag = base.extend({
     tableName: 'flags',
@@ -70,6 +71,8 @@ let Flag = base.extend({
             }).then(function then() {
                 return self.findOne({id: flagId});
             });
+        }).catch(errors.NotFoundError, notFoundError => {
+            throw new errors.NotFoundError({message: 'flag not found'});
         });
     }
 });
