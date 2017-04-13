@@ -35,3 +35,7 @@ function bothPasswordsAreTheSame(passwords) {
 
     return false;
 }
+
+function isValidPercentage(value) {
+    return (value <= 100 && value >= 0 && value !== '');
+}

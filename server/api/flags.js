@@ -1,4 +1,5 @@
 const _ = require('lodash');
+const crc32 = require('crc-32');
 const models = require('../models');
 const errors = require('../errors');
 
@@ -50,6 +51,17 @@ const flags = {
             // group membership will not be queried, etc.
 
             let accessible = false;
+
+            // Check if the user is within the population
+            if (flag.population_percentage !== 0) {
+                // Create a string which is unique for the feature + user combination
+                // but will never change for that combination either.
+                let flagUserString = `${flag.name}-${options.user.id}`;
+                
+                // Hash it to a number and check it against out percentage amount to check access.
+                accessible = Math.abs(crc32.str(flagUserString)) % 100 < flag.population_percentage;
+            }
+
             // Check if the user has group access
             if (!_.isEmpty(flag.groups)) {
                 options.user.groups.forEach(group => {
@@ -71,8 +83,6 @@ const flags = {
     },
 
     create: (object, options) => {
-        // Todo: Add actual validation, shhh
-
         return models.Flag.findOne({name: object.name}).then(flag => {
             if (flag) {
                 throw new errors.ConflictError({message: 'flag name already exists'});

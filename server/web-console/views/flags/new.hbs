@@ -27,10 +27,15 @@
                 </dl>
 
                 <dl class="form-group">
+                    <dt class="input-label">
+                        <label for="populationPercentage">Population Percentage (optional)</label>
+                    </dt>
                     <dd>
-                        <input type="checkbox" id="active" name="active" value="true">
-                        <label for="active" class="input-label label-inline">Flag active</label>
-                        <p class="note">A global kill switch, if this is unchecked then no one will have access.</p>
+                        <input id="population" class="form-control" name="population_percentage" style="max-width: 10rem;" type="number" min="0" max="100">
+                        <p class="note">Incrementally roll out to a higher percentage of users as you desire. Set to 0 to turn this feature off.</p>
+                    </dd>
+                    <dd class="error" hidden>
+                        Must be a number between 0-10.
                     </dd>
                 </dl>
 
