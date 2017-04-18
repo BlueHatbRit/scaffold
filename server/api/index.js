@@ -4,6 +4,7 @@ const sessions = require('./sessions');
 const webSession = require('./web-session');
 const flags = require('./flags');
 const groups = require('./groups');
+const settings = require('./settings');
 
 /*
 Public: A wrapper for API functions that handles the HTTP api. This
@@ -55,5 +56,6 @@ module.exports = {
   sessions: sessions,
   webSession: webSession,
   flags: flags,
-  groups: groups
+  groups: groups,
+  settings: settings
 };

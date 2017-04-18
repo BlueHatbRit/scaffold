@@ -31,6 +31,13 @@ const tables = {
         id: {type: 'string', nullable: false, primary: true},
         flag_id: {type: 'string', nullable: false, references: 'flags.id'},
         group_id: {type: 'string', nullable: false, references: 'groups.id'}
+    },
+    settings: {
+        id: {type: 'string', nullable: false, primary: true},
+        key: {type: 'string', nullable: false, unique: true},
+        value: {type: 'string', nullable: true},
+        created_at: {type: 'dateTime', nullable: false},
+        updated_at: {type: 'dateTime', nullable: false}
     }
 };
 

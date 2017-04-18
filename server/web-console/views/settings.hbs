@@ -1,0 +1,29 @@
+{{!< default}}
+{{> nav}}
+<main class="container" id="content">
+    {{> flash}}
+    <section class="row">
+        <div class="column">
+            <h1>Settings</h1>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>Site Name</th>
+                        <th>{{name.value}}</th>
+                    </tr>
+                    <tr>
+                        <th>Terms and Conditions</th>
+                        <th>{{tAndCs.value}}</th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</main>

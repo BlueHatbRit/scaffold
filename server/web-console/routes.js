@@ -17,6 +17,8 @@ const frontendRoutes = function frontendRoutes() {
 
     router.get('/logout', controllers.sessions.destroy); // Not restful but easier for a browser
 
+    router.get('/settings', middleware.webAuth.staffOnly, controllers.settings.index);
+
     router.get('/groups', middleware.webAuth.staffOnly, controllers.groups.index);
     router.get('/groups/:id', middleware.webAuth.staffOnly, controllers.groups.show);
     router.get('/groups/:id/users/new', middleware.webAuth.staffOnly, controllers.groups.users.new);
