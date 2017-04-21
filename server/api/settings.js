@@ -1,4 +1,5 @@
 const Promise = require('bluebird');
+const _ = require('lodash');
 const models = require('../models');
 const settingsCache = require('../settings').cache;
 const errors = require('../errors');
@@ -11,27 +12,18 @@ const settings = {
         return Promise.resolve(settings);
     },
 
-    /*show: (options) => {
-        const setting = settingsCache.get(options.key);
-
-        if (!setting) {
-            return Promise.reject(errors.NotFoundError({message: 'setting not found'}));
-        }
-
-        return Promise.resolve({
-            key: options.key,
-            value: setting
-        });
-    },*/
-
-    edit: function edit(object, options) {
+    update: function update(object, options) {
         options = options || {};
         let self = this;
 
         // TODO: This is insanity, I need to figure out a good way
         // to sanitise the input.
 
-        return models.Setting.edit(object);
+        return models.Setting.edit(object).then(settingsArray => {
+            const settingsAsJson = _.keyBy(_.invokeMap(settingsArray, 'toJSON'), 'key');
+
+            return settingsAsJson;
+        });
     }
 }
 

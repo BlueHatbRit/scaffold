@@ -42,7 +42,7 @@ const SettingsCache = {
         // when something changes make sure we add it to the cache
         // for easy access from here.
         events.on('settings.created', updateSettingFromModel);
-        events.on('settings.edited', updateSettingFromModel);
+        events.on('settings.updated', updateSettingFromModel);
         events.on('settings.destroyed', updateSettingFromModel);
 
         return cache;
