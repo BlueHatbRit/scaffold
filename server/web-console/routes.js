@@ -33,6 +33,7 @@ const frontendRoutes = function frontendRoutes() {
     router.get('/flags/:id/groups/new', staffOnly, controllers.flags.groups.new);
     router.post('/flags/:id/groups', staffOnly, controllers.flags.groups.create);
 
+    router.get('/terms', controllers.infoPages.terms);
     router.get('/', controllers.infoPages.index);
 
     return router;
