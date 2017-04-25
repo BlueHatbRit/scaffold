@@ -15,6 +15,4 @@ migrator.isDatabaseOK().then(() => {
         console.error('Error starting Scaffold');
         console.error(err);
     }
-    
-    process.exitCode = 1;
 });
