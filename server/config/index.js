@@ -7,6 +7,6 @@ const configFile = path.join(process.cwd(), 'config.' + env + '.json');
 
 // Feed from environment variables first,
 // then the config file
-nconf.env(':').file(configFile);
+nconf.env('__').file(configFile);
 
 module.exports = nconf;
