@@ -3,6 +3,10 @@ let nconf = new Nconf.Provider();
 let path = require('path');
 let env = process.env.NODE_ENV || 'development';
 
-nconf.file(path.join(process.cwd(), 'config.' + env + '.json'));
+const configFile = path.join(process.cwd(), 'config.' + env + '.json');
+
+// Feed from environment variables first,
+// then the config file
+nconf.env('__').file(configFile);
 
 module.exports = nconf;
