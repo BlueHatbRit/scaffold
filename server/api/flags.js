@@ -18,6 +18,48 @@ function groupIsAlreadyAttachedToFlag(flag, groupId) {
     return isInGroup;
 }
 
+function userHasAccessToFlag(flag, user) {
+    // Access cascades as the following:
+    // * flag.active (global kill switch)
+    // * flag.groups (group based access)
+    // * percentage (percentage based access)
+    // If the flag.active is set to false, then
+    // group membership will not be queried, etc.
+    let accessible = false;
+
+    // Check if the user is within the population
+    if (flag.population_percentage !== 0) {
+        // Create a string which is unique for the feature + user combination
+        // but will never change for that combination either.
+        let flagUserString = `${flag.name}-${user.id}`;
+        
+        // Hash it to a number and check it against out percentage amount to check access.
+        accessible = Math.abs(crc32.str(flagUserString)) % 100 < flag.population_percentage;
+    }
+
+    // Check if the user has group access
+    if (!_.isEmpty(flag.groups)) {
+        user.groups.forEach(group => {
+            if (_.some(flag.groups, group)) {
+                accessible = true;
+            }
+        });
+    }
+    
+    // Check if the global kill switch is turned off
+    if (!flag.active) {
+        accessible = false;
+    } else {
+        // If the flag is active and there are no group or population
+        // settings active, then give the user access.
+        if (_.isEmpty(flag.group) && flag.population_percentage === 0) {
+            accessible = true;
+        }
+    }
+
+    return accessible;
+}
+
 const flags = {
     index: (options) => {
         return models.Flag.fetchAll().then(flags => {
@@ -43,38 +85,7 @@ const flags = {
         return models.Flag.findOne(options).then(flag => {
             flag = flag.toJSON();
 
-            // Access cascades as the following:
-            // * flag.active (global kill switch)
-            // * flag.groups (group based access)
-            // * percentage (percentage based access)
-            // If the flag.active is set to false, then
-            // group membership will not be queried, etc.
-
-            let accessible = false;
-
-            // Check if the user is within the population
-            if (flag.population_percentage !== 0) {
-                // Create a string which is unique for the feature + user combination
-                // but will never change for that combination either.
-                let flagUserString = `${flag.name}-${options.user.id}`;
-                
-                // Hash it to a number and check it against out percentage amount to check access.
-                accessible = Math.abs(crc32.str(flagUserString)) % 100 < flag.population_percentage;
-            }
-
-            // Check if the user has group access
-            if (!_.isEmpty(flag.groups)) {
-                options.user.groups.forEach(group => {
-                    if (_.some(flag.groups, group)) {
-                        accessible = true;
-                    }
-                });
-            }
-            
-            // Check if the global kill switch is turned off
-            if (!flag.active) {
-                accessible = false;
-            }
+            const accessible = userHasAccessToFlag(flag, options.user);
 
             return {
                 accessible: accessible

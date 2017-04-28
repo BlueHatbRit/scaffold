@@ -11,7 +11,7 @@ function initRoutes() {
         res.send({ status: 'operational' }).end();
     });
 
-    //router.post('/users', api.http(api.users.create));
+    router.post('/users', api.http(api.users.create));
     
     router.post('/sessions', api.http(api.sessions.create));
 
