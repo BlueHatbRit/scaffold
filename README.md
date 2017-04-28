@@ -1,6 +1,8 @@
 # Scaffold
 [![Build Status](https://travis-ci.com/BlueHatbRit/scaffold.svg?token=uKQNYaxm8ezJxFzXFwrT&branch=master)](https://travis-ci.com/BlueHatbRit/scaffold)
 
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/BlueHatbRit/scaffold/tree/master)
+
 **Elliot Blackburn - PRCO304 - BSc Hons Computing & Game Development @ University of Plymouth**
 
 _This repository represents Elliot Blackburn's project work for the University of Plymouth PRCO304 module._

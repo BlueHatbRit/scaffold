@@ -1,0 +1,43 @@
+{
+    "name": "Scaffold",
+    "description": "An easy-to-use back-end web service for mobile apps and games",
+    "keywords": [
+        "backend",
+        "game",
+        "mobile",
+        "apps",
+        "BaaS",
+        "developers"
+    ],
+    "website": "http://www.elliotblackburn.com",
+    "repository": "https://github.com/bluehatbrit/scaffold",
+    "success_url": "/",
+    "stack": "cedar-14",
+    "formation": {
+        "web": {
+            "quantity": 1,
+            "size": "free"
+        }
+    },
+    "scripts": {
+        "postdeploy": "npm run db-init"
+    },
+    "env": {
+        "HEROKU": {
+            "description": "Defines whether running on heroku or not",
+            "value": "true"
+        },
+        "NODE_ENV": {
+            "description": "The node environment",
+            "value": "production"
+        },
+        "NODE_MODULES_CACHE": {
+            "description": "Should heroku cache node modules",
+            "value": "false"
+        }
+    },
+    "addons": [
+        "cleardb",
+        "heroku-redis"
+    ]
+}
