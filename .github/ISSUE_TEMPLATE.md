@@ -6,14 +6,9 @@ A summary of the issue that you're having.
 
 Put any error messages here, if it's a large error message like a stack trace you might want to use the code below to make it easier to read.
 
-<details>
-    <summary>
-        Put what you think the important bit is here!
-    </summary>
-    <p>
-        Put a large stack trace in here and then it'll be collapsed by default to keep the issue easy to read.
-    </p>
-</details
+```
+Wrap large error messages and stack traces in back ticks like this to make them easy to read.
+```
 
 ## Steps to reproduce
 
