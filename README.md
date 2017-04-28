@@ -1,29 +1,26 @@
 # Scaffold
 [![Build Status](https://travis-ci.com/BlueHatbRit/scaffold.svg?token=uKQNYaxm8ezJxFzXFwrT&branch=master)](https://travis-ci.com/BlueHatbRit/scaffold)
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/BlueHatbRit/scaffold/tree/master)
-
 **Elliot Blackburn - PRCO304 - BSc Hons Computing & Game Development @ University of Plymouth**
 
 _This repository represents Elliot Blackburn's project work for the University of Plymouth PRCO304 module._
 
-## Project Documentation
+## Installation
 
-The docs file contains all of the relevant documentation for this project.
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/BlueHatbRit/scaffold/tree/master)
 
-* [Initial Project Proposal](./docs/proposal.md)
-* [Project Initiation Document](./docs/pid.md)
-* [Weekly Status Reports](./docs/status-reports/README.md)
-* [Market Investigation](./docs/investigation.md)
+Want to host on your own infrastructure? That's cool, check out the [full installation guide](https://github.com/BlueHatbRit/scaffold/wiki/Installation) for details.
 
-## API Documentation
+## Documentation
 
-## Testing
+All documentation can be found on the [project wiki](https://github.com/BlueHatbRit/scaffold/wiki), this includes API documentation, manual installation guides, and an explanation of some more powerful features.
+
+## Contributing
+
+We always welcome help and contributions, see the [contribution guidelines](./CONTRIBUTING.md) to get going.
+
+### Testing
 
 To run automated mocha tests, use:
 
 ```npm run test```
-
-Or install grunt cli and run:
-
-```grunt test```
