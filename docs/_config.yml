@@ -1,0 +1,36 @@
+# ----
+# Site
+
+title: Scaffold
+description: Scaffold API Documentation.
+url: https://github.com/bluehatbrit/scaffold
+google_analytics_key:
+permalink: pretty
+
+collections:
+  documentation:
+    title: Documentation
+    position: 1
+  api:
+    title: API
+    position: 2
+gems:
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+exclude:
+  - readme.md
+  - LICENCE
+
+defaults:
+  -
+    scope:
+      path: ""
+    values:
+      layout: default
+
+types:
+  - get
+  - put
+  - delete
+  - post
