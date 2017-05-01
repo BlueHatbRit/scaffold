@@ -1,4 +1,4 @@
-<img src="./docs/branding/banner.png" alt="Scaffold" align="center">
+<img src="./submission-docs/branding/banner.png" alt="Scaffold" align="center">
 
 [![Build Status](https://travis-ci.com/BlueHatbRit/scaffold.svg?token=uKQNYaxm8ezJxFzXFwrT&branch=master)](https://travis-ci.com/BlueHatbRit/scaffold)
 
