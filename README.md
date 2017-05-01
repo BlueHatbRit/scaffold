@@ -1,4 +1,4 @@
-<img src="./submission-docs/branding/banner.png" alt="Scaffold" align="center">
+<img src="./submission-docs/branding/logo.png" alt="Scaffold" align="center">
 
 [![Build Status](https://travis-ci.com/BlueHatbRit/scaffold.svg?token=uKQNYaxm8ezJxFzXFwrT&branch=master)](https://travis-ci.com/BlueHatbRit/scaffold)
 
@@ -12,7 +12,7 @@ Want to host on your own infrastructure? That's cool, check out the [full instal
 
 ## Documentation
 
-All documentation can be found on the [project wiki](https://github.com/BlueHatbRit/scaffold/wiki), this includes API documentation, manual installation guides, and an explanation of some more powerful features.
+All documentation can be found on the [website](https://bluehatbrit.github.io/scaffold/), this includes API documentation, manual installation guides, and an explanation of some more powerful features.
 
 ## Contributing
 
