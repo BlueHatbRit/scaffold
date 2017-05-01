@@ -1,9 +1,8 @@
-# Scaffold
+<img src="./docs/branding/banner.png" alt="Scaffold" align="center">
+
 [![Build Status](https://travis-ci.com/BlueHatbRit/scaffold.svg?token=uKQNYaxm8ezJxFzXFwrT&branch=master)](https://travis-ci.com/BlueHatbRit/scaffold)
 
-**Elliot Blackburn - PRCO304 - BSc Hons Computing & Game Development @ University of Plymouth**
-
-_This repository represents Elliot Blackburn's project work for the University of Plymouth PRCO304 module._
+Scaffold is an open source, chain of developer tools engineered for mobile and game developers. It manages user accounts for you, and provides feature flags to roll out features in anyway that suits your team.
 
 ## Installation
 
@@ -21,6 +20,6 @@ We always welcome help and contributions, see the [contribution guidelines](./CO
 
 ### Testing
 
-To run automated mocha tests, use:
+To run the automated tests use:
 
 ```npm run test```
