@@ -10,6 +10,10 @@ Scaffold is an open source, chain of developer tools engineered for mobile and g
 
 Want to host on your own infrastructure? That's cool, check out the [full installation guide](https://github.com/BlueHatbRit/scaffold/wiki/Installation) for details.
 
+<center>
+    <img src="./submission-docs/branding/screenshot.png" style="max-width: 700px;" alt="screenshot">
+</center>
+
 ## Documentation
 
 All documentation can be found on the [website](https://bluehatbrit.github.io/scaffold/), this includes API documentation, manual installation guides, and an explanation of some more powerful features.
