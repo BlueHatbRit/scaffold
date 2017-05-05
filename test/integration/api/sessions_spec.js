@@ -18,14 +18,15 @@ describe('Sessions API', () => {
     afterEach(utilities.teardownDb);
 
     describe('Log in', () => {
-        it('Returns a json web token', done => {
+        it('returns a json web token', done => {
             // Create a user to make a session for
             api.users.create(fixtures.user).then(user => {
                 // Make the session
-                api.sessions.create(fixtures.user).then(token => {
-
+                api.sessions.create(fixtures.user).then(authResponse => {
+                    should.exist(authResponse.token);
+                    
                     // Verify the token is a JWT token
-                    jwtVerifyAsync(token, config.get('auth').secret).then(decoded => {
+                    jwtVerifyAsync(authResponse.token, config.get('auth').secret).then(decoded => {
                         decoded.user.email.should.equal(fixtures.user.email);
 
                         done();
@@ -34,7 +35,7 @@ describe('Sessions API', () => {
             }).catch(done);
         });
 
-        it('Throws error if password is incorrect', done => {
+        it('throws error if password is incorrect', done => {
             api.users.create(fixtures.user).then(user => {
                 const incorrectPasswordUser = {
                     email: fixtures.user.email,
@@ -50,7 +51,7 @@ describe('Sessions API', () => {
             }).catch(done);
         });
 
-        it('Throws error if email is incorrect', done => {
+        it('throws error if email is incorrect', done => {
             api.users.create(fixtures.user).then(user => {
                 const incorrectPasswordUser = {
                     email: 'wrong@vintus.com',

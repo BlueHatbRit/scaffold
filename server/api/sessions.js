@@ -10,8 +10,11 @@ const sessions = {
         // Verify the user
         return models.User.verify(object).then(user => {
 
-            const token = jwt.sign({user: user}, config.get('auth').secret);
-            return token;
+            const authResponse = {
+                token: jwt.sign({user: user}, config.get('auth').secret)
+            };
+            
+            return authResponse;
         });
     }
 };
