@@ -13,7 +13,6 @@ const settings = {
         if (object.settings ) object = object.settings;
 
         return api.settings.update(object).then(settings => {
-            console.log('update made!');
             res.status(200).json(settings);
         }).catch(next);
     }

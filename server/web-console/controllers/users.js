@@ -1,5 +1,6 @@
 const api = require('../../api');
 const errors = require('../../errors');
+const settings = require('../../settings').cache;
 
 const usersController = {
     index: (req, res, next) => {
@@ -20,7 +21,8 @@ const usersController = {
     },
 
     new: (req, res) => {
-        res.render('signup');
+        const termsExist = !!settings.get('terms');
+        res.render('signup', {termsExist: termsExist});
     },
 
     create: (req, res, next) => {

@@ -22,13 +22,14 @@
 
                 <dl class="form-group">
                     <dt class="input-label">
-                        <label for="tAndCs">Custom Terms and Conditions</label>
+                        <label for="terms">Custom Terms of Service</label>
                     </dt>
                     <dd>
-                        <input id="tAndCs" name="tAndCs" type="text" value="{{tAndCs.value}}">
+                        <!--<input id="terms" name="terms" type="text" value="{{terms.value}}">-->
+                        <textarea id="terms" name="terms">{{terms.value}}</textarea>
                     </dd>
                     <dd class="error" hidden>
-                        Your terms and conditions are a bit too long.
+                        Your terms of service are too long.
                     </dd>
                 </dl>
 

@@ -7,7 +7,7 @@ const infoPagesController = {
     },
 
     terms: (req, res, next) => {
-        let terms = settings.get('tAndCs');
+        let terms = settings.get('terms');
         if (terms) {
             res.render('terms', {terms: terms});
         } else {
