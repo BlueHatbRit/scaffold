@@ -77,11 +77,19 @@ describe('Flags API', () => {
 
     describe('Show Access', () => {
         it('should return false when flag is not active', done => {
+            const fakeUser = {
+                id: '1234'
+            };
+
             // Create a flag
             api.flags.create(fixtures.flag).then(flag => {
                 
                 // Check flag access is denied
-                api.flags.showAccess({id: flag.id}).then(flagAccess => {
+                const options = {
+                    id: flag.id,
+                    user: fakeUser
+                };
+                api.flags.showAccess(options).then(flagAccess => {
                     flagAccess.accessible.should.be.false();
 
                     done();
