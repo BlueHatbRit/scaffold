@@ -1,5 +1,5 @@
 ---
-title: /flags/:name
+title: /flags
 position: 4
 type: get
 description: Index flag access
