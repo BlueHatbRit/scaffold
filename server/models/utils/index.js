@@ -1,6 +1,7 @@
 const _ = require('lodash');
 const Promise = require('bluebird');
 const ObjectId = require('bson-objectid');
+const errors = require('../../errors');
 
 const attach = function attach(Model, effectedModelId, relation, modelsToAttach, options) {
     options = options || {};
@@ -12,7 +13,7 @@ const attach = function attach(Model, effectedModelId, relation, modelsToAttach,
         fetchedModel = _fetchedModel;
 
         if (!fetchedModel) {
-            throw new Error('Model not found'); // TODO: Replace with better error system later
+            throw new errors.NotFoundError({message: 'model to attach not found'})
         }
 
         // Ensure the link table entries get ID's
@@ -52,7 +53,7 @@ const detach = function detach(Model, effectedModelId, relation, modelsToDetach,
         fetchedModel = _fetchedModel;
 
         if (!fetchedModel) {
-            throw new Error('Model not found'); // TODO: Replace with better error system later
+            throw new errors.NotFoundError({message: 'model to detatch not found'});
         }
 
         return Promise.resolve(modelsToDetach).then(function then(models) {

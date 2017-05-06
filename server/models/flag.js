@@ -19,6 +19,12 @@ let Flag = base.extend({
         return this.belongsToMany('Group');
     },
 
+    onDestroying: function onDestroying(model, options) {
+        let relatedGroups = this.related('groups').toJSON();
+        
+        return modelUtils.detach(Flag, this.toJSON().id, 'groups', relatedGroups);
+    },
+
     toJSON: function toJSON(options) {
         options = options || {};
         let attribs = base.prototype.toJSON.call(this, options);
