@@ -12,12 +12,6 @@ const errors = require('../errors');
 let User = base.extend({
     tableName: 'users',
 
-    // TODO: Add Joi validation
-    /*validate: {
-        email: Joi.string().email().max(254),
-        password: Joi.string().min(8).max(60)
-    }*/
-
     groups: function groups() {
         return this.belongsToMany('Group');
     },
