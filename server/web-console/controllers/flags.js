@@ -56,6 +56,14 @@ const flags = {
         }).catch(next);
     },
 
+    destroy: (req, res, next) => {
+        let object = {name: req.params.name};
+
+        return api.flags.destroy(object).then(() => {
+            return res.sendStatus(204);
+        }).catch(next);
+    },
+
     groups: {
         new: (req, res, next) => {
             api.flags.show({id: req.params.id}).then(flag => {

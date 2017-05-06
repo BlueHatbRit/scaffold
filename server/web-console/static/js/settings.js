@@ -45,13 +45,11 @@ $(function() {
             type: 'PUT',
             data: {settings: data},
             success: function(e) {
-                console.log('done');
                 location.reload();
             },
             error: function(e) {
-                console.log('error');
                 console.log(e);
             }
-        })
+        });
     });
 });

@@ -29,7 +29,7 @@ BaseModel = BaseModel.extend({
         // Add hook options as required to the string array.
         // If the function doesn't exist on the current model, it'll be
         // skipped.
-        ['creating', 'created', 'saving', 'updated', 'destroyed'].forEach(eventName => {
+        ['creating', 'created', 'saving', 'updated', 'destroyed', 'destroying'].forEach(eventName => {
             let functionName = 'on' + eventName[0].toUpperCase() + eventName.slice(1);
             
             if (!self[functionName]) {

@@ -6,13 +6,14 @@
         <div class="column">
             <h1 class="inline">Flags</h1>
             <a class="button float-right" href="/flags/new">New flag</a>
-
+            
             <table>
                 <thead>
                     <tr>
                         <th>Name</th>
                         <th>Description</th>
-                        <th>Active</th>
+                        <th><center>Active</center></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -20,7 +21,18 @@
                         <tr>
                             <td><a href="/flags/{{id}}/edit">{{name}}</a></td>
                             <td>{{description}}</td>
-                            <td>{{active}}</td>
+                            <td>
+                                <center>
+                                    {{#if active}}
+                                        <i class="fa fa-check" aria-hidden="true"></i>
+                                    {{else}}
+                                        <i class="fa fa-times" aria-hidden="true"></i>
+                                    {{/if}}
+                                </center>
+                            </td>
+                            <td>
+                                <center><button class="delete-btn" value="{{name}}">Delete</button></center>
+                            </td>
                         </tr>
                     {{/each}}
                 </tbody>
@@ -28,3 +40,5 @@
         </div>
     </div>
 </main>
+
+<script src="/static/js/flags/index.js"></script>
