@@ -1,5 +1,5 @@
 ---
-title: /flags/:name
+title: /settings
 position: 4
 type: get
 description: Show Scaffold settings
