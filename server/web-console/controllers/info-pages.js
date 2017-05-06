@@ -3,7 +3,8 @@ const errors = require('../../errors');
 
 const infoPagesController = {
     index: (req, res) => {
-        res.render('index');
+        let welcomeCopy = settings.get('welcomeCopy');
+        res.render('index', {welcomeCopy: welcomeCopy});
     },
 
     terms: (req, res, next) => {
