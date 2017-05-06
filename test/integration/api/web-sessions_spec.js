@@ -9,12 +9,11 @@ describe('Web Sessions API', () => {
 
     beforeEach(utilities.teardownDb);
     beforeEach(utilities.initDb);
-    beforeEach(utilities.runApiInit);
     
     afterEach(utilities.teardownDb);
 
     describe('Log in', () => {
-        it('Returns the userId and isStaff status', done => {
+        it('Returns the session details status', done => {
             // Create a user account to log in with
             api.users.create(fixtures.user).then(user => {
 
@@ -23,8 +22,11 @@ describe('Web Sessions API', () => {
                     should.exist(userData.userId);
                     userData.userId.should.be.a.String();
 
-                    should.exist(userData.isStaff);
-                    userData.isStaff.should.be.a.Boolean();
+                    should.exist(userData.isOwner);
+                    userData.isOwner.should.be.a.Boolean();
+
+                    should.exist(userData.isMaintainer);
+                    userData.isMaintainer.should.be.a.Boolean();
 
                     done();
                 }).catch(done);

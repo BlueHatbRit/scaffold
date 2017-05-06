@@ -50,6 +50,9 @@ let User = base.extend({
             delete g._pivot_group_id;
         });
 
+        attributes.is_maintainer = !!attributes.is_maintainer;
+        attributes.is_owner = !!attributes.is_owner;
+
         return attributes;
     }
 }, {

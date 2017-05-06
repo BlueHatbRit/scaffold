@@ -22,35 +22,26 @@ const users = {
             if (userAlreadyExists) {
                 throw new errors.ConflictError({message: 'email already in use'});
             } else {
-                // If the user is the first one created, then we add them to the
-                // group created on system start up called "staff". This group
-                // is created if no groups exist to ensure the first user can
-                // administrate the system during setup.
-                let userShouldBeStaff;
 
                 return models.User.count().then(count => {
-                    // Technically this will create a potential concurrency issue.
-                    // The issue is recognised and ignored for now.
-                    userShouldBeStaff = (count === 0);
-
-                    return models.User.add(object);
-                }).then(user => {
-                    if (userShouldBeStaff) {
-                        // Add the user to the staff group
-                        return models.Group.findOne({name: 'staff'}).then(group => {
-                            return modelUtils.attach(models.User, user.id, 'groups', [group]);
-                        }).then(() => {
-                            return models.User.findOne({id: user.id});
-                        });
-                    } else {
-                        // Just return the user
-                        return Promise.resolve(user);
+                    // If this is the first user then we'll make them a maintainer
+                    // and owner automatically for easy setup.
+                    if (count === 0) {
+                        object.is_owner = true;
+                        object.is_maintainer = true;
                     }
 
+                    return models.User.add(object);
                 }).then(user => {
                     return user.toJSON();
                 });
             }
+        });
+    },
+
+    update: function(object, options) {
+        return models.User.edit(object, options).then(user => {
+            return user.toJSON();
         });
     }
 };

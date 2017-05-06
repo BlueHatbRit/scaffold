@@ -9,14 +9,15 @@ const webSession = {
         // Verify the user
         return models.User.verify(object).then(user => {
 
-            const userJson = user.toJSON();
+            user = user.toJSON();
             
-            const groups = _.map(userJson.groups, 'name');
-            const isStaff = _.includes(groups, 'staff');
+            const isMaintainer = user.is_maintainer;
+            const isOwner = user.is_owner;
 
             return {
                 userId: user.id,
-                isStaff: isStaff
+                isMaintainer: isMaintainer,
+                isOwner: isOwner
             };
         });
     }

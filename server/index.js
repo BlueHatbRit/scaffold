@@ -6,8 +6,6 @@ function start() {
     console.log('models loaded');
 
     return settings.init().then(() => {
-        return models.Group.createDefault()
-    }).then(group => {
         return app = require('./app')();
     });
 }

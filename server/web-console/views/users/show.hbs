@@ -4,30 +4,65 @@
     {{> flash}}
     <div class="row">
         <div class="column">
-            <h1>User</h1>
-            <div id="show-user">
-                <label for="email">Email</label>
-                <input id="email" name="email" type="text" value="{{email}}" disabled>
+            <h1>Edit user</h1>
+            <form method="POST" action="/users/{{id}}" id="user">
 
-                <div>
-                    <h2>Groups</h2>
-                    <table>
-                        <thead>
+                <dl class="form-group">
+                    <dt class="input-label">
+                        <label for="email">Email Address</label>
+                    </dt>
+                    <dd>
+                        <input id="email" name="email" type="email" value={{email}} disabled>
+                    </dd>
+                </dl>
+
+                <dl class="form-group">
+                    <dd>
+                        {{#if isOwner}}
+                            <input type="checkbox" id="isMaintainer" name="is_maintainer" {{boolToCheckbox is_maintainer}}>
+                        {{else}}
+                            <input type="checkbox" id="isMaintainer" name="is_maintainer" {{boolToCheckbox is_maintainer}} disabled>
+                        {{/if}}
+                        <label for="isMaintainer" class="input-label label-inline">Maintainer</label>
+                        <p class="note">Maintainers can manage flags and groups.</p>
+                    </dd>
+                </dl>
+
+                <dl class="form-group">
+                    <dd>
+                        {{#if isOwner}}
+                            <input type="checkbox" id="isOwner" name="is_owner" {{boolToCheckbox is_owner}}>
+                        {{else}}
+                            <input type="checkbox" id="isOwner" name="is_owner" {{boolToCheckbox is_owner}} disabled>
+                        {{/if}}
+                        <label for="isOwner" class="input-label label-inline">Owner</label>
+                        <p class="note">Owners can make other users owners and maintainers.</p>
+                    </dd>
+                </dl>
+
+                {{#if isOwner}}
+                    <button type="submit">Save</button>
+                {{/if}}
+            </form>
+
+            <div>
+                <h2>Users groups</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each groups}}
                             <tr>
-                                <th>Name</th>
-                                <th>Description</th>
+                                <td><a href="/groups/{{id}}">{{name}}</a></td>
+                                <td>{{description}}</td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            {{#each groups}}
-                                <tr>
-                                    <td><a href="/groups/{{id}}">{{name}}</a></td>
-                                    <td>{{description}}</td>
-                                </tr>
-                            {{/each}}
-                        </tbody>
-                    </table>
-                </div>
+                        {{/each}}
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

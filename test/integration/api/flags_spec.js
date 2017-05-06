@@ -8,7 +8,6 @@ describe('Flags API', () => {
 
     beforeEach(utilities.teardownDb);
     beforeEach(utilities.initDb);
-    beforeEach(utilities.runApiInit);
 
     afterEach(utilities.teardownDb);
 

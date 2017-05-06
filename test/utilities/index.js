@@ -28,20 +28,9 @@ let teardownDb = function teardown(done) {
     }
 };
 
-let runApiInit = function runApiInit(done) {
-    if (done) {
-        models.Group.createDefault().then(() => {
-            done();
-        }).catch(done);
-    } else {
-        return models.Group.createDefault();
-    }
-}
-
 module.exports = {
     initModels: initModels,
     initDb: initDb,
     teardownDb: teardownDb,
-    runApiInit: runApiInit,
     fixtures: require('./fixtures')
 };
