@@ -9,19 +9,6 @@ let Group = base.extend({
         return this.belongsToMany('User');
     }
 }, {
-    createDefault: function createDefault() {
-        return this.count().then(numOfGroups => {
-            if (numOfGroups >= 1) {
-                return;
-            }
-
-            // No groups, lets create the staff group
-            let defaultGroup = require('../data/schema/default-group');
-            
-            return Group.forge(defaultGroup).save();
-        });
-    },
-
     findOne: function findOne(data, options) {
         options = options || {};
 

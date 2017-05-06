@@ -7,7 +7,6 @@ describe('Users API', () => {
 
     beforeEach(utilities.teardownDb);
     beforeEach(utilities.initDb);
-    beforeEach(utilities.runApiInit);
 
     afterEach(utilities.teardownDb);
 
@@ -46,17 +45,16 @@ describe('Users API', () => {
             }).catch(done);
         });
 
-        it('if first user, add to staff group', done => {
+        it('if first user, make owner and maintainer', done => {
             let newUser = {
                 email: 'test@vintus.com',
                 password: 'supersecretpassword'
             };
 
             api.users.create(newUser).then(user => {
-                should.exist(user.groups);
-                user.groups.should.be.an.Array();
-                user.groups[0].name.should.equal('staff');
-
+                user.is_owner.should.be.a.Boolean();
+                user.is_maintainer.should.be.a.Boolean();
+                
                 done();
             }).catch(done);
         });

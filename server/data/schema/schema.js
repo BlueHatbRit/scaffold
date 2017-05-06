@@ -3,6 +3,8 @@ const tables = {
         id: {type: 'string', nullable: false, primary: true},
         email: {type: 'string', maxlength: 254, nullable: false, unique: true},
         password: {type: 'string', maxlength: 60, nullable: false},
+        is_maintainer: {type: 'bool', defaultTo: false, nullable: false},
+        is_owner: {type: 'bool', defaultTo: false, nullable: false},
         created_at: {type: 'dateTime', nullable: false},
         updated_at: {type: 'dateTime', nullable: false}
     },
