@@ -20,10 +20,11 @@ const frontendRoutes = function frontendRoutes() {
     router.get('/settings', staffOnly, controllers.settings.index);
     router.put('/settings', staffOnly, controllers.settings.update);
 
-    router.get('/groups', staffOnly, controllers.groups.index);
-    router.get('/groups/:id', staffOnly, controllers.groups.show);
+    router.delete('/groups/:group_id/users/:user_id', staffOnly, controllers.groups.users.destroy);
     router.get('/groups/:id/users/new', staffOnly, controllers.groups.users.new);
     router.post('/groups/:id/users', staffOnly, controllers.groups.users.create);
+    router.get('/groups/:id', staffOnly, controllers.groups.show);
+    router.get('/groups', staffOnly, controllers.groups.index);
 
     router.get('/flags', staffOnly, controllers.flags.index);
     router.post('/flags', staffOnly, controllers.flags.create);

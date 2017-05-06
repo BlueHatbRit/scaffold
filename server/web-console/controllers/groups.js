@@ -59,6 +59,17 @@ const groups = {
 
                 res.redirect(`/groups/${object.group_id}/users/new`);
             }).catch(next);
+        },
+
+        destroy: (req, res, next) => {
+            const object = {
+                group_id: req.params.group_id,
+                user_id: req.params.user_id
+            };
+
+            return api.groups.users.destroy(object).then(() => {
+                res.sendStatus(204);
+            }).catch(next);
         }
     }
 };

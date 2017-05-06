@@ -1,5 +1,6 @@
 const _ = require('lodash');
 const models = require('../models');
+const modelUtils = require('../models/utils');
 const errors = require('../errors');
 
 function userIsInGroup(user, groupId) {
@@ -68,6 +69,28 @@ const groups = {
                 return models.User.edit(user, options).then(user => {
                     return user.toJSON();
                 });
+            });
+        },
+
+        destroy: (object) => {
+            let groupToRemove;
+
+            return models.Group.findOne({id: object.group_id}).then(group => {
+                if (!group) {
+                    throw new errors.NotFoundError({message: 'group not found'});
+                }
+
+                groupToRemove = group.toJSON();
+
+                return models.User.findOne({id: object.user_id});
+            }).then(user => {
+                if (!user) {
+                    throw new errors.NotFoundError({message: 'user not found'});
+                }
+
+                user = user.toJSON();
+
+                return modelUtils.detach(models.User, user.id, 'groups', [groupToRemove]);
             });
         }
     }

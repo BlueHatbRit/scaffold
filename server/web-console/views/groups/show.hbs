@@ -16,12 +16,14 @@
                         <thead>
                             <tr>
                                 <th>Email</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
                             {{#each users}}
                                 <tr>
                                     <td><a href="/users/{{id}}">{{email}}</a></td>
+                                    <td><button class="remove-btn float-right" value="{{../group.id}}/users/{{id}}">Remove</button></td>
                                 </tr>
                             {{/each}}
                         </tbody>
@@ -31,3 +33,5 @@
         </div>
     </div>
 </main>
+
+<script src="/static/js/groups/index.js"></script
