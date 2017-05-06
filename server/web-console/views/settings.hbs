@@ -16,7 +16,7 @@
                         <input id="name" name="name" type="text" value="{{name.value}}">
                     </dd>
                     <dd class="error" hidden>
-                        Invalid app name for some reason.
+                        The name must be between 1 and 50 characters long.
                     </dd>
                 </dl>
 
@@ -25,11 +25,7 @@
                         <label for="terms">Custom Terms of Service</label>
                     </dt>
                     <dd>
-                        <!--<input id="terms" name="terms" type="text" value="{{terms.value}}">-->
                         <textarea id="terms" name="terms">{{terms.value}}</textarea>
-                    </dd>
-                    <dd class="error" hidden>
-                        Your terms of service are too long.
                     </dd>
                 </dl>
 

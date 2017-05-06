@@ -1,6 +1,30 @@
 $(function() {
     const nameElementTag = '#name';
-    const tAndCsElementTag = '#terms';
+    const termsElementTag = '#terms';
+    const submitButton = '#save-button';
+
+    function isValidAppName(name) {
+        console.log(name.length);
+        console.log(name.length > 0 && name.length < 51);
+        return name.length > 0 && name.length < 51;
+    }
+
+    $(nameElementTag).change(function(e) {
+        console.log('changed');
+        let appName = e.target.value;
+        autoValidateField(isValidAppName, appName, nameElementTag);
+    });
+
+    $('input').on('input', function(e) {
+        let appName = $(nameElementTag).val();
+        let nameIsValid = isValidAppName(appName);
+
+        if (nameIsValid) {
+            $(submitButton).prop('disabled', false);
+        } else {
+            $(submitButton).prop('disabled', true);
+        }
+    });
 
     $('#settings-form').submit(function(e) {
         e.preventDefault();
@@ -12,7 +36,7 @@ $(function() {
             },
             {
                 key: 'terms',
-                value: $(tAndCsElementTag).val()
+                value: $(termsElementTag).val()
             }
         ];
         
