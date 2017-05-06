@@ -4,7 +4,8 @@ var exports = module.exports;
 const models = [
     'user',
     'group',
-    'flag'
+    'flag',
+    'setting'
 ];
 
 exports.init = function() {

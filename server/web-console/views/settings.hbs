@@ -1,0 +1,50 @@
+{{!< default}}
+{{> nav}}
+<main class="container" id="content">
+    {{> flash}}
+    <section class="row">
+        <div class="column">
+            <h1>Settings</h1>
+
+            <form id="settings-form">
+                    
+                <dl class="form-group">
+                    <dt class="input-label">
+                        <label for="name">App Name</label>
+                    </dt>
+                    <dd>
+                        <input id="name" class="form-control" name="name" type="text" value="{{name.value}}">
+                        <p class="note">This will be used throughout this sites branding</p>
+                    </dd>
+                    <dd class="error" hidden>
+                        The name must be between 1 and 50 characters long.
+                    </dd>
+                </dl>
+
+                <dl class="form-group">
+                    <dt class="input-label">
+                        <label for="welcomeCopy">Home Page Copy</label>
+                    </dt>
+                    <dd>
+                        <textarea id="welcomeCopy" class="form-control" name="welcomeCopy">{{welcomeCopy.value}}</textarea>
+                        <p class="note">This will be displayed on the home page. This can be formatted with HTML.</p>
+                    </dd>
+                </dl>
+
+                <dl class="form-group">
+                    <dt class="input-label">
+                        <label for="terms">Custom Terms of Service</label>
+                    </dt>
+                    <dd>
+                        <textarea id="terms" class="form-control" name="terms">{{terms.value}}</textarea>
+                        <p class="note">This will be displayed on the terms of service page, the terms page will not be used if this is left blank. This can be formatted with HTML.</p>
+                    </dd>
+                </dl>
+
+                <button id="save-button" type="submit">Save Settings</button>
+            </form>
+        </div>
+    </section>
+</main>
+
+<script src="/static/js/settings.js"></script>

@@ -48,7 +48,12 @@
                         </dd>
                     </dl>
 
-                    <button id="create-account-btn" type="submit" disabled="true">Create an account</button>
+                    <center>
+                        <button id="create-account-btn" type="submit" disabled="true">Create an account</button>
+                        {{#if termsExist}}
+                            <p class="note">By clicking "Create an Account", you agree to our <a href="/terms">terms of service</a>. We'll occasionally send you account related emails.</p>
+                        {{/if}}
+                    </center>
                 </form>
         </section>
     </div>

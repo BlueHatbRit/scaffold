@@ -1,0 +1,11 @@
+{
+    "name": {
+        "defaultValue": "Scaffold"
+    },
+    "terms": {
+        "defaultValue": null
+    },
+    "welcomeCopy": {
+        "defaultValue": "Welcome to the back-end for your new app! <a href=\"/https://bluehatbrit.github.io/scaffold\">Click here to get started.</a>"
+    }
+}

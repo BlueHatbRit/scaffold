@@ -17,6 +17,8 @@ function initRoutes() {
 
     router.get('/flags/:name', auth, api.http(api.flags.showAccess));
 
+    router.get('/settings', api.http(api.settings.index));
+
     return router;
 }
 
