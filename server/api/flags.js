@@ -85,11 +85,13 @@ const flags = {
         return models.Flag.findOne(options).then(flag => {
             flag = flag.toJSON();
 
-            const accessible = userHasAccessToFlag(flag, options.user);
+            delete flag.active;
+            delete flag.groups;
+            delete flag.population_percentage;
 
-            return {
-                accessible: accessible
-            };
+            flag.accessible = userHasAccessToFlag(flag, options.user);
+
+            return flag;
         });
     },
 
