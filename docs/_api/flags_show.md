@@ -1,6 +1,6 @@
 ---
 title: /flags/:name
-position: 3
+position: 4
 type: get
 description: Show flag access
 right_code: |

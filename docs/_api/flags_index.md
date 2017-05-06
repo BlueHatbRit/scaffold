@@ -1,6 +1,6 @@
 ---
 title: /flags
-position: 4
+position: 3
 type: get
 description: Index flag access
 right_code: |
