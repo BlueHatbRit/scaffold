@@ -68,7 +68,18 @@ const flags = {
     },
 
     indexAccess: (options) => {
-        // Not implemented
+        return models.Flag.fetchAll().then(flags => {
+            flags = flags.toJSON();
+
+            flags.forEach((flag) => {
+                delete flag.active;
+                delete flag.groups;
+                delete flag.population_percentage;
+                flag.accessible = userHasAccessToFlag(flag, options.user);
+            });
+
+            return flags;
+        });
     },
 
     show: (options) => {
