@@ -4,13 +4,10 @@ $(function() {
     const submitButton = '#save-button';
 
     function isValidAppName(name) {
-        console.log(name.length);
-        console.log(name.length > 0 && name.length < 51);
         return name.length > 0 && name.length < 51;
     }
 
     $(nameElementTag).change(function(e) {
-        console.log('changed');
         let appName = e.target.value;
         autoValidateField(isValidAppName, appName, nameElementTag);
     });

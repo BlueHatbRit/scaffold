@@ -1,15 +1,14 @@
 $(function() {
-    $('.delete-btn').each(function() {
+    $('.remove-btn').each(function() {
         let element = $(this);
 
         element.click(function(e) {
             e.target.blur();
 
-            let groupId = $(e.target).val();
-            console.log(groupId);
+            let groupUser = $(e.target).val();
 
             $.ajax({
-                url: '/groups/' + groupId,
+                url: '/groups/' + groupUser,
                 type: 'DELETE',
                 success: function(e) {
                     location.reload();

@@ -6,7 +6,7 @@ $(function() {
 
     // Warp description
     $("#flag-description").on('input', function(e) {
-        const maxLength = 120;
+        const maxLength = 140;
         let value = e.target.value;
 
         // Restrict to the max length

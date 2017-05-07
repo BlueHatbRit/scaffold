@@ -25,7 +25,10 @@ const frontendRoutes = function frontendRoutes() {
     router.delete('/groups/:group_id/users/:user_id', maintainerOnly, controllers.groups.users.destroy);
     router.get('/groups/:id/users/new', maintainerOnly, controllers.groups.users.new);
     router.post('/groups/:id/users', maintainerOnly, controllers.groups.users.create);
+    router.get('/groups/new', maintainerOnly, controllers.groups.new);
     router.get('/groups/:id', maintainerOnly, controllers.groups.show);
+    router.delete('/groups/:id', maintainerOnly, controllers.groups.destroy);
+    router.post('/groups', maintainerOnly, controllers.groups.create);
     router.get('/groups', maintainerOnly, controllers.groups.index);
 
     router.get('/flags', maintainerOnly, controllers.flags.index);

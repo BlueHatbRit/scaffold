@@ -50,7 +50,7 @@ function warpFlagName(name) {
     return name;
 }
 
-function wrapGroupName(name) {
+function warpGroupName(name) {
     // Same rules as the flag!
     return warpFlagName(name);
 }

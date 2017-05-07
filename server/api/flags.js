@@ -128,9 +128,11 @@ const flags = {
 
     destroy: (object) => {
         return models.Flag.findOne({name: object.name}).then(flag => {
+            if (!flag) {
+                throw new errors.NotFoundError({message: 'flag not found'});
+            }
+
             return flag.destroy();
-        }).catch(models.Flag.NotFoundError, () => {
-            throw new errors.NotFoundError({message: 'flag not found'});
         });
     },
 

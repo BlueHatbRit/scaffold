@@ -13,15 +13,11 @@ $(function() {
     }
 
     $('#group-name').on('input', function(e) {
-        e.target.value = warpFlagName(e.target.value);
+        e.target.value = warpGroupName(e.target.value);
 
         // If the length is correct then name is complete
         // as we've warped everything else.
-        if (e.target.value.length > 4) {
-            nameComplete = true;
-        } else {
-            nameComplete = false;
-        }
+        nameComplete = (e.target.value.length > 4);
 
         checkCreateEnabled();
     });

@@ -11,21 +11,48 @@ const groups = {
     },
 
     show: (req, res, next) => {
-        const options = {
+        const object = {
             id: req.params.id
+        };
+
+        const options = {
+            withRelated: ['users']
         };
         
         // Get the group
-        api.groups.show(options).then(group => {
+        api.groups.show(object, options).then(group => {
+            return res.render('groups/show', {
+                group: group,
+                users: group.users
+            });
+        }).catch(next);
+    },
 
-            // Get all users in the group
-            return api.groups.users.index(options).then(users => {
-                
-                return res.render('groups/show', {
-                    group: group,
-                    users: users
-                });
-            }).catch(next);
+    new: (req, res, next) => {
+        res.render('groups/new');
+    },
+
+    create: (req, res, next) => {
+        const object = req.body;
+
+        return api.groups.create(object).then(group => {
+            req.flash('success', 'Group created');
+
+            res.redirect(`/groups/${group.id}`);
+        }).catch(next);
+    },
+
+    destroy: (req, res, next) => {
+        const object = {
+            id: req.params.id
+        };
+
+        const options = {
+            withRelated: ['users']
+        }
+
+        return api.groups.destroy(object, options).then(() => {
+            res.sendStatus(204);
         }).catch(next);
     },
 

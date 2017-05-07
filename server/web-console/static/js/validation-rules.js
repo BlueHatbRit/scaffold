@@ -40,7 +40,7 @@ function isValidPercentage(value) {
 }
 
 function isValidFlagName(name) {
-    const maxLength = 50;
+    const maxLength = 51;
     const minLength = 4;
     let isValid = true;
 
@@ -69,4 +69,9 @@ function isValidFlagName(name) {
     }
 
     return isValid;
+}
+
+function isValidGroupName(name) {
+    // Same rules apply!
+    return isValidFlagName(name);
 }
