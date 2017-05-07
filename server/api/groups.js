@@ -25,19 +25,35 @@ const groups = {
         });
     },
 
-    show: (options) => {
-        return models.Group.findOne(options).then(group => {
+    show: (object, options) => {
+        return models.Group.findOne(object, options).then(group => {
             return group.toJSON();
         });
     },
 
-    users: {
-        index: (options) => {
-            return models.Users.findAllByGroupId(options).then(users => {
-                return users.toJSON();
+    create: (object, options) => {
+        return models.Group.findOne({name: object.name}).then(group => {
+            if (group) {
+                throw new errors.ConflictError({message: 'group already exists'});
+            }
+            
+            return models.Group.create(object).then(group => {
+                return group.toJSON();
             });
-        },
+        });
+    },
 
+    destroy: (object, options) => {
+        return models.Group.findOne(object, options).then(group => {
+            if (!group) {
+                throw new errors.NotFoundError({message: 'group not found'});
+            }
+
+            return group.destroy();
+        });
+    },
+
+    users: {
         create: (object) => {
             return models.User.findOne({email: object.email}).then(user => {
                 if (!user) {

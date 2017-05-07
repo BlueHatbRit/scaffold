@@ -154,18 +154,6 @@ let User = base.extend({
 
 let Users = registry.Collection.extend({
     model: User
-}, {
-    findAllByGroupId: function findAllByGroupId(options) {
-        options = options || {};
-
-        return base.query.call(this, qb => {
-            qb.innerJoin('groups_users', 'groups_users.user_id', 'users.id')
-            .innerJoin('groups', 'groups_users.group_id', 'groups.id')
-            .where('groups.id', options.id)
-        }).fetch().then(users => {
-            return users;
-        });
-    }
 });
 
 module.exports = {
