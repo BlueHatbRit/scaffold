@@ -42,9 +42,23 @@ let Flag = base.extend({
         return attribs;
     }
 }, {
+    permittedOptions: function permittedOptions(methodName) {
+        let options = base.permittedOptions();
+
+        let validOptions = {
+            findOne: ['withRelated']
+        };
+
+        if (validOptions[methodName]) {
+            options = options.concat(validOptions[methodName]);
+        }
+
+        return options;
+    },
+
     findOne: function findOne(data, options) {
         options = options || {};
-        options.withRelated = ['groups'];
+        options = this.filterOptions(options, 'findOne');
 
         return base.findOne.call(this, data, options);
     },

@@ -58,7 +58,7 @@ BaseModel = BaseModel.extend({
     }
 }, {
     permittedOptions: function permittedOptions() {
-        return ['withRelated'];
+        return ['transacting'];
     },
 
     filterOptions: function filterOptions(options, methodName) {
@@ -87,6 +87,9 @@ BaseModel = BaseModel.extend({
     edit: function edit(data, options) {
         const id = options.id;
         const model = this.forge({id: id});
+
+        data = this.filterData(data);
+        options = this.filterOptions(options, 'edit');
 
         return model.fetch(options).then(function then(object) {
             if (object) {

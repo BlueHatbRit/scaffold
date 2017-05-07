@@ -82,8 +82,8 @@ const flags = {
         });
     },
 
-    show: (options) => {
-        return models.Flag.findOne(options).then(flag => {
+    show: (object, options) => {
+        return models.Flag.findOne(object, options).then(flag => {
             if (flag) {
                 return flag.toJSON();
             } else {
@@ -92,15 +92,18 @@ const flags = {
         });
     },
 
-    showAccess: (options) => {
-        return models.Flag.findOne(options).then(flag => {
+    showAccess: (object, options) => {
+        options = options || {};
+        options.withRelated = ['groups'];
+
+        return models.Flag.findOne(object).then(flag => {
             flag = flag.toJSON();
 
             delete flag.active;
             delete flag.groups;
             delete flag.population_percentage;
 
-            flag.accessible = userHasAccessToFlag(flag, options.user);
+            flag.accessible = userHasAccessToFlag(flag, object.user);
 
             return flag;
         });
@@ -126,8 +129,11 @@ const flags = {
         });
     },
 
-    destroy: (object) => {
-        return models.Flag.findOne({name: object.name}).then(flag => {
+    destroy: (object, options) => {
+        options = options || {};
+        options.withRelated = ['groups'];
+
+        return models.Flag.findOne({name: object.name}, options).then(flag => {
             if (!flag) {
                 throw new errors.NotFoundError({message: 'flag not found'});
             }
@@ -140,7 +146,7 @@ const flags = {
         create: (object, options) => {
             let flag;
 
-            return models.Flag.findOne({id: object.id}).then(foundFlag => {
+            return models.Flag.findOne({id: object.id}, {withRelated: ['groups']}).then(foundFlag => {
                 if (foundFlag) {
                     flag = foundFlag.toJSON();
                 } else {
