@@ -34,7 +34,15 @@ const flags = {
     },
 
     edit: (req, res, next) => {
-        api.flags.show({id: req.params.id}).then(flag => {
+        const object = {
+            id: req.params.id
+        };
+
+        const options = {
+            withRelated: ['groups']
+        };
+
+        api.flags.show(object, options).then(flag => {
             res.render('flags/edit', flag);
         }).catch(next);
     },

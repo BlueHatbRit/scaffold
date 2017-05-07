@@ -48,8 +48,8 @@ const groups = {
         };
 
         const options = {
-            withRelated: ['users']
-        }
+            withRelated: ['users', 'flags']
+        };
 
         return api.groups.destroy(object, options).then(() => {
             res.sendStatus(204);

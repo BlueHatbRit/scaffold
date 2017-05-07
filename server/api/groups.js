@@ -48,7 +48,7 @@ const groups = {
             if (!group) {
                 throw new errors.NotFoundError({message: 'group not found'});
             }
-
+            
             return group.destroy();
         });
     },
