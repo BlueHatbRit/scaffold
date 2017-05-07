@@ -4,22 +4,29 @@
     {{> flash}}
     <div class="row">
         <div class="column">
-            <h1 class="inline">Groups</h1>
+            {{#if groups}}
+                <h1 class="inline">Groups</h1>
 
-            <table>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {{#each groups}}
+                <table>
+                    <thead>
                         <tr>
-                            <td><a href="/groups/{{id}}">{{name}}</a></td>
+                            <th>Name</th>
                         </tr>
-                    {{/each}}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {{#each groups}}
+                            <tr>
+                                <td><a href="/groups/{{id}}">{{name}}</a></td>
+                            </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            {{else}}
+                <center>
+                    <h1>There aren't any groups yet</h1>
+                    <a class="button" href="/groups/new">Create a group now</a>
+                </center>
+            {{/if}}
         </div>
     </div>
 </main>

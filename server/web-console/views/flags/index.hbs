@@ -4,39 +4,46 @@
     {{> flash}}
     <div class="row">
         <div class="column">
-            <h1 class="inline">Flags</h1>
-            <a class="button float-right" href="/flags/new">New flag</a>
-            
-            <table>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Description</th>
-                        <th><center>Active</center></th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {{#each flags}}
+            {{#if flags}}
+                <h1 class="inline">Flags</h1>
+                <a class="button float-right" href="/flags/new">New flag</a>
+                
+                <table>
+                    <thead>
                         <tr>
-                            <td><a href="/flags/{{id}}/edit">{{name}}</a></td>
-                            <td>{{description}}</td>
-                            <td>
-                                <center>
-                                    {{#if active}}
-                                        <i class="fa fa-check" aria-hidden="true"></i>
-                                    {{else}}
-                                        <i class="fa fa-times" aria-hidden="true"></i>
-                                    {{/if}}
-                                </center>
-                            </td>
-                            <td>
-                                <button class="delete-btn float-right" value="{{name}}">Delete</button>
-                            </td>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th><center>Active</center></th>
+                            <th></th>
                         </tr>
-                    {{/each}}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {{#each flags}}
+                            <tr>
+                                <td><a href="/flags/{{id}}/edit">{{name}}</a></td>
+                                <td>{{description}}</td>
+                                <td>
+                                    <center>
+                                        {{#if active}}
+                                            <i class="fa fa-check" aria-hidden="true"></i>
+                                        {{else}}
+                                            <i class="fa fa-times" aria-hidden="true"></i>
+                                        {{/if}}
+                                    </center>
+                                </td>
+                                <td>
+                                    <button class="delete-btn float-right" value="{{name}}">Delete</button>
+                                </td>
+                            </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            {{else}}
+                <center>
+                    <h1>There aren't any flags yet</h1>
+                    <a class="button" href="/flags/new">Create a flag</a>
+                </center>
+            {{/if}}
         </div>
     </div>
 </main>

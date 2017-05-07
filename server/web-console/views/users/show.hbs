@@ -46,23 +46,27 @@
             </form>
 
             <div>
+                {{#if groups}}
                 <h2>Users groups</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {{#each groups}}
+                    <table>
+                        <thead>
                             <tr>
-                                <td><a href="/groups/{{id}}">{{name}}</a></td>
-                                <td>{{description}}</td>
+                                <th>Name</th>
+                                <th>Description</th>
                             </tr>
-                        {{/each}}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            {{#each groups}}
+                                <tr>
+                                    <td><a href="/groups/{{id}}">{{name}}</a></td>
+                                    <td>{{description}}</td>
+                                </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                {{else}}
+                    <center><h2>This user isn't in any groups</h2></center>
+                {{/if}}
             </div>
         </div>
     </div>
