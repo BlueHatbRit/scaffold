@@ -14,8 +14,8 @@ describe('Flags API', () => {
     describe('Index', () => {
         it('returns an array of results', done => {
             // Create two flags
-            api.flags.create(fixtures.flag).then(flag => {
-                return api.flags.create(fixtures.flagTwo);
+            api.flags.create(fixtures.nonActiveFlag).then(flag => {
+                return api.flags.create(fixtures.activeFlag);
             }).then(flagTwo => {
 
                 // Index all flags
@@ -40,7 +40,7 @@ describe('Flags API', () => {
         it('if a record exists then return it', done => {
             let options;
 
-            api.flags.create(fixtures.flag).then(flag => {
+            api.flags.create(fixtures.nonActiveFlag).then(flag => {
                 options =  {
                     id: flag.id
                 };
@@ -52,8 +52,8 @@ describe('Flags API', () => {
                 should.exist(flag.updated_at);
 
                 flag.id.should.equal(options.id);
-                flag.name.should.equal(fixtures.flag.name);
-                flag.description.should.equal(fixtures.flag.description);
+                flag.name.should.equal(fixtures.nonActiveFlag.name);
+                flag.description.should.equal(fixtures.nonActiveFlag.description);
                 
                 done();
             }).catch(done);
@@ -74,30 +74,209 @@ describe('Flags API', () => {
         });
     });
 
+    // The following are all of the access tests,
+    // they're quite complex and describe the accessibility
+    // of a flag dependant on a user.
     describe('Show Access', () => {
-        it('should return false when flag is not active', done => {
-            const fakeUser = {
-                id: '1234'
-            };
+        it('should return flag object with accessible field', done => {
+            // Create a user
+            let user;
+            fixtures.create.user(fixtures.user).then(newUser => {
+                user = newUser;
 
-            // Create a flag
-            api.flags.create(fixtures.flag).then(flag => {
-                
-                // Check flag access is denied
-                const options = {
+                // Create a flag
+                return fixtures.create.flag(fixtures.nonActiveFlag);
+            }).then(flag => {
+                // When requesting access, pass the user
+                // and flag
+                const object = {
                     id: flag.id,
-                    user: fakeUser
+                    user: user
                 };
-                api.flags.showAccess(options).then(flagAccess => {
-                    flagAccess.accessible.should.be.false();
 
-                    done();
-                }).catch(done);
+                return api.flags.showAccess(object);
+            }).then(flag => {
+                flag.id.should.be.a.String();
+                flag.name.should.equal(flag.name);
+                flag.description.should.equal(flag.description);
+                flag.accessible.should.be.a.Boolean();
+                should.exist(flag.created_at);
+                should.exist(flag.updated_at);
+
+                done();
+            }).catch(done);
+        });
+
+        it('should return false when flag is not active', done => {
+            let user;
+            fixtures.create.user(fixtures.user).then(newUser => {
+                user = newUser; // need the id
+                return fixtures.create.flag(fixtures.nonActiveFlag);
+            }).then(flag => {
+                // When requesting access, pass the user
+                // and flag
+                const object = {
+                    id: flag.id,
+                    user: user
+                };
+
+                return api.flags.showAccess(object);
+            }).then(flag => {
+                flag.accessible.should.be.false();
+
+                done();
+            }).catch(done);
+        });
+
+        it('should return false when not active, despite group access', done => {
+            let flag;
+            let group;
+            // The flag will NOT be active        
+            fixtures.create.flagWithGroup(fixtures.nonActiveFlag, fixtures.group).then(newFlag => {
+                flag = newFlag;
+                group = newFlag.groups[0];
+
+                // Create a user
+                return fixtures.create.user(fixtures.user);
+            }).then(user => {
+                const obj = {
+                    email: user.email,
+                    group_id: group.id
+                };
+                
+                // Put the user in the group
+                return api.groups.users.create(obj);
+            }).then(user => {
+                // Check users access to the deactivated flag
+                const obj = {
+                    name: flag.name,
+                    user: user
+                };
+
+                return api.flags.showAccess(obj);
+            }).then(flagWithAccess => {
+                // Flag access is false despite having access via the group
+                flagWithAccess.accessible.should.be.false();
+
+                done();
+            }).catch(done);
+        });
+
+        /*it('should return true when active and user has group access', done => {
+            let flag;
+            let group;
+
+            // The flag WILL be active
+            fixtures.create.flagWithGroup(fixtures.activeFlag, fixtures.group).then(newFlag => {
+                flag = newFlag;
+                group = newFlag.groups[0];
+
+                // Create a user
+                return fixtures.create.user(fixtures.user);
+            }).then(user => {
+                const obj = {
+                    email: user.email,
+                    group_id: group.id
+                };
+                console.log(obj);
+                // Put the user in the group
+                return api.groups.users.create(obj);
+            }).then(user => {
+                console.log(user);
+                // Check users access to the deactivated flag
+                const obj = {
+                    name: flag.name,
+                    user: user
+                };
+
+                return api.flags.showAccess(obj);
+            }).then(flagWithAccess => {
+                // Flag access is false despite having access via the group
+                flagWithAccess.accessible.should.be.true();
+
+                done();
+            });
+        });*/
+
+        it('should return false when active and user does not have group access', done => {
+            let flag;
+            let group;
+            fixtures.create.flagWithGroup(fixtures.nonActiveFlag, fixtures.group).then(newFlag => {
+                flag = newFlag;
+                group = newFlag.groups[0];
+
+                return fixtures.create.user(fixtures.user);
+            }).then(user => {
+                
+                const obj = {
+                    name: flag.name,
+                    user: user
+                };
+
+                // Check users access to the flag
+                return api.flags.showAccess(obj);
+            }).then(flagWithAccess => {
+                // Flag access is false because the user is not in the group.
+                flagWithAccess.accessible.should.be.false();
+
+                done();
+            }).catch(done);
+        });
+    });
+
+    describe('Grant group access', () => {
+        it('returns the flag and related group', done => {
+            let flag;
+            let group;
+            fixtures.create.flag(fixtures.nonActiveFlag).then(newFlag => {
+                flag = newFlag;
+
+                return fixtures.create.group(fixtures.group);
+            }).then(newGroup => {
+                group = newGroup;
+
+                // Grant the access
+                const obj = {
+                    id: flag.id,
+                    group_name: group.name
+                };
+                const options = {
+                    withRelated: ['groups']
+                };
+                return api.flags.groups.create(obj, options);
+            }).then(flagWithGroup => {
+                flagWithGroup.id.should.equal(flag.id);
+
+                flagWithGroup.groups.length.should.equal(1);
+                flagWithGroup.groups[0].id.should.equal(group.id);
+                flagWithGroup.groups[0].name.should.equal(group.name);
+                flagWithGroup.groups[0].description.should.equal(group.description);
+
+                done();
             }).catch(done);
         });
     });
 
     describe('Create', () => {
-        
+        it('should return the flag object', done => {
+            const flagToCreate = fixtures.nonActiveFlag;
+
+            api.flags.create(flagToCreate).then(flag => {
+                flag.id.should.be.a.String();
+                flag.name.should.equal(flagToCreate.name);
+                flag.description.should.equal(flagToCreate.description);
+
+                flag.active.should.be.a.Boolean();
+                flag.active.should.equal(flagToCreate.active);
+
+                flag.population_percentage.should.be.a.Number();
+                flag.population_percentage.should.equal(flagToCreate.population_percentage);
+
+                should.exist(flag.created_at);
+                should.exist(flag.updated_at);
+
+                done();
+            }).catch(done);
+        });
     });
 });

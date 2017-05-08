@@ -100,9 +100,9 @@ let User = base.extend({
                 let groupsToAdd = _.difference(listedGroups, currentGroups);
 
                 return modelUtils.attach(User, user.id, 'groups', groupsToAdd, options);
-            }).then(function then() {
-                return self.findOne({id: userId});
             });
+        }).then(function() {
+            return self.findOne({id: userId}, options);
         });
     },
 
