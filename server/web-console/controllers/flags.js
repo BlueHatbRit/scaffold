@@ -85,9 +85,13 @@ const flags = {
                 group_name: req.body.group_name
             };
 
-            api.flags.groups.create(obj).then(flag => {
+            let options = {
+                withRelated: ['groups']
+            };
+            
+            api.flags.groups.create(obj, options).then(flag => {
                 req.flash('success', 'Group given access to flag');
-
+                
                 res.redirect('/flags/' + flag.id + '/edit');
             }).catch(errors.NotFoundError, notFoundErr => {
                 // Flag could have been removed by another user while this is happening

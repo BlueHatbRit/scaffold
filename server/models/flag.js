@@ -89,7 +89,7 @@ let Flag = base.extend({
 
                 return modelUtils.attach(Flag, flag.id, 'groups', groupsToAdd, options);
             }).then(function then() {
-                return self.findOne({id: flagId});
+                return self.findOne({id: flagId}, options);
             });
         }).catch(errors.NotFoundError, notFoundError => {
             throw new errors.NotFoundError({message: 'flag not found'});

@@ -55,11 +55,11 @@ const groups = {
 
     users: {
         create: (object) => {
-            return models.User.findOne({email: object.email}).then(user => {
+            return models.User.findOne({email: object.email}, {withRelated: ['groups']}).then(user => {
                 if (!user) {
                     throw new errors.NotFoundError({message: 'user not found'});
                 }
-
+                
                 user = user.toJSON();
 
                 let userIsAlreadyInGroup = false;
@@ -82,8 +82,9 @@ const groups = {
                     withRelated: ['groups'],
                     id: user.id
                 };
-                return models.User.edit(user, options).then(user => {
-                    return user.toJSON();
+                
+                return models.User.edit(user, options).then(updatedUser => {
+                    return updatedUser.toJSON();
                 });
             });
         },

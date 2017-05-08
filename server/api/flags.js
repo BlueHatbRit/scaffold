@@ -96,7 +96,7 @@ const flags = {
         options = options || {};
         options.withRelated = ['groups'];
 
-        return models.Flag.findOne(object).then(flag => {
+        return models.Flag.findOne(object, options).then(flag => {
             flag = flag.toJSON();
 
             delete flag.active;
@@ -144,9 +144,10 @@ const flags = {
 
     groups: {
         create: (object, options) => {
+            options = options || {};
             let flag;
 
-            return models.Flag.findOne({id: object.id}, {withRelated: ['groups']}).then(foundFlag => {
+            return models.Flag.findOne({id: object.id}, options).then(foundFlag => {
                 if (foundFlag) {
                     flag = foundFlag.toJSON();
                 } else {
@@ -164,11 +165,8 @@ const flags = {
                 } else {
                     throw new errors.ConflictError({message: 'group already has access to flag'});
                 }
-
-                const options = {
-                    withRelated: ['groups'],
-                    id: flag.id
-                };
+                
+                options.id = flag.id;
                 return models.Flag.edit(flag, options).then(editedFlag => {
                     return editedFlag.toJSON();
                 });
