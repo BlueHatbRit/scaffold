@@ -56,6 +56,20 @@ let User = base.extend({
         return attributes;
     }
 }, {
+    permittedOptions: function permittedOptions(methodName) {
+        let options = base.permittedOptions();
+
+        let validOptions = {
+            findOne: ['withRelated']
+        };
+
+        if (validOptions[methodName]) {
+            options = options.concat(validOptions[methodName]);
+        }
+
+        return options;
+    },
+
     add: function add(dataToClone, options) {
         let self = this;
         let data = _.cloneDeep(dataToClone);
