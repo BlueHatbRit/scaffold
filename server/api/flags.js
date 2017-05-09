@@ -52,7 +52,7 @@ function userHasAccessToFlag(flag, user) {
     } else {
         // If the flag is active and there are no group or population
         // settings active, then give the user access.
-        if (_.isEmpty(flag.group) && flag.population_percentage === 0) {
+        if (_.isEmpty(flag.groups) && flag.population_percentage === 0) {
             accessible = true;
         }
     }
@@ -97,16 +97,20 @@ const flags = {
         options = options || {};
         options.withRelated = ['groups'];
 
-        return models.Flag.findOne(object, options).then(flag => {
-            flag = flag.toJSON();
+        return models.User.findOne({id: object.user.id}).then(user => {
+            user = user.toJSON();
 
-            flag.accessible = userHasAccessToFlag(flag, object.user);
+            return models.Flag.findOne(object, options).then(flag => {
+                flag = flag.toJSON();
+                
+                flag.accessible = userHasAccessToFlag(flag, user);
 
-            delete flag.active;
-            delete flag.groups;
-            delete flag.population_percentage;
+                delete flag.active;
+                delete flag.groups;
+                delete flag.population_percentage;
 
-            return flag;
+                return flag;
+            });
         });
     },
 

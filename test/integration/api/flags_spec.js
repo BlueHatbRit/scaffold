@@ -162,7 +162,7 @@ describe('Flags API', () => {
             }).catch(done);
         });
 
-        /*it('should return true when active and user has group access', done => {
+        it('should return true when active and user has group access', done => {
             let flag;
             let group;
 
@@ -178,11 +178,10 @@ describe('Flags API', () => {
                     email: user.email,
                     group_id: group.id
                 };
-                console.log(obj);
+                
                 // Put the user in the group
                 return api.groups.users.create(obj);
             }).then(user => {
-                console.log(user);
                 // Check users access to the deactivated flag
                 const obj = {
                     name: flag.name,
@@ -196,7 +195,7 @@ describe('Flags API', () => {
 
                 done();
             });
-        });*/
+        });
 
         it('should return false when active and user does not have group access', done => {
             let flag;
