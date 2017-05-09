@@ -72,7 +72,7 @@ const flags = {
             flags = flags.toJSON();
 
             flags.forEach((flag) => {
-                console.log(flag);
+                
                 flag.accessible = userHasAccessToFlag(flag, options.user);
                 delete flag.active;
                 delete flag.groups;
