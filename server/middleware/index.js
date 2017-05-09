@@ -2,5 +2,6 @@ module.exports = {
     auth: require('./auth'),
     webAuth: require('./web-auth'),
     locals: require('./locals'),
-    errorHandlers: require('./error-handlers')
+    errorHandlers: require('./error-handlers'),
+    flash: require('./flash')
 };
