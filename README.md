@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.com/BlueHatbRit/scaffold.svg?token=uKQNYaxm8ezJxFzXFwrT&branch=master)](https://travis-ci.com/BlueHatbRit/scaffold)
 
-Scaffold is an open source, chain of developer tools engineered for mobile and game developers. It manages user accounts for you, and provides feature flags to roll out features in anyway that suits your team.
+Scaffold is an open source chain of developer tools engineered for mobile and game developers. It manages user accounts for you, and provides feature flags to roll out features in anyway that suits your team.
 
 ## Installation
 
@@ -26,4 +26,6 @@ We always welcome help and contributions, see the [contribution guidelines](./CO
 
 To run the automated tests use:
 
-```npm run test```
+```bash
+yarn run test
+```
