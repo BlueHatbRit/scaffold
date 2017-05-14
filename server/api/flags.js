@@ -67,13 +67,26 @@ const flags = {
         });
     },
 
-    indexAccess: (options) => {
-        return models.Flag.fetchAll().then(flags => {
+    indexAccess: (object) => {
+        const options = {
+            withRelated: ['groups']
+        };
+        
+        // Check the user in case their groups have been changed
+        // since their login. Not the best way to do it but hey-ho
+        // it'll do for now.
+        let user;
+        return models.User.findOne({id: object.user.id}, options).then(upToDateUser => {
+            user = upToDateUser.toJSON();
+            console.log(user);
+
+            return models.Flags.forge().fetch(options)
+        }).then(flags => {
             flags = flags.toJSON();
 
             flags.forEach((flag) => {
                 
-                flag.accessible = userHasAccessToFlag(flag, options.user);
+                flag.accessible = userHasAccessToFlag(flag, user);
                 delete flag.active;
                 delete flag.groups;
                 delete flag.population_percentage;
