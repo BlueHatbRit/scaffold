@@ -1,8 +1,8 @@
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
-/*if (process.env.NODE_ENV !== 'production') {
+if (process.env.NODE_ENV !== 'production') {
     require('@glimpse/glimpse').init();
-}*/
+}
 
 const KnexMigrator = require('knex-migrator');
 const migrator = new KnexMigrator();

@@ -2,11 +2,11 @@
 # yarn lockfile v1
 
 
-"@glimpse/glimpse-agent-node@0.20.6":
-  version "0.20.6"
-  resolved "https://registry.yarnpkg.com/@glimpse/glimpse-agent-node/-/glimpse-agent-node-0.20.6.tgz#00cf10323eb5bf4280fdc73ca0d096864a2881be"
+"@glimpse/glimpse-agent-node@0.20.9":
+  version "0.20.9"
+  resolved "https://registry.yarnpkg.com/@glimpse/glimpse-agent-node/-/glimpse-agent-node-0.20.9.tgz#45fbbfa4a2cf13112b973c325ec0bd617da0d8eb"
   dependencies:
-    "@glimpse/glimpse-common" "0.20.6"
+    "@glimpse/glimpse-common" "0.20.9"
     config-chain "^1.1.10"
     continuation-local-storage "^3.1.4"
     cookie "^0.2.3"
@@ -22,20 +22,20 @@
     util "~0.10.3"
     uuid "^2.0.2"
 
-"@glimpse/glimpse-common@0.20.6":
-  version "0.20.6"
-  resolved "https://registry.yarnpkg.com/@glimpse/glimpse-common/-/glimpse-common-0.20.6.tgz#4f2314f857d52932b0114b79beb72cfa9d0f68b1"
+"@glimpse/glimpse-common@0.20.9":
+  version "0.20.9"
+  resolved "https://registry.yarnpkg.com/@glimpse/glimpse-common/-/glimpse-common-0.20.9.tgz#e9ea89aa61feda0006208a76cbaea51e59c5372f"
   dependencies:
     applicationinsights "^0.15.18"
     config-chain "^1.1.10"
     node-uuid "^1.4.7"
     semver "^5.3.0"
 
-"@glimpse/glimpse-server@0.20.6":
-  version "0.20.6"
-  resolved "https://registry.yarnpkg.com/@glimpse/glimpse-server/-/glimpse-server-0.20.6.tgz#04fad3a1db55d719ba050bb9b1f2511b2d26d26b"
+"@glimpse/glimpse-server@0.20.9":
+  version "0.20.9"
+  resolved "https://registry.yarnpkg.com/@glimpse/glimpse-server/-/glimpse-server-0.20.9.tgz#0d562a114a0a95c234f1ad6c070041ea98038987"
   dependencies:
-    "@glimpse/glimpse-common" "0.20.6"
+    "@glimpse/glimpse-common" "0.20.9"
     body-parser "^1.14.2"
     cors "^2.7.1"
     crc "^3.4.0"
@@ -45,12 +45,12 @@
     moment "^2.16.1"
     morgan "^1.6.1"
 
-"@glimpse/glimpse@^0.20.6":
-  version "0.20.6"
-  resolved "https://registry.yarnpkg.com/@glimpse/glimpse/-/glimpse-0.20.6.tgz#9e4bcdd0500dfffeba498e2871f0564a082e505b"
+"@glimpse/glimpse@^0.20.9":
+  version "0.20.9"
+  resolved "https://registry.yarnpkg.com/@glimpse/glimpse/-/glimpse-0.20.9.tgz#953a50a76628ec5f99517b202d44aaf8448beb0f"
   dependencies:
-    "@glimpse/glimpse-agent-node" "0.20.6"
-    "@glimpse/glimpse-server" "0.20.6"
+    "@glimpse/glimpse-agent-node" "0.20.9"
+    "@glimpse/glimpse-server" "0.20.9"
     lodash "^4.15.0"
 
 abbrev@1:
