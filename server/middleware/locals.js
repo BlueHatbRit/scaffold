@@ -1,7 +1,7 @@
 const api = require('../api');
 
 module.exports = function() {
-    return function(req, res, next) {
+    return function locals(req, res, next) {
         res.locals.isLoggedIn = !!req.session.userId;
 
         // Owners can access everything a maintainer can
