@@ -28,7 +28,7 @@
     "flags"
   ],
   "author": "Elliot Blackburn <elliot.blackburn@gmail.com>",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/BlueHatbRit/scaffold/issues"
   },
