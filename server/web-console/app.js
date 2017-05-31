@@ -1,7 +1,6 @@
 const express = require('express');
 const hbs = require('express-hbs');
 const bodyPareser = require('body-parser');
-//const flash = require('express-flash');
 const path = require('path');
 const webAuth = require('../middleware').webAuth;
 const locals = require('../middleware').locals;
