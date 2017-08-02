@@ -1,4 +1,4 @@
-<img src="./submission-docs/branding/logo.png" alt="Scaffold" align="center">
+<img src="./branding/logo.png" alt="Scaffold" align="center">
 
 [![Build Status](https://travis-ci.com/BlueHatbRit/scaffold.svg?token=uKQNYaxm8ezJxFzXFwrT&branch=master)](https://travis-ci.com/BlueHatbRit/scaffold)
 
@@ -11,7 +11,7 @@ Scaffold is an open source chain of developer tools engineered for mobile and ga
 Want to host on your own infrastructure? That's cool, check out the [full installation guide](https://github.com/BlueHatbRit/scaffold/wiki/Installation) for details.
 
 <center>
-    <img src="./submission-docs/branding/screenshot.png" style="max-width: 700px;" alt="screenshot">
+    <img src="./branding/screenshot.png" style="max-width: 700px;" alt="screenshot">
 </center>
 
 ## Documentation
