@@ -29,3 +29,7 @@ To run the automated tests use:
 ```bash
 yarn run test
 ```
+
+## Copyright & License
+
+Copyright (c) 2017 Elliot Blackburn - Released under the MIT license.
