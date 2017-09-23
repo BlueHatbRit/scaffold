@@ -1,0 +1,14 @@
+version: '3'
+services:
+  web:
+    build: .
+    ports:
+      - "2368:2368"
+    env_file:
+      - .env
+    volumes:
+      - ./:/var/www
+  redis:
+    image: "redis:latest"
+    expose:
+      - "6379"
