@@ -12,7 +12,8 @@
     "test": "grunt test-all",
     "db-init": "knex-migrator init",
     "db-up": "knex-migrator migrate",
-    "db-reset": "knex-migrator reset"
+    "db-reset": "knex-migrator reset",
+    "pretty": "prettier --write '{,!(node_modules),!(docs)/**/}*.js'"
   },
   "repository": {
     "type": "git",
@@ -54,6 +55,7 @@
     "lodash.difference": "^4.5.0",
     "mysql": "^2.13.0",
     "nconf": "^0.8.4",
+    "prettier": "^1.7.0",
     "serve-favicon": "^2.4.2",
     "xtend": "^4.0.1"
   },

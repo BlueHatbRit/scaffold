@@ -1,7 +1,7 @@
-const settingsCache = require('../../settings').cache;
+const settingsCache = require("../../settings").cache;
 
 const getSiteName = function() {
-    return settingsCache.get('name');
-}
+  return settingsCache.get("name");
+};
 
 module.exports = getSiteName;

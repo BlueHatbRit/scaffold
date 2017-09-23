@@ -1,6 +1,6 @@
-const version = require('../../package.json').version;
+const version = require("../../package.json").version;
 
 module.exports = {
-    full: version,
-    minor: version.match(/^(\d+\.)?(\d+)/)[0]
+  full: version,
+  minor: version.match(/^(\d+\.)?(\d+)/)[0]
 };

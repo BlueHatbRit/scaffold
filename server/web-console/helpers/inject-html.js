@@ -1,7 +1,7 @@
-const hbs = require('express-hbs');
+const hbs = require("express-hbs");
 
 function injectHtml(htmlString) {
-    return new hbs.SafeString(htmlString);
+  return new hbs.SafeString(htmlString);
 }
 
 module.exports = injectHtml;

@@ -1,114 +1,125 @@
-const db = require('../data/db');
-const schema = require('../data/schema').schema;
-const bookshelf = require('bookshelf')(db.knex);
-const ObjectId = require('bson-objectid');
-const _ = require('lodash');
-const errors = require('../errors');
+const db = require("../data/db");
+const schema = require("../data/schema").schema;
+const bookshelf = require("bookshelf")(db.knex);
+const ObjectId = require("bson-objectid");
+const _ = require("lodash");
+const errors = require("../errors");
 
-let BaseModel = require('bookshelf-modelbase')(bookshelf);
+let BaseModel = require("bookshelf-modelbase")(bookshelf);
 
 // Registry plugin to find models easily
-bookshelf.plugin('registry');
+bookshelf.plugin("registry");
 
-bookshelf.plugin(require('bookshelf-modelbase').pluggable);
+bookshelf.plugin(require("bookshelf-modelbase").pluggable);
 
 // Add some custom elements to our BaseModel
-BaseModel = BaseModel.extend({
+BaseModel = BaseModel.extend(
+  {
     permittedAttributes: function permittedAttributes() {
-        return _.keys(schema[this.tableName]);
+      return _.keys(schema[this.tableName]);
     },
 
     defaults: function defaults() {
-        return {};
+      return {};
     },
 
     initialize: function initialize() {
-        let self = this;
+      let self = this;
 
-        // Create event hooks for 'onSaving, onSave, onCreating' etc.
-        // Add hook options as required to the string array.
-        // If the function doesn't exist on the current model, it'll be
-        // skipped.
-        ['creating', 'created', 'saving', 'updated', 'destroyed', 'destroying'].forEach(eventName => {
-            let functionName = 'on' + eventName[0].toUpperCase() + eventName.slice(1);
-            
-            if (!self[functionName]) {
-                return;
-            }
-            
-            self.on(eventName, function eventTriggered() {
-                return this[functionName].apply(this, arguments);
-            });
+      // Create event hooks for 'onSaving, onSave, onCreating' etc.
+      // Add hook options as required to the string array.
+      // If the function doesn't exist on the current model, it'll be
+      // skipped.
+      [
+        "creating",
+        "created",
+        "saving",
+        "updated",
+        "destroyed",
+        "destroying"
+      ].forEach(eventName => {
+        let functionName =
+          "on" + eventName[0].toUpperCase() + eventName.slice(1);
+
+        if (!self[functionName]) {
+          return;
+        }
+
+        self.on(eventName, function eventTriggered() {
+          return this[functionName].apply(this, arguments);
         });
+      });
     },
 
     onCreating: function onCreating(newObj, attr, options) {
-        if (_.isUndefined(newObj.id) || _.isNull(newObj.id)) {
-            newObj.setId();
-        }
+      if (_.isUndefined(newObj.id) || _.isNull(newObj.id)) {
+        newObj.setId();
+      }
     },
 
     onSaving: function onSaving(newObj, attr, options) {
-        // Remove any properties which don't belong on the model
-        this.attributes = this.pick(this.permittedAttributes());
+      // Remove any properties which don't belong on the model
+      this.attributes = this.pick(this.permittedAttributes());
     },
 
     setId: function setId() {
-        this.set('id', ObjectId.generate());
+      this.set("id", ObjectId.generate());
     }
-}, {
+  },
+  {
     permittedOptions: function permittedOptions() {
-        return ['transacting'];
+      return ["transacting"];
     },
 
     filterOptions: function filterOptions(options, methodName) {
-        let permittedOptions = this.permittedOptions(methodName);
-        let filteredOptions = _.pick(options, permittedOptions);
+      let permittedOptions = this.permittedOptions(methodName);
+      let filteredOptions = _.pick(options, permittedOptions);
 
-        return filteredOptions;
+      return filteredOptions;
     },
 
     filterData: function filterData(data) {
-        let permittedAttributes = this.prototype.permittedAttributes();
-        let filteredData = _.pick(data, permittedAttributes);
+      let permittedAttributes = this.prototype.permittedAttributes();
+      let filteredData = _.pick(data, permittedAttributes);
 
-        return filteredData;
+      return filteredData;
     },
 
     add: function add(data, options) {
-        options = options || {};
-        const model = this.forge(data);
+      options = options || {};
+      const model = this.forge(data);
 
-        // We auto-gen id's so we need to tell bookshelf we're doing an insert.
-        options.method = 'insert';
-        return model.save(null, options);
+      // We auto-gen id's so we need to tell bookshelf we're doing an insert.
+      options.method = "insert";
+      return model.save(null, options);
     },
 
     edit: function edit(data, options) {
-        const id = options.id;
-        const model = this.forge({id: id});
+      const id = options.id;
+      const model = this.forge({ id: id });
 
-        data = this.filterData(data);
-        options = this.filterOptions(options, 'edit');
+      data = this.filterData(data);
+      options = this.filterOptions(options, "edit");
 
-        return model.fetch(options).then(function then(object) {
-            if (object) {
-                return object.save(data, options);
-            } else {
-                throw new errors.NotFoundError({message: 'model not found'});
-            }
-        });
+      return model.fetch(options).then(function then(object) {
+        if (object) {
+          return object.save(data, options);
+        } else {
+          throw new errors.NotFoundError({ message: "model not found" });
+        }
+      });
     },
 
     findOne: function findOne(data, options) {
-        data = this.filterData(data);
-        options = this.filterOptions(options, 'findOne');
-        
-        return this.forge(data).fetch(options);
+      data = this.filterData(data);
+      options = this.filterOptions(options, "findOne");
+
+      return this.forge(data).fetch(options);
     }
-});
+  }
+);
 
 module.exports = {
-    registry: bookshelf,
-    base: BaseModel
+  registry: bookshelf,
+  base: BaseModel
 };

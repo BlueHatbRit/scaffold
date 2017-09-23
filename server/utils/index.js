@@ -1,3 +1,3 @@
 module.exports = {
-    version: require('./version')
+  version: require("./version")
 };

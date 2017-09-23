@@ -1,5 +1,5 @@
 function boolToCheckbox(bool) {
-    if (bool) return 'checked';
+  if (bool) return "checked";
 }
 
-module.exports = boolToCheckbox
+module.exports = boolToCheckbox;
