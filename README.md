@@ -1,6 +1,6 @@
-<img src="./branding/logo.png" alt="Scaffold" align="center">
+<img src="./branding/logo.png" alt="Scaffold" align="center" height="100">
 
-[![Build Status](https://travis-ci.com/BlueHatbRit/scaffold.svg?token=uKQNYaxm8ezJxFzXFwrT&branch=master)](https://travis-ci.com/BlueHatbRit/scaffold)
+[![Build Status](https://travis-ci.org/BlueHatbRit/scaffold.svg?branch=master)](https://travis-ci.org/BlueHatbRit/scaffold)
 
 Scaffold is an open source chain of developer tools engineered for mobile and game developers. It manages user accounts for you, and provides feature flags to roll out features in anyway that suits your team.
 
