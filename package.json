@@ -52,7 +52,7 @@
     "jsonwebtoken": "^7.3.0",
     "knex": "^0.12.6",
     "knex-migrator": "^2.0.5",
-    "lodash": "^4.17.4",
+    "lodash": "^4.17.19",
     "lodash.difference": "^4.5.0",
     "mysql": "^2.13.0",
     "nconf": "^0.8.4",
