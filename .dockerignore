@@ -1,0 +1,5 @@
+# Files to ignore during the docker build
+.travis.yml
+Procfile
+config.*.json
+node_modules

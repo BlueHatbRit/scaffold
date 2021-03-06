@@ -1,5 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const cors = require("cors");
 const errorHandlers = require("../middleware").errorHandlers;
 const auth = require("../middleware").auth;
 const api = require("../api");
@@ -28,6 +29,11 @@ module.exports = () => {
 
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));
+
+  app.use(cors({
+    origin: ['http://localhost:8081'],
+    credentials: true
+  }));
 
   app.use(initRoutes());
 
